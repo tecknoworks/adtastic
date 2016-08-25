@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  url: MyText
+  tagID_1: 
+  tagID_2: 
+  tagID_3: 
+  length: 2016-08-24 15:46:45
+
+two:
+  name: MyString
+  url: MyText
+  tagID_1: 
+  tagID_2: 
+  tagID_3: 
+  length: 2016-08-24 15:46:45

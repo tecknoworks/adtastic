@@ -1,0 +1,2 @@
+class UpdateTag < ApplicationRecord
+end

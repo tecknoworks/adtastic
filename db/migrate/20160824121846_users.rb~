@@ -1,0 +1,43 @@
+class Users < ActiveRecord::Migration[5.0]
+  def change
+    create_table :users do |t|
+      t.string :emails
+      t.string :Password
+      t.boolean :UserType
+      
+
+      t.timestamps
+    end
+    
+    create_table :devices do |t|
+       t.string :name
+       t.int :rez_x
+       t.int :rez_y
+    
+       t.timestamps
+    end
+    
+    create_table :tags do |t|
+       t.string :name
+    end
+    
+    create_table :photos do |t|
+       t.string :name
+       t.int :rez_x
+       t.int :rez_y
+       t.text :url
+       t.int :tagID_1
+       t.int :tagID_2
+       t.int :tagID_3
+    end
+    
+    create_table :videos do |t|
+       t.string :name
+       t.text :urk
+       t.time :length
+       t.int :tagID_1
+       t.int :tagID_2
+       t.int :tagID_3
+    end
+  end
+end

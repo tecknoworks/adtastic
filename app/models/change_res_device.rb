@@ -1,0 +1,2 @@
+class ChangeResDevice < ApplicationRecord
+end
