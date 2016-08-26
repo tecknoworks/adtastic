@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825104027) do
+ActiveRecord::Schema.define(version: 20160826094538) do
 
   create_table "devices", force: :cascade do |t|
     t.string   "name"
@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 20160825104027) do
     t.datetime "updated_at", null: false
     t.integer  "res_x"
     t.integer  "res_y"
+  end
+
+  create_table "photo_tag", force: :cascade do |t|
+    t.integer  "Photo_id"
+    t.integer  "Tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "photos", force: :cascade do |t|
@@ -33,14 +40,19 @@ ActiveRecord::Schema.define(version: 20160825104027) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "photo_id"
-    t.integer  "video_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "password"
     t.string   "email"
     t.boolean  "user_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "video_tag", force: :cascade do |t|
+    t.integer  "Video_id"
+    t.integer  "Tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
