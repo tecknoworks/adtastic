@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826114822) do
+ActiveRecord::Schema.define(version: 20160826123457) do
 
   create_table "devices", force: :cascade do |t|
     t.string   "name"
@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 20160826114822) do
   end
 
   create_table "photo_tags", force: :cascade do |t|
-    t.integer  "Photo_id"
-    t.integer  "Tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "photo_id"
+    t.integer  "tag_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 20160826114822) do
   end
 
   create_table "video_tags", force: :cascade do |t|
-    t.integer  "Video_id"
-    t.integer  "Tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "video_id"
+    t.integer  "tag_id"
   end
 
   create_table "videos", force: :cascade do |t|
