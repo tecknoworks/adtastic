@@ -5,15 +5,9 @@ one:
   res_x: 
   res_y: 
   url: MyText
-  tagID_1: 
-  tagID_2: 
-  tagID_3: 
 
 two:
   name: MyString
   res_x: 
   res_y: 
   url: MyText
-  tagID_1: 
-  tagID_2: 
-  tagID_3: 
