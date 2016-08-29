@@ -1,36 +1,5 @@
 Rails.application.routes.draw do
 
-  
-  get 'tags/create'
-
-  get 'tags/new'
-
-  get 'tags/remove'
-
-  get 'tags/update'
-
-  get 'tags/tag_params'
-
-  get 'videos/create'
-
-  get 'videos/new'
-
-  get 'videos/index'
-
-  get 'videos/remove'
-
-  get 'videos/update'
-
-  get 'photos/create'
-
-  get 'photos/new'
-
-  get 'photos/index'
-
-  get 'photos/remove'
-
-  get 'photos/update'
-
   #get 'user/index', to: "users#index"
   
   #post 'user/new', to: "users#new"
