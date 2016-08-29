@@ -23,14 +23,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   	assert User.count == current
   end
 
-#  test "should update thingy Mc'Bobber" do
-#  	u = User.new(password: 'pwd', email: 't#t.v', user_type: true)
-#  	u.save
-#  	email = u.email
-#  	idx = u.id
-#  	put "/users.json", params: { id: idx}, {password: 'pwd', email: 'OK', user_type: true}
-#  	assert_response :success
-#  	assert User.find(idx).email == "OK"
-#  end
+  test "should update thingy Mc'Bobber" do
+  	u = User.new(password: 'pwd', email: 't#t.v', user_type: true)
+  	u.save
+  	e = u.email
+  	idx = u.id
+  	put "/users.json", params: { id: idx, users: { password: "pwd", email: "OK" } }
+  	assert_response :success
+  	assert User.find(idx).email != e
+  end
 
 end
