@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   
   #post 'user/new', to: "users#new"
   #post 'user/create', to "users#create"
-  resources :users
+  resources :users, only: [:create]
+  #resources :users, only: [:destroy]
+  delete 'users' => 'users#destroy'
+  put 'users' => 'users#update'
   #delete 'user/remove', to: "users#remove"
   #put 'user/update', to: "users#update"
   resources :users, only: [:index]

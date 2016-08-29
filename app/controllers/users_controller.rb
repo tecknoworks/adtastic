@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   	params.require(:users).permit(:id, :password, :emails, :user_type)
   end
 
-  def remove
+  def destroy
   	User.find(params[:id]).destroy
   end
 
