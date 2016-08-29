@@ -1,6 +1,6 @@
 class DevicesController < ApplicationController
   def index
-    @devices = device.all
+    @devices = Device.all
   end
 
   def create

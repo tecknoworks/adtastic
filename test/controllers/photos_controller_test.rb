@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PhotosControllerTest < ActionDispatch::IntegrationTest
   test "should get photos index" do
-    get '/index'
+    get '/photos.json'
     assert_response :success
   end
 
