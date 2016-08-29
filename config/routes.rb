@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  apipie
   #get 'user/index', to: "users#index"
   
   #post 'user/new', to: "users#new"
   #post 'user/create', to "users#create"
+  resources :users
   #delete 'user/remove', to: "users#remove"
   #put 'user/update', to: "users#update"
   resources :users, only: [:index]

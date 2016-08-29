@@ -54,3 +54,4 @@ end
 gem 'test-unit'
 gem 'minitest'
 gem 'rails-controller-testing'
+gem 'apipie-rails'
