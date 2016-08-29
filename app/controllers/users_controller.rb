@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   def index
-  	#respond_with User.all
   end
 
-  def create(password,email,user_type)
+  def new(password,email,user_type)
+  	u = User.new(password: password, email: email, user_type: user_type)
+  	u.save
   end
 
   def remove(idx)
