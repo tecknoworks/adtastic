@@ -1,10 +1,10 @@
 class VideosController < ApplicationController
   def index
-    @videos = video.all
+    @videos = Video.all
   end
 
   def create
-    @video = video.new(video_params)
+    @video = Video.new(video_params)
     @video.save
   end
 
@@ -13,15 +13,15 @@ class VideosController < ApplicationController
   end
 
   def new
-    @video = video.new(video_params)
+    @video = Video.new(video_params)
   end
 
   def remove
-    video.find(params[:id]).destroy
+    Video.find(params[:id]).destroy
   end
 
   def update
-    @video = video.find(params[:id])
+    @video = Video.find(params[:id])
     @video.update_attributes(video_params)
   end
 end

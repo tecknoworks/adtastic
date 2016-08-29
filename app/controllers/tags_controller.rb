@@ -1,10 +1,10 @@
 class TagsController < ApplicationController
- def index
-    @tags = tag.all
+  def index
+    @tags = Tag.all
   end
 
   def create
-    @tag = tag.new(tag_params)
+    @tag = Tag.new(tag_params)
     @tag.save
   end
 
@@ -13,15 +13,15 @@ class TagsController < ApplicationController
   end
 
   def new
-    @tag = tag.new(tag_params)
+    @tag = Tag.new(tag_params)
   end
 
   def remove
-    tag.find(params[:id]).destroy
+    Tag.find(params[:id]).destroy
   end
 
   def update
-    @tag = tag.find(params[:id])
+    @tag = Tag.find(params[:id])
     @tag.update_attributes(tag_params)
   end
 end

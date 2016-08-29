@@ -4,7 +4,7 @@ class DevicesController < ApplicationController
   end
 
   def create
-    @device = device.new(device_params)
+    @device = Device.new(device_params)
     @device.save
   end
 
@@ -13,15 +13,15 @@ class DevicesController < ApplicationController
   end
 
   def new
-    @device = device.new(device_params)
+    @device = Device.new(device_params)
   end
 
   def remove
-    device.find(params[:id]).destroy
+    Device.find(params[:id]).destroy
   end
 
   def update
-    @device = device.find(params[:id])
+    @device = Device.find(params[:id])
     @device.update_attributes(device_params)
   end
 end
