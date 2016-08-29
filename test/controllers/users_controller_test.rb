@@ -7,11 +7,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create post" do
-#  	assert_difference('User.count') do
-#  		post :'user/new', :post => {:password => 'password', :email => 't@t.t', :user_type => true}
-#  	end
-#
-#  	assert_redirected_to post_path(assigns(:post))
+  	post :create, password: "test", email: "test@test.com", user_type: true
   end
 
 end

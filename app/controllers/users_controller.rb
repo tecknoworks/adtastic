@@ -1,19 +1,28 @@
 class UsersController < ApplicationController
   def index
+  	@users = User.all
   end
 
-  def new(password,email,user_type)
-  	u = User.new(password: password, email: email, user_type: user_type)
-  	u.save
+  def create
+  	@user = User.new(user_params)
+  	@user.save
   end
 
-  def remove(idx)
+  def new
+  	@user = User.new(user_params)
   end
 
-  def update(idx,password,email)
+  def user_params
+  	params.require(:users).permit(:id, :password, :emails, :user_type)
   end
 
-  def getUserWithID(idx)
+  def remove
+  	User.find(params[:id]).destroy
+  end
+
+  def update
+  	@user = User.find(params[:id])
+  	@user.update_attributes(user_params)
   end
 
 end

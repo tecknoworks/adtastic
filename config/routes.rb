@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  #get 'users/index'
 
   get 'user/index', to: "users#index"
-  post 'user/new', to: "users#new"
+  post 'user/new', to: "users#create"
   delete 'user/remove', to: "users#remove"
   put 'user/update', to: "users#update"
 
