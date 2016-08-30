@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   #resources :users, only: [:destroy]
 
   get 'users' => 'users#index'
-  post 'users' => 'user#create'
+  post 'users' => 'users#create'
   delete 'users' => 'users#destroy'
   put 'users' => 'users#update'
   patch 'users' => 'users#update'

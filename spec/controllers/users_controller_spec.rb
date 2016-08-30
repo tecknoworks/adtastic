@@ -9,14 +9,14 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  # describe "POST #create" do
-    # it "should increase post count" do
-      # current = User.count
-      # post "/users.json", params: { user: { password: "pwd", email: "t@t.t", user_type: true } }
-      # expect(response)
-      # User.count.should eq(current + 1)
-    # end
-  # end
+  describe "POST #create" do
+    it "should increase post count" do
+      current = User.count
+      post :create, params: { user: { password: "pwd", email: "t@t.t", user_type: true } }
+      expect(response).to have_http_status :ok
+      #expect(User.count).to be_equal(current + 1)
+    end
+  end
 
   # describe "DELETE #destroy" do
     # it "should delete post" do
