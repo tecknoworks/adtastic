@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   api :GET, 'users'
+  description "method description"
   def index
   	@users = User.all
   end
