@@ -14,10 +14,10 @@ ActiveRecord::Schema.define(version: 20160830114633) do
 
   create_table "devices", force: :cascade do |t|
     t.string   "name"
+    t.integer  "rez_x"
+    t.integer  "rez_y"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "res_x"
-    t.integer  "res_y"
   end
 
   create_table "foos", force: :cascade do |t|

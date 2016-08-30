@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :foos
   apipie
   #get 'user/index', to: "users#index"
   
@@ -9,7 +8,7 @@ Rails.application.routes.draw do
   # resources :users, only: [:create]
   #resources :users, only: [:destroy]
 
-  get 'users' => 'user#index'
+  get 'users' => 'users#index'
   post 'users' => 'user#create'
   delete 'users' => 'users#destroy'
   put 'users' => 'users#update'
