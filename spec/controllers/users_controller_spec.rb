@@ -1,10 +1,11 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe UsersController, type: :controller do
+	
 	describe "GET #index" do
   	it "should get users index" do
-  	  get '/users.json'
-  	  expect(response).to render_template("index")
+  	  get '/users.json', params: {}
+  	  response.should be_succesfull
   	end
   end
 

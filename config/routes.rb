@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :foos
   apipie
   #get 'user/index', to: "users#index"
   
