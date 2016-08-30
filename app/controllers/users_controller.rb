@@ -1,26 +1,36 @@
 class UsersController < ApplicationController
 
   api :GET, 'users'
-  description "method description"
+  description "Returns json data about users."
   def index
   	@users = User.all
   end
 
+
+  api :POST, 'users'
+  description "Create a new user with the given params"
+  param :Email, String, :desc => "Email for login", :require => true
+  param :Password, String, :desc => "Password for login", :require => true
+  param :User_type, ["Admin", "User"], :desc => "Admin or User, must be boolean", :require => true
+
   def create
   	@user = User.new(user_params)
   	@user.save
-    render nothing: true
   end
 
   def new
   	@user = User.new(user_params)
   end
 
+  api :PUT,'users'
+  description "Update a user with a given id"
   def update
     u = User.find(params[:id])
     u.update(user_params)
   end
 
+  api  :DELETE, 'users'
+  description "Delete a user with a given id"
   def destroy
   	User.find(params[:id]).destroy
   end
