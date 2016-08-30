@@ -31,7 +31,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "PUT #update" do
-    it "should update thingy Mc'Bobber" do
+    it "should update user" do
       u = User.new(password: 'pwd', email: 't#t.v', user_type: true)
       e = u.email
       u.save

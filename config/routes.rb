@@ -14,6 +14,19 @@ Rails.application.routes.draw do
   put 'users' => 'users#update'
   patch 'users' => 'users#update'
 
+
+  get 'devices' => 'devices#index'
+  post 'devices' => 'devices#create'
+  delete 'devices' => 'devices#destroy'
+  put 'devices' => 'devices#update'
+  patch 'devices' => 'devices#update'
+
+  
+  get 'tags' => 'tags#index'
+  post 'tags' => 'tags#create'
+  delete 'tags' => 'tags#destroy'
+  put 'tags' => 'tags#update'
+  patch 'tags' => 'tags#update'
   #delete 'user/remove', to: "users#remove"
   # #put 'user/update', to: "users#update"
   # resources :users, only: [:index]
