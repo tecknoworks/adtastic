@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+  api :GET, 'users'
   def index
   	@users = User.all
   end
@@ -12,16 +14,18 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   end
 
-  def user_params
-  	params.require(:users).permit(:id, :password, :emails, :user_type)
+  def update
+    u = User.find(params[:id])
+    u.update(user_params)
   end
 
   def destroy
   	User.find(params[:id]).destroy
   end
 
-  def update
-  	User.find(params[:id]).update_attributes(user_params)
+  def user_params
+    # params.require(:users).permit(:id, :password, :emails, :user_type)
+    params.require(:user).permit(:id, :password, :email, :user_type)
   end
 
 end

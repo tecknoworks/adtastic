@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   #resources :users, only: [:destroy]
   delete 'users' => 'users#destroy'
   put 'users' => 'users#update'
+  patch 'users' => 'users#update'
+
   #delete 'user/remove', to: "users#remove"
   #put 'user/update', to: "users#update"
   resources :users, only: [:index]

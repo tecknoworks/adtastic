@@ -8,7 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should increase post count" do
   	current = User.count
-  	post "/users.json", params: { users: { password: "pwd", email: "t@t.t", user_type: true } }
+  	post "/users.json", params: { user: { password: "pwd", email: "t@t.t", user_type: true } }
   	assert_response :success
   	assert User.count == current + 1
   end
@@ -18,19 +18,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   	u = User.new(password: 'pwd', email: 't#t.v', user_type: true)
   	u.save
   	idx = u.id
-  	delete "/users.json", params: { id: idx}
+  	delete "/user.json", params: { id: idx }
   	assert_response :success
   	assert User.count == current
   end
 
   test "should update thingy Mc'Bobber" do
   	u = User.new(password: 'pwd', email: 't#t.v', user_type: true)
-  	u.save
   	e = u.email
+  	u.save
   	idx = u.id
-  	put "/users.json", params: { id: idx, users: { password: "pwd", email: "OK" } }
+  	put "/users.json", params: { id: idx, user: { email: 'OK' } }
   	assert_response :success
-  	assert User.find(idx).email != e
+  	assert_not_equal(User.find(idx).email, e, "EMAIL NOT MODIFIED")
   end
 
 end
