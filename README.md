@@ -54,9 +54,9 @@ CURL commands for user controller. All other controllers have the same format cu
 
 GET		`curl localhost:3000/users.json`
 
-PUT		`curl -X PUT -d "id=1&user[email]PUT=user7"	 http://localhost:3000/users.json`
+PUT		`curl -X PUT -d "id=1&user[email]=user7"	 http://localhost:3000/users.json`
 
-POST	`curl -X POST -d "user[email]=POSTuser7&user[password]=Password7&user[user_type]=true" http://localhost:3000/users.json`
+POST	`curl -X POST -d "user[email]=user7&user[password]=Password7&user[user_type]=true" http://localhost:3000/users.json`
 
 DELETE	`curl -X DELETE -d "id=96" http://localhost:3000/users.json`
 
