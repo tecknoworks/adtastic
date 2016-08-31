@@ -42,6 +42,7 @@ class UsersController < ApplicationController
   param :id, Integer, :desc => "Id of the user you want to remove", :required => true 
   def destroy
   	User.find(params[:id]).destroy
+    @string = "User was deleted"
   end
 
   def user_params
