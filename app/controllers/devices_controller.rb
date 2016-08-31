@@ -1,4 +1,10 @@
 class DevicesController < ApplicationController
+
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+
+
+
+
   api :GET, 'users'
   description "method description"
   def index
@@ -18,7 +24,7 @@ class DevicesController < ApplicationController
 
 
   def device_params
-    params.require(:device).permit(:id, :name, :res_x, :res_y)
+    params.require(:device).permit(:id, :name, :rez_x, :rez_y)
   end
 
   def new

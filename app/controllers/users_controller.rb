@@ -33,8 +33,8 @@ class UsersController < ApplicationController
   param :User_type, ["Admin", "User"], :desc => "Admin or User, must be boolean", :required => false
 
   def update
-    u = User.find(params[:id])
-    u.update(user_params)
+    @u = User.find(params[:id])
+    @u.update(user_params)
   end
 
   api  :DELETE, 'users'
