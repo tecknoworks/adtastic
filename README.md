@@ -40,7 +40,7 @@ REQUIREMENTS
 
 CODING STYLE
 ------------
-[Commit style](http://chris.beams.io/posts/git-commit/) 
+Commit [style](http://chris.beams.io/posts/git-commit/) 
 
 CONTRIBUTORS
 ------------
