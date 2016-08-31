@@ -3,7 +3,6 @@ class TagsController < ApplicationController
   description "method description"
   def index
     @tags = Tag.all
-    render nothing: true
   end
 
 
@@ -13,7 +12,6 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     @tag.save
-    render nothing: true
   end
 
   def tag_params

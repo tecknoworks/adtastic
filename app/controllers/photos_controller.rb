@@ -3,7 +3,6 @@ class PhotosController < ApplicationController
   description "method description"
   def index
     @photos = Photo.all
-    render nothing: true
   end
 
   api :POST, 'photos'
@@ -16,7 +15,6 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.save
-    render nothing: true
   end
 
   def photo_params

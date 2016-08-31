@@ -2,8 +2,7 @@ class DevicesController < ApplicationController
   api :GET, 'users'
   description "method description"
   def index
-    @devices = Device.all
-    render nothing: true    
+    @devices = Device.all   
   end
 
   api :POST, 'devices'
@@ -15,7 +14,6 @@ class DevicesController < ApplicationController
   def create
     @device = Device.new(device_params)
     @device.save
-    render nothing: true
   end
 
 

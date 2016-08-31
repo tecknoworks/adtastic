@@ -3,7 +3,6 @@ class VideosController < ApplicationController
   description "method description"
   def index
     @videos = Video.all
-    render nothing: true
   end
 
   
@@ -15,7 +14,6 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
     @video.save
-    render nothing: true
   end
 
   def video_params
