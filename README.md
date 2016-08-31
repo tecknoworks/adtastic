@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -38,6 +37,10 @@ REQUIREMENTS
 * Javascript( front end )
 * Database
 * Backend (RUBY/PYTHON/...)
+
+CODING STYLE
+------------
+[Commit style](http://chris.beams.io/posts/git-commit/) 
 
 CONTRIBUTORS
 ------------
