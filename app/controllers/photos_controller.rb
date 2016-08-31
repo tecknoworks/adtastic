@@ -3,6 +3,7 @@ class PhotosController < ApplicationController
   description "method description"
   def index
     @photos = Photo.all
+    render nothing: true
   end
 
   api :POST, 'photos'
@@ -15,10 +16,11 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.save
+    render nothing: true
   end
 
   def photo_params
-    params.require(:photos).permit(:id, :name, :res_x, :res_y, :url)
+    params.require(:photo).permit(:id, :name, :res_x, :res_y, :url)
   end
 
   def new
@@ -27,7 +29,7 @@ class PhotosController < ApplicationController
 
   api :DELETE, 'photos'
   description "Delete a photo with a given id"
-  def remove
+  def destroy
     Photo.find(params[:id]).destroy
   end
 

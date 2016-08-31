@@ -3,6 +3,7 @@ class TagsController < ApplicationController
   description "method description"
   def index
     @tags = Tag.all
+    render nothing: true
   end
 
 
@@ -12,10 +13,11 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     @tag.save
+    render nothing: true
   end
 
   def tag_params
-    params.require(:tags).permit(:id, :name)
+    params.require(:tag).permit(:id, :name)
   end
 
   def new
@@ -24,7 +26,7 @@ class TagsController < ApplicationController
 
   api :DELETE, 'tags'
   description "Delete a tag with a given id"
-  def remove
+  def destroy
     Tag.find(params[:id]).destroy
   end
 

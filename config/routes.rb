@@ -27,6 +27,18 @@ Rails.application.routes.draw do
   delete 'tags' => 'tags#destroy'
   put 'tags' => 'tags#update'
   patch 'tags' => 'tags#update'
+
+  get 'photos' => 'photos#index'
+  post 'photos' => 'photos#create'
+  delete 'photos' => 'photos#destroy'
+  put 'photos' => 'photos#update'
+  patch 'photos' => 'photos#update'
+  
+  get 'videos' => 'videos#index'
+  post 'videos' => 'videos#create'
+  delete 'videos' => 'videos#destroy'
+  put 'videos' => 'videos#update'
+  patch 'videos' => 'videos#update'
   #delete 'user/remove', to: "users#remove"
   # #put 'user/update', to: "users#update"
   # resources :users, only: [:index]

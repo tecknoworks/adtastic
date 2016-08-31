@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   description "Returns json data about users."
   def index
   	@users = User.all
+    render nothing: true
   end
 
 
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	@user.save
+    render nothing: true
   end
 
   def new

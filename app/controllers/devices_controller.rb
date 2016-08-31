@@ -3,6 +3,7 @@ class DevicesController < ApplicationController
   description "method description"
   def index
     @devices = Device.all
+    render nothing: true    
   end
 
   api :POST, 'devices'
@@ -14,10 +15,11 @@ class DevicesController < ApplicationController
   def create
     @device = Device.new(device_params)
     @device.save
+    render nothing: true
   end
 
   def device_params
-    params.require(:devices).permit(:id, :name, :res_x, :res_y)
+    params.require(:device).permit(:id, :name, :res_x, :res_y)
   end
 
   def new
@@ -26,7 +28,7 @@ class DevicesController < ApplicationController
 
   api :DELETE, 'devices'
   description "Delete a device with a given id"
-  def remove
+  def destroy
     Device.find(params[:id]).destroy
   end
 
