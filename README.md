@@ -49,4 +49,3 @@ CONTRIBUTORS
 * Stupariu Filip Tudor
 
 code review [here](https://codeclimate.com/github/tecknoworks/adtastic/code?q=rating%3AA)
->>>>>>> bc26ebdf0430743a9d0101105869f72f71644d76
