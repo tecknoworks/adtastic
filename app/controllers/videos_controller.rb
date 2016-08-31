@@ -28,7 +28,7 @@ class VideosController < ApplicationController
 
   api :DELETE, 'video'
   description "Delete a video with a given id"
- param :id, Integer, :desc => "Id of the video you want to remove", :required => true
+  param :id, Integer, :desc => "Id of the video you want to remove", :required => true
   def destroy
     Video.find(params[:id]).destroy
   end
