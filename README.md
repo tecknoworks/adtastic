@@ -8,16 +8,19 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+	ruby 2.3.0
 
 * System dependencies
 
 * Configuration
 
 * Database creation
+	Database created through rails migrations `rake db:migrate`
 
 * Database initialization
 
 * How to run the test suite
+	`bundle exec rspec` or `guard`
 
 * Services (job queues, cache servers, search engines, etc.)
 
