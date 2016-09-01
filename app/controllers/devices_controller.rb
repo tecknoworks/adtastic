@@ -24,7 +24,7 @@ class DevicesController < ApplicationController
 
 
   def device_params
-    params.require(:device).permit(:id, :name, :rez_x, :rez_y)
+    params.require(:device).permit(:id, :name, :res_x, :res_y)
   end
 
   def new
