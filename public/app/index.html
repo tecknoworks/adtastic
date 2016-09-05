@@ -18,15 +18,12 @@
 <body ng-app="demo">  
 
 
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-floating-label/dist/floating-label.js"></script>
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-aria/angular-aria.js"></script>
+    <script src="/node_modules/angular-animate/angular-animate.js"></script>
+    <script src="/node_modules/angular-material/angular-material.js"></script>
 
-   <script>
+<!--    <script>
   //   angular
   // .module('inputBasicDemo', ['ngMaterial'])
   // .controller('DemoCtrl', function($scope) {
@@ -44,10 +41,17 @@
   //     .dark();
 
   // });
-  </script>
+  </script> -->
   <script>
-            angular.module('demo', ['components']);
-            angular.module('demo').controller('DemoController', function () {});
+            angular.module('demo', ['ngMaterial']).controller('DemoController', function ($scope) 
+              {$scope.user = {
+                title: 'testTitle'
+              }.config(function($mdThemingProvider){
+                 $mdThemingProvider.theme('default')
+                  .primaryPalette('blue')
+                  .accentPalette('blue-grey')
+                  .warnPalette('orange');
+              })});
   </script>
 
   <!-- <div ng-controller="DemoCtrl" layout="column" >
@@ -70,7 +74,7 @@
   <form>
            <div class="control-group">
                <md-input-container>
-                  <input type="text" placeholder="Email address" floating-label ng-model="test" />
+                  <input type="text" placeholder=Email floating-label ng-model="test" />
                </md-input-container>
            </div>
   </form>
