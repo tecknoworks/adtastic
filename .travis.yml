@@ -2,5 +2,5 @@ language: ruby
 rvm:
  - 2.3.1
 before_script:
-  - "rake db:test:prepare"
+  - "bundle exec rake db:migrate"
 script: bundle exec rspec
