@@ -43,6 +43,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem "rails-erd"
+  gem 'guard-rubocop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete 'users' => 'users#destroy'
   put 'users' => 'users#update'
   patch 'users' => 'users#update'
+  post 'users/signin' => 'users#validate_sign_in'
 
 
   get 'devices' => 'devices#index'

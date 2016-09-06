@@ -49,4 +49,12 @@ class UsersController < ApplicationController
     params.require(:user).permit(:id, :password, :email, :user_type)
   end
 
+  def validate_sign_in
+    if User.verifyPassword(:inputEmail, :inputPassword) == true and User.verifyEmail(:inputEmail) == true
+      render "ok.com", :status => 200
+    else
+      render "notok.com", :status => 404
+    end
+  end
+
 end
