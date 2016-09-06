@@ -1,3 +1,4 @@
+# migration for database creation/editing
 class CreatePhotos < ActiveRecord::Migration[5.0]
   def change
     create_table :photos do |t|

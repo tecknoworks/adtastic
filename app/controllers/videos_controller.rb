@@ -1,21 +1,18 @@
+# controller for backend
 class VideosController < ApplicationController
+  protect_from_forgery with: :null_session, if: proc { |c| c.request.format == 'application/json' }
 
-  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-
-
-  
   api :GET, 'videos'
-  description "method description"
+  description 'method description'
   def index
     @videos = Video.all
   end
 
-  
   api :POST, 'video'
-  description "Create a new video with the given params"
-  param :Name, String, :desc => "Name of the photo", :required => true
-  param :Url, String, :desc => "Url from where the video was taken", :required => true
-  param :Length, Integer, :desc => "Length of the video", :required => true
+  description 'Create a new video with the given params'
+  param :Name, String, desc: 'Name of the photo', required: true
+  param :Url, String, desc: 'Url from where the video was taken', required: true
+  param :Length, Integer, desc: 'Length of the video', required: true
   def create
     @video = Video.new(video_params)
     @video.save
@@ -30,18 +27,18 @@ class VideosController < ApplicationController
   end
 
   api :DELETE, 'video'
-  description "Delete a video with a given id"
-  param :id, Integer, :desc => "Id of the video you want to remove", :required => true
+  description 'Delete a video with a given id'
+  param :id, Integer, desc: 'Id of the video you want to remove', required: true
   def destroy
     Video.find(params[:id]).destroy
   end
 
   api :PUT, 'video'
-  description "Update a video with a given id"
-  param :id, Integer, :desc => "Id of the video you want to update", :required => true
-  param :Name, String, :desc => "Name of the photo", :required => false
-  param :Url, String, :desc => "Url from where the video was taken", :required => false
-  param :Length, Integer, :desc => "Length of the video", :required => false
+  description 'Update a video with a given id'
+  param :id, Integer, desc: 'Id of the video you want to update', required: true
+  param :Name, String, desc: 'Name of the photo', required: false
+  param :Url, String, desc: 'Url from where the video was taken', required: false
+  param :Length, Integer, desc: 'Length of the video', required: false
   def update
     @video = Video.find(params[:id])
     @video.update_attributes(video_params)

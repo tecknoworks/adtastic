@@ -1,48 +1,46 @@
+# controller for backend
 class UsersController < ApplicationController
-
-  
-  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+  protect_from_forgery with: :null_session, if: proc { |c| c.request.format == 'application/json' }
 
   api :GET, 'users'
-  description "Returns json data about users."
+  description 'Returns json data about users.'
   def index
-  	@users = User.all
+    @users = User.all
   end
 
-
   api :POST, 'users'
-  description "Create a new user with the given params"
-  param :Email, String, :desc => "Email for login", :required => true
-  param :Password, String, :desc => "Password for login", :required => true
-  param :User_type, ["Admin", "User"], :desc => "Admin or User, must be boolean", :required => true
+  description 'Create a new user with the given params'
+  param :Email, String, desc: 'Email for login', required: true
+  param :Password, String, desc: 'Password for login', required: true
+  param :User_type, %w(Admin User), desc: 'Admin or User, must be boolean', required: true
 
   def create
-  	@user = User.new(user_params)
-  	@user.save
+    @user = User.new(user_params)
+    @user.save
   end
 
   def new
-  	@user = User.new(user_params)
+    @user = User.new(user_params)
   end
 
-  api :PUT,'users'
-  description "Update a user with a given id"
-  param :id, Integer, :desc => "Id of the user you want to update", :required => true
-  param :Email, String, :desc => "Email for login", :required => false
-  param :Password, String, :desc => "Password for login", :required => false
-  param :User_type, ["Admin", "User"], :desc => "Admin or User, must be boolean", :required => false
+  api :PUT, 'users'
+  description 'Update a user with a given id'
+  param :id, Integer, desc: 'Id of the user you want to update', required: true
+  param :Email, String, desc: 'Email for login', required: false
+  param :Password, String, desc: 'Password for login', required: false
+  param :User_type, %w(Admin User), desc: 'Admin or User, must be boolean', required: false
 
   def update
     @u = User.find(params[:id])
     @u.update(user_params)
   end
 
-  api  :DELETE, 'users'
-  description "Delete a user with a given id"
-  param :id, Integer, :desc => "Id of the user you want to remove", :required => true 
+  api :DELETE, 'users'
+  description 'Delete a user with a given id'
+  param :id, Integer, desc: 'Id of the user you want to remove', required: true
   def destroy
-  	User.find(params[:id]).destroy
-    @string = "User was deleted"
+    User.find(params[:id]).destroy
+    @string = 'User was deleted'
   end
 
   def user_params
@@ -50,11 +48,10 @@ class UsersController < ApplicationController
   end
 
   def validate_sign_in
-    if User.verifyPassword(params[:inputEmail], params[:inputPassword]) == true and User.verifyEmail(params[:inputEmail]) == true
-      render inline: "</p><% 'man' %>", :status => 200
+    if User.verify_password(params[:inputEmail], params[:inputPassword]) == true && User.verify_email(params[:inputEmail]) == true
+      render inline: "</p><% 'man' %>", status: 200
     else
-      render :nothing, :status => 404
+      render :nothing, status: 404
     end
   end
-
 end

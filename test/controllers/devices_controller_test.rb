@@ -5,9 +5,8 @@ class DevicesControllerTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
 
-  test "should get devices index" do
+  test 'should get devices index' do
     get '/devices.json'
     assert_response :success
   end
-
 end

@@ -1,6 +1,7 @@
+# migration for database creation/editing
 class Ren < ActiveRecord::Migration[5.0]
   def change
-  	remove_column :photo_tags, :Photo_id
+    remove_column :photo_tags, :Photo_id
     remove_column :photo_tags, :Tag_id
     remove_column :video_tags, :Video_id
     remove_column :video_tags, :Tag_id
