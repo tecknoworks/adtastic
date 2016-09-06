@@ -1,7 +1,8 @@
 class User < ApplicationRecord
 
 	def self.verifyPassword(inputEmail, inputPassword)
-  		if User.find_by_email(inputEmail).password == inputPassword 
+  		u = User.find_by_email(inputEmail).password
+  		if u == inputPassword 
   			return true
   		end
   		return false
