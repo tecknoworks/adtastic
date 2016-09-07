@@ -108,7 +108,7 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
 
 });
 
-app.controller('CastMenuController', function ($scope, $location) {
+app.controller('CastMenuController', function ($scope, $location, $http) {
   $scope.content = function(){
     $location.path('/content');
   }
@@ -122,5 +122,22 @@ app.controller('CastMenuController', function ($scope, $location) {
     $location.path('/cast');
   }
 
+  $http.get('/users.json').then(function (response) {
+    $scope.users = response.data.users;
+  }, function (error) {
+    console.log(error);
+  })
+
+  $http.get('/photos.json').then(function (response) {
+    $scope.photos = response.data.photos;
+  }, function (error) {
+    console.log(error);
+  })
+
+  $http.get('/videos.json').then(function (response) {
+    $scope.videos = response.data.videos;
+  }, function (error) {
+    console.log(error);
+  })
 
 });

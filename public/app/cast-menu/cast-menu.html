@@ -6,10 +6,63 @@
 				<span>ADTASTIC</span>
 				<md-button ng-click="content()" class="md-raised md-primary" layout='row' layout-allign='center'>Content Manager</md-button>
 				<md-button ng-click="users()" class="md-raised md-primary" layout='row' layout-allign='center'>Users Manager</md-button>
-        <md-button ng-click="cast()" class="md-raised md-primary" layout='row' layout-allign='center'>Cast Menu</md-button>
-        <md-button ng-click="device()" class="md-raised md-primary" layout='row' layout-allign='center'>Device Manager</md-button>
+				<md-button ng-click="cast()" class="md-raised md-primary" layout='row' layout-allign='center'>Cast Menu</md-button>
+				<md-button ng-click="device()" class="md-raised md-primary" layout='row' layout-allign='center'>Device Manager</md-button>
 			</div>
 
 		</md-toolbar>
 	</div>
+
+	<div layout='row'>
+		<div flex>Users
+			<md-content>
+				<md-list layout="column" layout-align="center">
+					<md-list-item class="md-3-line" ng-repeat="user in users">
+						<div class="md-list-item-text" layout="column">
+							<h2>ID: {{ user.id }}</h2>
+							<h3>Email: {{ user.email }}</h3>
+							<md-checkbox class="md-secondary" ng-model="user.checked"></md-checkbox>
+						</div>
+					</md-list-item>
+				</md-list>
+			</md-content>
+		</div>
+		
+
+
+
+		<div flex>Options
+
+			<md-card-content>
+				<div layout="row" layout-align="space-between center">
+					<md-button class="md-primary md-raised">sort by</md-button>
+					<md-select ng-model="sortOptions" placeholder="Name" class="md-no-underline">
+						<md-option value="Name">Name</md-option>
+						<md-option value="Newest Added">Newest Added</md-option>
+					</md-select>
+				</div>
+			</md-card-content>
+
+		</div>
+
+		<div flex>Content
+			<md-content>	
+				<md-list layout="column" layout-align="center">
+					<md-list-item class="md-3-line" ng-repeat="photo in photos">
+						<div class="md-list-item-text" layout="column">
+							<h2> {{ photo.name }}</h2>
+							<h3> Type: Photo</h3>
+						</div>
+					</md-list-item>
+					<md-list-item class="md-3-line" ng-repeat="video in videos">
+						<div class="md-list-item-text" layout="column">
+							<h2>Name: {{ video.name }}</h2>
+							<h3> Type: Video</h3>
+						</div>
+					</md-list-item>
+				</md-list>
+			</md-content>
+		</div>
+	</div>
+
 </div>
