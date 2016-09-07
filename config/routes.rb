@@ -7,9 +7,15 @@ Rails.application.routes.draw do
   # resources :users, only: [:create]
   # resources :users, only: [:destroy]
 
+  # GET /users
+  # GET /users/:id
+  # PATCH /users/:id
+  # POST /users
+  # DELETE /users/:id
+
   get 'users' => 'users#index'
   post 'users' => 'users#create'
-  delete 'users' => 'users#destroy'
+  delete 'users/:id' => 'users#destroy'
   put 'users' => 'users#update'
   patch 'users' => 'users#update'
   post 'users/signin' => 'users#validate_sign_in'

@@ -16,20 +16,20 @@
 
 <body>
   <div layout="column">
-  <md-toolbar layout='column'>
+    <md-toolbar layout='column'>
 
-    <div class="md-toolbar-tools">
-      <span>ADTASTIC</span>
+      <div class="md-toolbar-tools">
+        <span>ADTASTIC</span>
+        
+        <span flex></span>
+        <md-button class="md-secondary" layout-align='end'>
+          Sign Out
+        </md-button>
       
-      <span flex></span>
-      <md-button class="md-secondary" layout-align='end'>
-        Sign Out
-      </md-button>
-    
-    </div>
+      </div>
 
 
-  </md-toolbar>
+    </md-toolbar>
   </div>
 
   <div ng-controller='user-management-controller' layout='column'>
@@ -49,9 +49,7 @@
     						<md-button ng-click="add()" class="md-raised md-primary">Quick Add</md-button>
   						</div>
 
-           </div>
-
-             
+           </div> 
   	</form> 
 
   	<div>
@@ -62,19 +60,19 @@
     	</md-toolbar>
     </div>
 
-    <div layout='row' layout-allign='center'>
-    <md-content>
-      <md-list layout="column" layout-align="center">
-        <md-list-item class="md-3-line" ng-repeat="user in users">
-          <div class="md-list-item-text" layout="column">
-          	<h2>ID: {{ user.id }}</h4>
-            <h3>Email: {{ user.email }}</h4>
-            <h3>Password: {{ user.password }}</h4>
-            <md-button class="md-secondary md-raised" ng-click="delete( $event )">Delete</md-button>
-          </div>
-        </md-list-item>
-      </md-list>
-    </md-content>
+    <div layout='column' layout-align='center'>
+      <md-content>
+        <md-list layout="column" layout-align="center">
+          <md-list-item class="md-3-line" ng-repeat="user in users">
+            <div class="md-list-item-text" layout="column">
+            	<h2>ID: {{ user.id }}</h2>
+              <h3>Email: {{ user.email }}</h3>
+              <h3>Password: {{ user.password }}</h3>
+              <md-button class="md-secondary md-raised" ng-click="delete(user.id)">Delete</md-button>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
     </div>
 
   </div>
