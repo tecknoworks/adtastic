@@ -18,7 +18,10 @@ app.controller('SignInController', function ($scope, $http, $location) {
    //  }, function (error) {
    //    console.log(error);
    //  });
-   $http.post('/users/signin', { inputEmail: $scope.inputEmail, inputPassword: $scope.inputPassword }).then(function (response) 
-    { console.log("Request done") }, function (error) { console.log("Not requested") })
+   $http.post('/users/signin', { inputEmail: $scope.inputEmail, inputPassword: $scope.inputPassword }).then(
+    function (response) 
+      { console.log("Request done") }, 
+        function (error) { 
+          console.log("Not requested") })
   }
 });

@@ -1,5 +1,5 @@
-- login should work +
-- angular routing
-- guard-rubocop
-- welcome page +
-- users page
+- login should work (done)
+- angular routing (done)
+- guard-rubocop (done)
+- welcome page (done)
+- users page (done 80%)

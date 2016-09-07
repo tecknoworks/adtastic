@@ -1,0 +1,20 @@
+
+<div ng-controller="SignInController">
+        <form>
+                 <div class="control-group" layout='row' layout-align='center'>
+                     <md-input-container>
+                        <input type="text" placeholder=Email floating-label ng-model="inputEmail" />
+                     </md-input-container>
+                 </div>
+
+                 <div class="control-group" layout='row' layout-align='center'>
+                     <md-input-container>
+                        <input type="password" placeholder="Password" floating-label ng-model="inputPassword" />
+                     </md-input-container>
+                 </div>
+        </form>  
+        
+        <div layout='row' layout-align='center'>
+          <md-button ng-click="test()" class="md-raised md-primary" layout='row' layout-allign='center'>Log In</md-button>
+        </div>
+</div>
