@@ -17,32 +17,32 @@ Rails.application.routes.draw do
   post 'users' => 'users#create'
   delete 'users/:id' => 'users#destroy'
   put 'users' => 'users#update'
-  patch 'users' => 'users#update'
+  patch 'users/:id' => 'users#update'
   post 'users/signin' => 'users#validate_sign_in'
 
   get 'devices' => 'devices#index'
   post 'devices' => 'devices#create'
-  delete 'devices' => 'devices#destroy'
+  delete 'devices/:id' => 'devices#destroy'
   put 'devices' => 'devices#update'
-  patch 'devices' => 'devices#update'
+  patch 'devices/:id' => 'devices#update'
 
   get 'tags' => 'tags#index'
   post 'tags' => 'tags#create'
-  delete 'tags' => 'tags#destroy'
+  delete 'tags/:id' => 'tags#destroy'
   put 'tags' => 'tags#update'
-  patch 'tags' => 'tags#update'
+  patch 'tags/:id' => 'tags#update'
 
   get 'photos' => 'photos#index'
   post 'photos' => 'photos#create'
-  delete 'photos' => 'photos#destroy'
+  delete 'photos/:id' => 'photos#destroy'
   put 'photos' => 'photos#update'
-  patch 'photos' => 'photos#update'
+  patch 'photos/:id' => 'photos#update'
 
   get 'videos' => 'videos#index'
   post 'videos' => 'videos#create'
-  delete 'videos' => 'videos#destroy'
+  delete 'videos/:id' => 'videos#destroy'
   put 'videos' => 'videos#update'
-  patch 'videos' => 'videos#update'
+  patch 'videos/:id' => 'videos#update'
   # delete 'user/remove', to: "users#remove"
   # #put 'user/update', to: "users#update"
   # resources :users, only: [:index]
