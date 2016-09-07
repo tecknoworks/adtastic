@@ -1,7 +1,7 @@
-- AUTO FORMAT
++ AUTO FORMAT
 - fix views in user management
 - guard-rubocop exclude files
-- users page (done 80%)
-- make rest routes restful
++ users page (done 80%)
++ make rest routes restful
 - device managemenet and rest management
 - TEST(protractor)
