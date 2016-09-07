@@ -15,20 +15,6 @@ app.controller('user-management-controller', function ($scope, $http, $location)
         console.log(error);
       })
 
-    $scope.loadData = function () 
-      {
-        $http.get('/users.json').then(function (response) {
-        $scope.users = response.data.users;
-        var vm = this;  
-        vm.reload = function()        
-        {           
-            vm.users = $scope.users;           
-        };
-
-        }, function (error) {
-          console.log(error);
-          })
-      };
       
       $scope.delete = function(uid) {
         console.log(uid);
