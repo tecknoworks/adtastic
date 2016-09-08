@@ -215,15 +215,32 @@ app.controller('CastMenuController', function ($scope, $location, $http, $q) {
   }
 
 
-  $scope.sortMedia = function() {
-    $scope.media.sort(function(a, b){
-      var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
-    if (nameA < nameB) //sort string ascending
-      return -1 
-    if (nameA > nameB)
-      return 1
-    return 0
-  })
+  $scope.sortMedia = function() 
+  {
+    if ($scope.sortOptions == "Name Ascending")
+    {
+      $scope.media.sort(function(a, b){
+        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+      if (nameA < nameB) //sort string ascending
+        return -1 
+      if (nameA > nameB)
+        return 1
+      return 0
+    })
+    }
+    else
+    {
+      $scope.media.sort(function(a, b){
+        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+      if (nameA < nameB) //sort string ascending
+        return 1 
+      if (nameA > nameB)
+        return -1
+      return 0
+    })
+    }
+
+
   }
 
   $http.get('/users.json').then(function (response) {

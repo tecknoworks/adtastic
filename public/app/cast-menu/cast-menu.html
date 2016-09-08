@@ -35,8 +35,7 @@
 
 			<md-card-content>
 				<div layout="row" layout-align="space-between center">
-					<md-button ng-click='sortMedia()' class="md-primary md-raised">sort by</md-button>
-					<md-select ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
+					<md-select ng-change="sortMedia()" ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
 						<md-option ng-value='sort_option' ng-repeat="sort_option in sortOption"> {{ sort_option }} </md-option>
 					</md-select>
 				</div>
