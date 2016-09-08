@@ -18,6 +18,10 @@ app.config(function($routeProvider) {
     templateUrl: '/app/cast-menu/cast-menu.html',
     controller:"CastMenuController"
   })
+  .when('/device',{
+    templateUrl: '/app/device-management/device-management.html',
+    controller:'DeviceManagerController'
+  })
   .otherwise({
     redirectTo: '/'
   });
@@ -60,6 +64,8 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     console.log(error);
   })
 
+  $scope.sorts = ["Alphabetically-up","Alphabetically-down"];
+
 
   $scope.content = function(){
     $location.path('/content');
@@ -70,6 +76,10 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
   $scope.cast = function(){
     $location.path('/cast');
   }
+  $scope.device = function(){
+    $location.path('/device');
+  }
+
 
 
   $scope.deletep = function(pid) {
@@ -147,6 +157,10 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
   $scope.cast = function(){
     $location.path('/cast');
   }
+  $scope.device = function(){
+    $location.path('/device');
+  }
+
 
   $scope.delete = function(uid) {
 
@@ -196,6 +210,10 @@ app.controller('CastMenuController', function ($scope, $location, $http, $q) {
   $scope.cast = function(){
     $location.path('/cast');
   }
+  $scope.device = function(){
+    $location.path('/device');
+  }
+
 
   $scope.sortMedia = function() {
     $scope.media.sort(function(a, b){
@@ -236,5 +254,57 @@ app.controller('CastMenuController', function ($scope, $location, $http, $q) {
 
   getMedia();
 
+
+});
+
+app.controller('DeviceManagerController', function ($scope, $location, $http) {
+
+  $http.get('/devices.json').then(function (response) {
+    $scope.devices = response.data.devices;
+  }, function (error) {
+    console.log(error);
+  })
+
+
+  $scope.content = function(){
+    $location.path('/content');
+  }
+  $scope.users = function(){
+    $location.path('/users');
+  }
+  $scope.cast = function(){
+    $location.path('/cast');
+  }
+  $scope.device = function(){
+    $location.path('/device');
+  }
+
+  $scope.deleted = function(did) {
+
+    $http.delete('/devices/' + did + '.json', {}).then(function (response) 
+
+    { 
+
+      for (var count = 0; count < $scope.devices.length; count++) 
+
+      {
+
+        if ($scope.devices[count].id == did) $scope.devices.splice(count,1);
+
+      }
+
+    }, function (error) { console.log("Not requested") })
+
+  }
+
+  $scope.addDevice = function() {
+
+    $http.post('/devices.json', { device: { name: $scope.inputName } } ).then(function (response) {
+
+      $scope.devices.push(response.data);
+
+    }, function (error) { console.log("Not requested") });
+
+  }
 
 });

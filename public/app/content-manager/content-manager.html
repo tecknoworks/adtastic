@@ -14,24 +14,35 @@
   </div>
 
 <form>
-   <div class="control-group" layout='row' layout-align='left'>
+ <div class="control-group" layout='row' layout-align='left'>
 
     <md-input-container>
      <input type="text" placeholder="Name" floating-label ng-model="inputName" />
-   </md-input-container>
+    </md-input-container>
 
-   <md-input-container>
-     <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
-   </md-input-container>
+    <md-input-container>
+      <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
+    </md-input-container>
 
-   <div>
-    <md-button ng-click="addphoto()" class="md-raised md-primary">Add photo</md-button>
+    <div>
+      <md-button ng-click="addphoto()" class="md-raised md-primary">Add photo</md-button>
+    </div>
+    <div>
+     <md-button ng-click="addvideo()" class="md-raised md-primary">Add video</md-button>
+    </div>
+    <div>
+     <md-button ng-click="sort()" class="md-raised md-primary">Sort</md-button>
+    </div>
+
+
+    <md-input-container>
+        <label></label>
+        <md-select ng-model="sort">
+          <md-option ng-repeat="sort in sorts" value="{{sort}}">{{sort}}</md-option>
+        </md-select>
+    </md-input-container>
+     
   </div>
-
-  <div>
-    <md-button ng-click="addvideo()" class="md-raised md-primary">Add video</md-button>
-  </div>
-</div>
 </form>
 
   <div>
