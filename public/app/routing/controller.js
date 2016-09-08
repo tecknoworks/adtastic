@@ -178,10 +178,14 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
 
 });
 
-app.controller('CastMenuController', function ($scope, $location, $http) {
+app.controller('CastMenuController', function ($scope, $location, $http, $q) {
 
-  $scope.sortOption = ['Name','Newest']
-  $scope.selectedOption = $scope.sortOption[0]
+  $scope.sortOption = ['Name Ascending','Name Descending'];
+  $scope.sortOptions = 'Name Ascending';
+  $scope.media = [];
+
+  $scope.photos = [];
+  $scope.videos= [];
 
   $scope.content = function(){
     $location.path('/content');
@@ -193,10 +197,16 @@ app.controller('CastMenuController', function ($scope, $location, $http) {
     $location.path('/cast');
   }
 
-  $scope.sort = function() {
-    alert($scope.selectedOption);
+  $scope.sortMedia = function() {
+    $scope.media.sort(function(a, b){
+      var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+    if (nameA < nameB) //sort string ascending
+      return -1 
+    if (nameA > nameB)
+      return 1
+    return 0
+  })
   }
-
 
   $http.get('/users.json').then(function (response) {
     $scope.usersList = response.data.users;
@@ -204,16 +214,27 @@ app.controller('CastMenuController', function ($scope, $location, $http) {
     console.log(error);
   })
 
-  $http.get('/photos.json').then(function (response) {
-    $scope.photos = response.data.photos;
-  }, function (error) {
-    console.log(error);
-  })
+  function getMedia()
+  {
+    $http.get('/photos.json').then(function (response) {
+      $scope.photos = response.data.photos;
+      getVideos();
+    }, function (error) {
+      console.log(error);
+    })
+  }
 
-  $http.get('/videos.json').then(function (response) {
-    $scope.videos = response.data.videos;
-  }, function (error) {
-    console.log(error);
-  })
+  function getVideos()
+  {
+    $http.get('/videos.json').then(function (response) {
+      $scope.videos = response.data.videos;
+      $scope.media = $scope.photos.concat($scope.videos);
+    }, function (error) {
+      console.log(error);
+    })
+  }
+
+  getMedia();
+
 
 });

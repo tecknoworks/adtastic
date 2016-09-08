@@ -1,4 +1,4 @@
-<div ng-controller='CastMenuController'>
+<div>
 	<div layout="column">
 		<md-toolbar>
 
@@ -21,7 +21,7 @@
 						<div class="md-list-item-text" layout="column">
 							<h2>ID: {{ user.id }}</h2>
 							<h3>Email: {{ user.email }}</h3>
-							<md-checkbox class="md-secondary" ng-model="user.checked"></md-checkbox>
+							<md-checkbox aria-label="Checkbox" class="md-secondary" ng-model="user.checked"></md-checkbox>
 						</div>
 					</md-list-item>
 				</md-list>
@@ -35,8 +35,8 @@
 
 			<md-card-content>
 				<div layout="row" layout-align="space-between center">
-					<md-button ng-click='sort()' class="md-primary md-raised">sort by</md-button>
-					<md-select ng-model="sortOptions" placeholder="Name" class="md-no-underline">
+					<md-button ng-click='sortMedia()' class="md-primary md-raised">sort by</md-button>
+					<md-select ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
 						<md-option ng-value='sort_option' ng-repeat="sort_option in sortOption"> {{ sort_option }} </md-option>
 					</md-select>
 				</div>
@@ -47,16 +47,9 @@
 		<div flex>Content
 			<md-content>	
 				<md-list layout="column" layout-align="center">
-					<md-list-item class="md-3-line" ng-repeat="photo in photos">
+					<md-list-item class="md-3-line" ng-repeat="med in media">
 						<div class="md-list-item-text" layout="column">
-							<h2> {{ photo.name }}</h2>
-							<h3> Type: Photo</h3>
-						</div>
-					</md-list-item>
-					<md-list-item class="md-3-line" ng-repeat="video in videos">
-						<div class="md-list-item-text" layout="column">
-							<h2>Name: {{ video.name }}</h2>
-							<h3> Type: Video</h3>
+							<h2> {{ med.name }}</h2>
 						</div>
 					</md-list-item>
 				</md-list>
