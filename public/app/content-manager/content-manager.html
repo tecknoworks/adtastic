@@ -13,5 +13,56 @@
     </md-toolbar>
   </div>
 
-	<h1>Ce mai faci</h1>
+<form>
+   <div class="control-group" layout='row' layout-align='left'>
+
+    <md-input-container>
+     <input type="text" placeholder="Name" floating-label ng-model="inputName" />
+   </md-input-container>
+
+   <md-input-container>
+     <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
+   </md-input-container>
+
+   <div>
+    <md-button ng-click="addphoto()" class="md-raised md-primary">Add photo</md-button>
+  </div>
+
+  <div>
+    <md-button ng-click="addphoto()" class="md-raised md-primary">Add photo</md-button>
+  </div>
+</div>
+</form>
+
+  <div>
+    <md-toolbar layout="row" class="md-hue-3">
+      <div class="md-toolbar-tools">
+        <span>Photo/Videos List</span>
+      </div>
+    </md-toolbar>
+  </div>
+
+  <div layout='column' layout-align='center'>
+    <md-content>
+      <md-list layout="column" layout-align="center">
+        <md-list-item class="md-3-line" ng-repeat="photo in photos">
+          <div class="md-list-item-text" layout="column">
+            <h2>ID: {{ photo.id }}</h2>
+            <h3>Name: {{ photo.name }}</h3>
+            <h3>Url: {{ photo.url }}</h3>
+            <md-button class="md-secondary md-raised" ng-click="deletep(photo.id)">Delete</md-button>
+          </div>
+        </md-list-item>
+        <md-list-item class="md-3-line" ng-repeat="video in videos">
+          <div class="md-list-item-text" layout="column">
+            <h2>ID: {{ video.id }}</h2>
+            <h3>Name: {{ video.name }}</h3>
+            <h3>Url: {{ video.url }}</h3>
+            <md-button class="md-secondary md-raised" ng-click="deletev(video.id)">Delete</md-button>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </div>
+
 </div>
