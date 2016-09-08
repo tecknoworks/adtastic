@@ -17,7 +17,7 @@
 		<div flex>Users
 			<md-content>
 				<md-list layout="column" layout-align="center">
-					<md-list-item class="md-3-line" ng-repeat="user in users">
+					<md-list-item class="md-3-line" ng-repeat="user in usersList">
 						<div class="md-list-item-text" layout="column">
 							<h2>ID: {{ user.id }}</h2>
 							<h3>Email: {{ user.email }}</h3>
@@ -35,10 +35,9 @@
 
 			<md-card-content>
 				<div layout="row" layout-align="space-between center">
-					<md-button class="md-primary md-raised">sort by</md-button>
+					<md-button ng-click='sort()' class="md-primary md-raised">sort by</md-button>
 					<md-select ng-model="sortOptions" placeholder="Name" class="md-no-underline">
-						<md-option value="Name">Name</md-option>
-						<md-option value="Newest Added">Newest Added</md-option>
+						<md-option ng-value='sort_option' ng-repeat="sort_option in sortOption"> {{ sort_option }} </md-option>
 					</md-select>
 				</div>
 			</md-card-content>

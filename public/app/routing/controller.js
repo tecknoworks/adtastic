@@ -148,7 +148,6 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
     $location.path('/cast');
   }
 
-
   $scope.delete = function(uid) {
 
     $http.delete('/users/' + uid + '.json', {}).then(function (response) 
@@ -180,21 +179,27 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
 });
 
 app.controller('CastMenuController', function ($scope, $location, $http) {
+
+  $scope.sortOption = ['Name','Newest']
+  $scope.selectedOption = $scope.sortOption[0]
+
   $scope.content = function(){
     $location.path('/content');
   }
   $scope.users = function(){
     $location.path('/users');
   }
-  // $scope.device = function(){
-  //   $location.path('/device');
-  // }
   $scope.cast = function(){
     $location.path('/cast');
   }
 
+  $scope.sort = function() {
+    alert($scope.selectedOption);
+  }
+
+
   $http.get('/users.json').then(function (response) {
-    $scope.users = response.data.users;
+    $scope.usersList = response.data.users;
   }, function (error) {
     console.log(error);
   })
