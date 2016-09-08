@@ -64,6 +64,8 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     console.log(error);
   })
 
+  $scope.sorts = ["Alphabetically-up","Alphabetically-down"];
+
 
   $scope.content = function(){
     $location.path('/content');
