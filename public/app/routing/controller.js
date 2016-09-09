@@ -55,17 +55,17 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';
 
-    $http.get('/photos.json').then(function (response) {
-      $scope.photos = response.data.photos;
-    }, function (error) {
-      console.log(error);
-    })
+  $http.get('/photos.json').then(function (response) {
+    $scope.photos = response.data.photos;
+  }, function (error) {
+    console.log(error);
+  })
 
-    $http.get('/videos.json').then(function (response) {
-      $scope.videos = response.data.videos;
-    }, function (error) {
-      console.log(error);
-    })
+  $http.get('/videos.json').then(function (response) {
+    $scope.videos = response.data.videos;
+  }, function (error) {
+    console.log(error);
+  })
 
 
   $scope.sortMedia = function() 
@@ -100,7 +100,7 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
         return -1
       return 0
     })
-       $scope.videos.sort(function(a, b){
+      $scope.videos.sort(function(a, b){
         var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
       if (nameA < nameB) //sort string ascending
         return 1 
@@ -109,8 +109,6 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
       return 0
     })
     }
-
-
   }
 
 
