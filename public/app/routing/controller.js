@@ -79,6 +79,9 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
   $scope.device = function(){
     $location.path('/device');
   }
+  $scope.signOut = function(){
+    $location.path('/')
+  }
 
 
 
@@ -151,7 +154,7 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
   $scope.content = function(){
     $location.path('/content');
   }
-  $scope.users = function(){
+  $scope.gousers = function(){
     $location.path('/users');
   }
   $scope.cast = function(){
@@ -160,24 +163,20 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
   $scope.device = function(){
     $location.path('/device');
   }
+  $scope.signOut = function(){
+    $location.path('/')
+  }
 
 
   $scope.delete = function(uid) {
 
     $http.delete('/users/' + uid + '.json', {}).then(function (response) 
-
     { 
-
       for (var count = 0; count < $scope.users.length; count++) 
-
       {
-
         if ($scope.users[count].id == uid) $scope.users.splice(count,1);
-
       }
-
     }, function (error) { console.log("Not requested") })
-
   }
 
   $scope.add = function() {
@@ -213,7 +212,9 @@ app.controller('CastMenuController', function ($scope, $location, $http, $q) {
   $scope.device = function(){
     $location.path('/device');
   }
-
+  $scope.signOut = function(){
+    $location.path('/')
+  }
 
   $scope.sortMedia = function() 
   {
@@ -294,6 +295,9 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
   }
   $scope.device = function(){
     $location.path('/device');
+  }
+  $scope.signOut = function(){
+    $location.path('/')
   }
 
   $scope.deleted = function(did) {

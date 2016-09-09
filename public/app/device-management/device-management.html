@@ -8,6 +8,8 @@
 				<md-button ng-click="users()" class="md-raised md-primary" layout='row' layout-allign='center'>Users Manager</md-button>
 				<md-button ng-click="cast()" class="md-raised md-primary" layout='row' layout-allign='center'>Cast Menu</md-button>
 				<md-button ng-click="device()" class="md-raised md-primary" layout='row' layout-allign='center'>Device Manager</md-button>
+				<span flex></span>
+				<md-button ng-click="signOut()">Sign Out</md-button>
 			</div>
 
 		</md-toolbar>
@@ -26,26 +28,26 @@
 	</form>
 
 	<div>
-	    <md-toolbar layout="row" class="md-hue-3">
-	      <div class="md-toolbar-tools">
-	        <span>Devices List</span>
-	      </div>
-	    </md-toolbar>
-  	</div>
+		<md-toolbar layout="row" class="md-hue-3">
+			<div class="md-toolbar-tools">
+				<span>Devices List</span>
+			</div>
+		</md-toolbar>
+	</div>
 
 
-  	<div layout='column' layout-align='center'>
-	    <md-content>
-	      <md-list layout="column" layout-align="center">
-	        <md-list-item class="md-3-line" ng-repeat="device in devices">
-	          <div class="md-list-item-text" layout="column">
-	            <h2>ID: {{ device.id }}</h2>
-	            <h3>Name: {{ device.name }}</h3>
-	            <md-button class="md-secondary md-raised" ng-click="deleted(device.id)">Delete</md-button>
-	          </div>
-	        </md-list-item>
-	      </md-list>
-	    </md-content>
-    </div>
+	<div layout='column' layout-align='center'>
+		<md-content>
+			<md-list layout="column" layout-align="center">
+				<md-list-item class="md-3-line" ng-repeat="device in devices">
+					<div class="md-list-item-text" layout="column">
+						<h2>ID: {{ device.id }}</h2>
+						<h3>Name: {{ device.name }}</h3>
+						<md-button class="md-secondary md-raised" ng-click="deleted(device.id)">Delete</md-button>
+					</div>
+				</md-list-item>
+			</md-list>
+		</md-content>
+	</div>
 
 </div>
