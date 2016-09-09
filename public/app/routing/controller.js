@@ -52,19 +52,67 @@ app.controller('SignInController', function ($scope, $http, $location) {
 });
 app.controller('ContentManagerController', function ($scope, $http, $location) {
 
-  $http.get('/photos.json').then(function (response) {
-    $scope.photos = response.data.photos;
-  }, function (error) {
-    console.log(error);
-  })
+  $scope.sortOption = ['Name Ascending','Name Descending'];
+  $scope.sortOptions = 'Name Ascending';
 
-  $http.get('/videos.json').then(function (response) {
-    $scope.videos = response.data.videos;
-  }, function (error) {
-    console.log(error);
-  })
+    $http.get('/photos.json').then(function (response) {
+      $scope.photos = response.data.photos;
+    }, function (error) {
+      console.log(error);
+    })
 
-  $scope.sorts = ["Alphabetically-up","Alphabetically-down"];
+    $http.get('/videos.json').then(function (response) {
+      $scope.videos = response.data.videos;
+    }, function (error) {
+      console.log(error);
+    })
+
+
+  $scope.sortMedia = function() 
+  {
+    if ($scope.sortOptions == "Name Ascending")
+    {
+      $scope.photos.sort(function(a, b){
+        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+      if (nameA < nameB) //sort string ascending
+        return -1 
+      if (nameA > nameB)
+        return 1
+      return 0
+    })
+      $scope.videos.sort(function(a, b){
+        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+      if (nameA < nameB) //sort string ascending
+        return -1 
+      if (nameA > nameB)
+        return 1
+      return 0
+
+    })
+    }
+    else
+    {
+      $scope.photos.sort(function(a, b){
+        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+      if (nameA < nameB) //sort string ascending
+        return 1 
+      if (nameA > nameB)
+        return -1
+      return 0
+    })
+       $scope.videos.sort(function(a, b){
+        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+      if (nameA < nameB) //sort string ascending
+        return 1 
+      if (nameA > nameB)
+        return -1
+      return 0
+    })
+    }
+
+
+  }
+
 
 
   $scope.content = function(){
@@ -192,7 +240,7 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
 
 });
 
-app.controller('CastMenuController', function ($scope, $location, $http, $q) {
+app.controller('CastMenuController', function ($scope, $location, $http) {
 
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';

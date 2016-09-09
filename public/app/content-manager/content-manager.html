@@ -13,48 +13,44 @@
     </md-toolbar>
   </div>
 
-<form>
- <div class="control-group" layout='row' layout-align='left'>
+  <form>
+   <div class="control-group" layout='row' layout-align='left'>
 
-    <md-input-container>
-     <input type="text" placeholder="Name" floating-label ng-model="inputName" />
-    </md-input-container>
+      <md-input-container>
+        <input type="text" placeholder="Name" floating-label ng-model="inputName" />
+      </md-input-container>
 
-    <md-input-container>
-      <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
-    </md-input-container>
+      <md-input-container>
+        <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
+      </md-input-container>
 
-    <div>
-      <md-button ng-click="addphoto()" class="md-raised md-primary">Add photo</md-button>
-    </div>
-    <div>
-     <md-button ng-click="addvideo()" class="md-raised md-primary">Add video</md-button>
-    </div>
-    <div>
-     <md-button ng-click="sort()" class="md-raised md-primary">Sort</md-button>
-    </div>
-
-
-    <md-input-container>
-        <label></label>
-        <md-select ng-model="sort" aria-label="list">
-          <md-option ng-repeat="sort in sorts" value="{{sort}}">{{sort}}</md-option>
-        </md-select>
-    </md-input-container>
-     
-  </div>
-</form>
-
-  <div>
-    <md-toolbar layout="row" class="md-hue-3">
-      <div class="md-toolbar-tools">
-        <span>Photo/Videos List</span>
+      <div>
+        <md-button ng-click="addphoto()" class="md-raised md-primary">Add photo</md-button>
       </div>
-    </md-toolbar>
-  </div>
+      <div>
+        <md-button ng-click="addvideo()" class="md-raised md-primary">Add video</md-button>
+      </div>
 
-  <div layout='column' layout-align='center'>
+        <md-card-content>
+          <div layout="row">
+            <md-select ng-change="sortMedia()" ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
+                <md-option ng-value='sort_option' ng-repeat="sort_option in sortOption">  {{     sort_option }} 
+                </md-option>
+            </md-select>
+          </div>
+        </md-card-content>
+       
+    </div>
+  </form>
+
+
+  <div layout='row' layout-align='center' flex layout-xs="row">
     <md-content>
+        <md-toolbar layout="row" class="md-hue-3">
+          <div class="md-toolbar-tools">
+            <span>Photo List</span>
+          </div>
+        </md-toolbar>
       <md-list layout="column" layout-align="center">
         <md-list-item class="md-3-line" ng-repeat="photo in photos">
           <div class="md-list-item-text" layout="column">
@@ -64,6 +60,13 @@
             <md-button class="md-secondary md-raised" ng-click="deletep(photo.id)">Delete</md-button>
           </div>
         </md-list-item>
+    </md-content>
+    <md-content>
+        <md-toolbar layout="row" class="md-hue-3">
+          <div class="md-toolbar-tools">
+            <span>Video List</span>
+          </div>
+        </md-toolbar>
         <md-list-item class="md-3-line" ng-repeat="video in videos">
           <div class="md-list-item-text" layout="column">
             <h2>ID: {{ video.id }}</h2>
@@ -75,5 +78,4 @@
       </md-list>
     </md-content>
   </div>
-
 </div>
