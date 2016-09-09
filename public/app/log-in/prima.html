@@ -1,20 +1,25 @@
 
 <div ng-controller="SignInController">
-        <form>
-                 <div class="control-group" layout='row' layout-align='center'>
-                     <md-input-container>
-                        <input type="text" placeholder=Email floating-label ng-model="inputEmail" />
-                     </md-input-container>
-                 </div>
+  <h1 align='center' class="md-display-4">WELCOME</h1>
 
-                 <div class="control-group" layout='row' layout-align='center'>
-                     <md-input-container>
-                        <input type="password" placeholder="Password" floating-label ng-model="inputPassword" />
-                     </md-input-container>
-                 </div>
-        </form>  
-        
-        <div layout='row' layout-align='center'>
-          <md-button ng-click="test()" class="md-raised md-primary" layout='row' layout-allign='center'>Log In</md-button>
-        </div>
+  <form id="test" autocomplete="on" ng-submit="test()">
+   
+   <div class="control-group" layout='row' layout-align='center'>
+     <md-input-container>
+        <input type="text" placeholder=Email floating-label ng-model="inputEmail" autofocus>
+      </md-input-container>
+    </div>
+  
+  <div class="control-group" layout='row' layout-align='center'>
+   <md-input-container>
+      <input type="password" placeholder="Password" floating-label ng-model="inputPassword">
+    </md-input-container>
+  </div>
+
+  <div layout='row' layout-align='center'>
+    <md-button type='submit' id='1' ng-click="test()" class="md-raised md-primary" layout='row' layout-allign='center'>Log In</md-button>
+  </div>
+
+  </form>  
+
 </div>
