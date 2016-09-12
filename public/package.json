@@ -33,6 +33,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "angular-material": "^1.1.1"
+    "angular-material": "^1.1.1",
+    "dragula": "^3.7.1"
   }
 }

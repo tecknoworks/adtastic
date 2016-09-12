@@ -317,8 +317,6 @@ app.controller('CastMenuController', function ($scope, $location, $http) {
   }
 
   getMedia();
-
-
 });
 
 app.controller('DeviceManagerController', function ($scope, $location, $http) {
