@@ -37,7 +37,7 @@ app.config(function($mdThemingProvider) {
 app.controller('SignInController', function ($scope, $http, $location) {
   $scope.options = {
     title: 'Sign In',
-    menuVisible: true
+    menuVisible: false
   }
 
   $scope.test = function() {
@@ -51,6 +51,10 @@ app.controller('SignInController', function ($scope, $http, $location) {
  }
 });
 app.controller('ContentManagerController', function ($scope, $http, $location) {
+  $scope.options = {
+    title: 'Sign In',
+    menuVisible: true
+  }
 
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';
@@ -191,6 +195,11 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
 
 app.controller('UserManagementController', function ($scope, $http, $location) {
 
+   $scope.options = {
+    title: 'Sign In',
+    menuVisible: true
+  }
+
   $http.get('/users.json').then(function (response) {
     $scope.users = response.data.users;
   }, function (error) {
@@ -238,6 +247,11 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
 });
 
 app.controller('CastMenuController', function ($scope, $location, $http) {
+
+   $scope.options = {
+    title: 'Sign In',
+    menuVisible: true
+  }
 
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';
@@ -322,6 +336,11 @@ app.controller('CastMenuController', function ($scope, $location, $http) {
 });
 
 app.controller('DeviceManagerController', function ($scope, $location, $http) {
+
+   $scope.options = {
+    title: 'Sign In',
+    menuVisible: true
+  }
 
   $http.get('/devices.json').then(function (response) {
     $scope.devices = response.data.devices;

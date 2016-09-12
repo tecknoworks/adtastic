@@ -15,8 +15,24 @@
 
 </head>
 <body>
+  
+        <div layout="column" ng-show="options.menuVisible" >
+          <md-toolbar>
 
-  <div ng-view></div>
+            <div class="md-toolbar-tools">
+              <span>ADTASTIC</span>
+              <md-button ng-click="content()"  class="md-raised md-primary" layout='row' layout-allign='center'>Content Manager</md-button>
+              <md-button ng-click="users()" id='1' class="md-raised md-primary" layout='row' layout-allign='center'>Users Manager</md-button>
+              <md-button ng-click="cast()" id='2' class="md-raised md-primary" layout='row' layout-allign='center'>Cast Menu</md-button>
+              <md-button ng-click="device()" id='3' class="md-raised md-primary" layout='row' layout-allign='center'>Device Manager</md-button>
+              <span flex></span>
+              <md-button ng-click="signOut()">Sign Out</md-button>
+            </div>
+
+          </md-toolbar>
+        </div>
+    <div ng-view></div>
+  
 
 
   <script src="/node_modules/angular/angular.js"></script>
