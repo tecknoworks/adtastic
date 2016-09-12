@@ -34,8 +34,15 @@
 			<md-content>	
 				<md-list layout="column" layout-align="center">
 					<md-list-item class="md-3-line" ng-repeat="med in media">
-						<div class="md-list-item-text" layout="column">
+						<div class="md-list-item-text" layout="row">
 							<h2> {{ med.name }}</h2>
+							<span flex></span>
+							<md-button aria-label="Order down" class="md-primary md-icon-button" ng-click="moveUp(med.name)">
+								<md-icon md-svg-icon="icons/arrow_up.svg"></md-icon>
+							</md-button>
+							<md-button aria-label="Order down" class="md-primary md-icon-button" ng-click="moveDown(med.name)">
+								<md-icon md-svg-icon="icons/arrow_down.svg"></md-icon>
+							</md-button>
 						</div>
 					</md-list-item>
 				</md-list>

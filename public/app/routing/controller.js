@@ -195,200 +195,238 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
 
 app.controller('UserManagementController', function ($scope, $http, $location) {
 
-   $scope.options = {
-    title: 'Sign In',
-    menuVisible: true
-  }
+//  $scope.options = {
+//   title: 'Sign In',
+//   menuVisible: true
+// }
 
-  $http.get('/users.json').then(function (response) {
-    $scope.users = response.data.users;
-  }, function (error) {
-    console.log(error);
-  })
+$http.get('/users.json').then(function (response) {
+  $scope.users = response.data.users;
+}, function (error) {
+  console.log(error);
+})
 
-  $scope.content = function(){
-    $location.path('/content');
-  }
-  $scope.gousers = function(){
-    $location.path('/users');
-  }
-  $scope.cast = function(){
-    $location.path('/cast');
-  }
-  $scope.device = function(){
-    $location.path('/device');
-  }
-  $scope.signOut = function(){
-    $location.path('/')
-  }
+$scope.content = function(){
+  $location.path('/content');
+}
+$scope.gousers = function(){
+  $location.path('/users');
+}
+$scope.cast = function(){
+  $location.path('/cast');
+}
+$scope.device = function(){
+  $location.path('/device');
+}
+$scope.signOut = function(){
+  $location.path('/')
+}
 
 
-  $scope.delete = function(uid) {
+$scope.delete = function(uid) {
 
-    $http.delete('/users/' + uid + '.json', {}).then(function (response) 
-    { 
-      for (var count = 0; count < $scope.users.length; count++) 
-      {
-        if ($scope.users[count].id == uid) $scope.users.splice(count,1);
-      }
-    }, function (error) { console.log("Not requested") })
-  }
+  $http.delete('/users/' + uid + '.json', {}).then(function (response) 
+  { 
+    for (var count = 0; count < $scope.users.length; count++) 
+    {
+      if ($scope.users[count].id == uid) $scope.users.splice(count,1);
+    }
+  }, function (error) { console.log("Not requested") })
+}
 
-  $scope.add = function() {
+$scope.add = function() {
 
-    $http.post('/users.json', { user: { email: $scope.inputEmail, password: $scope.inputPassword } } ).then(function (response) {
+  $http.post('/users.json', { user: { email: $scope.inputEmail, password: $scope.inputPassword } } ).then(function (response) {
 
-      $scope.users.push(response.data);
+    $scope.users.push(response.data);
 
-    }, function (error) { console.log("Not requested") });
+  }, function (error) { console.log("Not requested") });
 
-  }
+}
 
 });
 
 app.controller('CastMenuController', function ($scope, $location, $http) {
 
-   $scope.options = {
-    title: 'Sign In',
-    menuVisible: true
-  }
+ $scope.options = {
+  title: 'Sign In',
+  menuVisible: true
+}
 
-  $scope.sortOption = ['Name Ascending','Name Descending'];
-  $scope.sortOptions = 'Name Ascending';
-  $scope.media = [];
+$scope.sortOption = ['Name Ascending','Name Descending'];
+$scope.sortOptions = 'Name Ascending';
+$scope.media = [];
 
-  $scope.photos = [];
-  $scope.videos= [];
+$scope.photos = [];
+$scope.videos= [];
 
-  $scope.content = function(){
-    $location.path('/content');
-  }
-  $scope.users = function(){
-    $location.path('/users');
-  }
-  $scope.cast = function(){
-    $location.path('/cast');
-  }
-  $scope.device = function(){
-    $location.path('/device');
-  }
-  $scope.signOut = function(){
-    $location.path('/')
-  }
+$scope.content = function(){
+  $location.path('/content');
+}
+$scope.users = function(){
+  $location.path('/users');
+}
+$scope.cast = function(){
+  $location.path('/cast');
+}
+$scope.device = function(){
+  $location.path('/device');
+}
+$scope.signOut = function(){
+  $location.path('/')
+}
 
-  $scope.sortMedia = function() 
+$scope.moveUp = function(xname)
+{
+  var i = 0;
+  idk = 0;
+  for (i=0; i< $scope.media.length; i++)
   {
-    if ($scope.sortOptions == "Name Ascending")
+    if ($scope.media[i].name == xname)
     {
-      $scope.media.sort(function(a, b){
-        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+      idk = i;
+    }
+  }
+  if ($scope.media[0].name != xname)
+  {
+    aux = $scope.media[idk - 1];
+    $scope.media[idk - 1] = $scope.media[idk];
+    $scope.media[idk] = aux;
+  }
+}
+
+$scope.moveDown = function(xname)
+{
+  var i = 0;
+  idk = 0;
+  for (i=0; i< $scope.media.length; i++)
+  {
+    if ($scope.media[i].name == xname)
+    {
+      idk = i;
+    }
+  }
+  if ($scope.media[$scope.media.length - 1].name != xname)
+  {
+    aux = $scope.media[idk];
+    $scope.media[idk] = $scope.media[idk + 1];
+    $scope.media[idk + 1] = aux;
+  }
+}
+
+$scope.sortMedia = function() 
+{
+  if ($scope.sortOptions == "Name Ascending")
+  {
+    $scope.media.sort(function(a, b){
+      var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
       if (nameA < nameB) //sort string ascending
         return -1 
       if (nameA > nameB)
         return 1
       return 0
     })
-    }
-    else
-    {
-      $scope.media.sort(function(a, b){
-        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+  }
+  else
+  {
+    $scope.media.sort(function(a, b){
+      var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
       if (nameA < nameB) //sort string ascending
         return 1 
       if (nameA > nameB)
         return -1
       return 0
     })
-    }
-
-
   }
 
-  $http.get('/users.json').then(function (response) {
-    $scope.usersList = response.data.users;
+
+}
+
+$http.get('/users.json').then(function (response) {
+  $scope.usersList = response.data.users;
+}, function (error) {
+  console.log(error);
+})
+
+function getMedia()
+{
+  $http.get('/photos.json').then(function (response) {
+    $scope.photos = response.data.photos;
+    getVideos();
   }, function (error) {
     console.log(error);
   })
+}
 
-  function getMedia()
-  {
-    $http.get('/photos.json').then(function (response) {
-      $scope.photos = response.data.photos;
-      getVideos();
-    }, function (error) {
-      console.log(error);
-    })
-  }
+function getVideos()
+{
+  $http.get('/videos.json').then(function (response) {
+    $scope.videos = response.data.videos;
+    $scope.media = $scope.photos.concat($scope.videos);
+  }, function (error) {
+    console.log(error);
+  })
+}
 
-  function getVideos()
-  {
-    $http.get('/videos.json').then(function (response) {
-      $scope.videos = response.data.videos;
-      $scope.media = $scope.photos.concat($scope.videos);
-    }, function (error) {
-      console.log(error);
-    })
-  }
-
-  getMedia();
+getMedia();
 });
 
 app.controller('DeviceManagerController', function ($scope, $location, $http) {
 
-   $scope.options = {
-    title: 'Sign In',
-    menuVisible: true
-  }
+ $scope.options = {
+  title: 'Sign In',
+  menuVisible: true
+}
 
-  $http.get('/devices.json').then(function (response) {
-    $scope.devices = response.data.devices;
-  }, function (error) {
-    console.log(error);
-  })
+$http.get('/devices.json').then(function (response) {
+  $scope.devices = response.data.devices;
+}, function (error) {
+  console.log(error);
+})
 
 
-  $scope.content = function(){
-    $location.path('/content');
-  }
-  $scope.users = function(){
-    $location.path('/users');
-  }
-  $scope.cast = function(){
-    $location.path('/cast');
-  }
-  $scope.device = function(){
-    $location.path('/device');
-  }
-  $scope.signOut = function(){
-    $location.path('/')
-  }
+$scope.content = function(){
+  $location.path('/content');
+}
+$scope.users = function(){
+  $location.path('/users');
+}
+$scope.cast = function(){
+  $location.path('/cast');
+}
+$scope.device = function(){
+  $location.path('/device');
+}
+$scope.signOut = function(){
+  $location.path('/')
+}
 
-  $scope.deleted = function(did) {
+$scope.deleted = function(did) {
 
-    $http.delete('/devices/' + did + '.json', {}).then(function (response) 
+  $http.delete('/devices/' + did + '.json', {}).then(function (response) 
 
-    { 
+  { 
 
-      for (var count = 0; count < $scope.devices.length; count++) 
+    for (var count = 0; count < $scope.devices.length; count++) 
 
-      {
+    {
 
-        if ($scope.devices[count].id == did) $scope.devices.splice(count,1);
+      if ($scope.devices[count].id == did) $scope.devices.splice(count,1);
 
-      }
+    }
 
-    }, function (error) { console.log("Not requested") })
+  }, function (error) { console.log("Not requested") })
 
-  }
+}
 
-  $scope.addDevice = function() {
+$scope.addDevice = function() {
 
-    $http.post('/devices.json', { device: { name: $scope.inputName } } ).then(function (response) {
+  $http.post('/devices.json', { device: { name: $scope.inputName } } ).then(function (response) {
 
-      $scope.devices.push(response.data);
+    $scope.devices.push(response.data);
 
-    }, function (error) { console.log("Not requested") });
+  }, function (error) { console.log("Not requested") });
 
-  }
+}
 
 });
