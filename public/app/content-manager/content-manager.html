@@ -18,6 +18,10 @@
       <md-button id='videoAdd' ng-click="addvideo()" class="md-raised md-primary">Add video</md-button>
     </div>
 
+    <md-chips ng-model="myTags" placeholder="Add a tag"></md-chips>
+    
+    <span flex></span>
+
     <md-card-content>
       <div layout="row">
         <md-select ng-change="sortMedia()" ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
