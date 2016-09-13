@@ -53,6 +53,7 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
 
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';
+  $scope.myTags = [];
 
   $http.get('/photos.json').then(function (response) {
     $scope.photos = response.data.photos;
@@ -65,6 +66,9 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
   }, function (error) {
     console.log(error);
   })
+
+
+
 
 
   $scope.sortMedia = function() 
