@@ -352,6 +352,8 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
 
   $scope.options.menuVisible = true;
 
+  $scope.devices = [];
+
   $http.get('/devices.json').then(function (response) {
     $scope.devices = response.data.devices;
   }, function (error) {
@@ -397,22 +399,22 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
         if ($scope.devices[count].id == did) $scope.editName = $scope.devices[count].name,$scope.variable = did;
 
       }
-      console.log($scope.variable);
   }
   $scope.editDevice = function(){
-    $http.put('/devices/' + $scope.variable + '.json', {}).then(function (response) {
-      for (var count = 0; count < $scope.devices.length; count++) 
+    $http.put('/devices.json/?id=' + $scope.variable, {device: {name: $scope.editName}}).then(function (response) {
+        for (var count = 0; count < $scope.devices.length; count++) 
 
       {
 
-        if ($scope.devices[count].id == did) $scope.devices[count].name = $scope.editName;
+        if ($scope.devices[count].id == $scope.variable) $scope.devices[count].name = $scope.editName;
 
       }
       
     }, function (error) { console.log("Not requested") })
 
 
-  } 
+  }
+
 
 
 
