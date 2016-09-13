@@ -1,16 +1,34 @@
 <div >
+	<div layout='row'>
+		<div flex>
+			<form>
+				<div class="control-group" layout='row' layout-align='left'>
 
-	<form>
-		<div class="control-group" layout='row' layout-align='left'>
-
-			<md-input-container>
-				<input type="text" placeholder="Name" floating-label ng-model="inputName" />
-			</md-input-container>
-			<div>
-				<md-button id='deviceAdd' ng-click="addDevice()" class="md-raised md-primary">Add device</md-button>
-			</div>
+					<md-input-container>
+						<input type="text" placeholder="Name" floating-label ng-model="inputName" />
+					</md-input-container>
+					<div>
+						<md-button id='deviceAdd' ng-click="addDevice()" class="md-raised md-primary">Add device</md-button>
+					</div>
+				</div>
+			</form>
 		</div>
-	</form>
+		<span class="flex" flex=""></span>
+		<div  flex>
+			<form>
+				<div class="control-group" layout='row' layout-align='right'>
+
+					<md-input-container>
+						<input type="text" placeholder="Name" floating-label ng-model="editName" />
+					</md-input-container>
+					<div>
+						<md-button id='deviceEdit' ng-click="editDevice()" class="md-raised md-primary">Edit device</md-button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
 
 	<div>
 		<md-toolbar layout="row" class="md-hue-3">
@@ -29,6 +47,7 @@
 						<h2>ID: {{ device.id }}</h2>
 						<h3>Name: {{ device.name }}</h3>
 						<md-button class="md-secondary md-raised" ng-click="deleted(device.id)">Delete</md-button>
+						<md-button class="md-secondary md-raised" ng-click="editd(device.id)">Edit</md-button>
 					</div>
 				</md-list-item>
 			</md-list>

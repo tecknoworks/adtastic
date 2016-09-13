@@ -9,7 +9,7 @@ app.config(function($routeProvider) {
   .when('/', {
    templateUrl: '/app/log-in/prima.html',
    controller:"SignInController"
- })
+  })
   .when('/users',{
     templateUrl: '/app/user-management/user-management.html',
     controller:"UserManagementController"
@@ -353,6 +353,32 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
     }, function (error) { console.log("Not requested") });
 
   }
+  $scope.variable = null ;
+  $scope.editd = function(did){
+
+      for (var count = 0; count < $scope.devices.length; count++) 
+
+      {
+
+        if ($scope.devices[count].id == did) $scope.editName = $scope.devices[count].name,$scope.variable = did;
+
+      }
+      console.log($scope.variable);
+  }
+  $scope.editDevice = function(){
+    $http.put('/devices/' + $scope.variable + '.json', {}).then(function (response) {
+      for (var count = 0; count < $scope.devices.length; count++) 
+
+      {
+
+        if ($scope.devices[count].id == did) $scope.devices[count].name = $scope.editName;
+
+      }
+      
+    }, function (error) { console.log("Not requested") })
+
+
+  } 
 
 
 
@@ -361,6 +387,10 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
 app.controller('MainController', function ($scope, $rootScope, $http, $location) {
   $rootScope.options = {
     menuVisible: false
+  }
+
+  $rootScope.button = {
+    visible: false
   }
 
   $scope.content = function(){
