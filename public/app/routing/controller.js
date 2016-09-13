@@ -42,10 +42,10 @@ app.controller('SignInController', function ($scope, $http, $location) {
    $http.post('/users/signin', { inputEmail: $scope.inputEmail, inputPassword: $scope.inputPassword }).then(
      function (response) {
 
-        $location.path('/content');
-      },
-     function (error) { 
-       alert("Incorrect login") })
+      $location.path('/content');
+    },
+    function (error) { 
+     alert("Incorrect login") })
  }
 });
 app.controller('ContentManagerController', function ($scope, $http, $location) {
@@ -53,6 +53,7 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
 
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';
+
   $scope.myTags = [];
 
   $http.get('/photos.json').then(function (response) {
@@ -66,10 +67,6 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
   }, function (error) {
     console.log(error);
   })
-
-
-
-
 
   $scope.sortMedia = function() 
   {
@@ -118,7 +115,7 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
 
   $scope.deletep = function(pid) {
 
-    $http.delete('/photos/' + pid + '.json', {}).then(function (response) 
+    $http.delete('/photos.json/?id=' + pid, {}).then(function (response) 
 
     { 
 
@@ -136,7 +133,7 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
 
   $scope.deletev = function(vid) {
 
-    $http.delete('/videos/' + vid + '.json', {}).then(function (response) 
+    $http.delete('/videos.json/?id=' + vid, {}).then(function (response) 
 
     { 
 
@@ -153,12 +150,46 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
   }
 
   $scope.addphoto = function() {
-
+    $scope.databaseTags = [];
+    
     $http.post('/photos.json', { photo: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
-
       $scope.photos.push(response.data);
-
     }, function (error) { console.log("Not requested") });
+    
+    $http.get('/tags.json').then(function (response) {
+      $scope.databaseTags = response.data.tags;
+      console.log($scope.databaseTags);
+    }, function (error) {
+      console.log(error);
+    });
+
+    function tagInDatabase(tagName)
+    {
+      for (count = 0; count < $scope.databaseTags.length; i++)
+      {
+        if (tagName == $scope.databaseTags[count].name)
+        {
+          return true
+        }
+        return false
+      }
+    }
+
+    function removeUnwantedTags()
+    {
+      count = 0;
+      while ( count < $scope.myTags.length )
+      {
+        if (tagInDatabase($scope.myTags[count]) == true)
+        {
+          $scope.myTags.splice(count,1);
+          console.log($scope.myTags);
+        }
+        count++;
+      }
+    }
+
+    // removeUnwantedTags();
 
   }
 
@@ -188,7 +219,7 @@ app.controller('UserManagementController', function ($scope, $http, $location) {
 
   $scope.delete = function(uid) {
 
-    $http.delete('/users/' + uid + '.json', {}).then(function (response) 
+    $http.delete('/users.json/?id=' + uid, {}).then(function (response) 
     { 
       for (var count = 0; count < $scope.users.length; count++) 
       {
@@ -220,6 +251,43 @@ app.controller('CastMenuController', function ($scope, $location, $http) {
   $scope.photos = [];
   $scope.videos= [];
 
+  $scope.moveUp = function(xname)
+  {
+    var i = 0;
+    idk = 0;
+    for (i=0; i< $scope.media.length; i++)
+    {
+      if ($scope.media[i].name == xname)
+      {
+        idk = i;
+      }
+    }
+    if ($scope.media[0].name != xname)
+    {
+      aux = $scope.media[idk - 1];
+      $scope.media[idk - 1] = $scope.media[idk];
+      $scope.media[idk] = aux;
+    }
+  }
+
+  $scope.moveDown = function(xname)
+  {
+    var i = 0;
+    idk = 0;
+    for (i=0; i< $scope.media.length; i++)
+    {
+      if ($scope.media[i].name == xname)
+      {
+        idk = i;
+      }
+    }
+    if ($scope.media[$scope.media.length - 1].name != xname)
+    {
+      aux = $scope.media[idk];
+      $scope.media[idk] = $scope.media[idk + 1];
+      $scope.media[idk + 1] = aux;
+    }
+  }
 
   $scope.sortMedia = function() 
   {
@@ -294,7 +362,7 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
 
   $scope.deleted = function(did) {
 
-    $http.delete('/devices/' + did + '.json', {}).then(function (response) 
+    $http.delete('/devices.json/?id=' + did, {}).then(function (response) 
 
     { 
 
