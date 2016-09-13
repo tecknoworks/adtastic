@@ -1,51 +1,49 @@
 Rails.application.routes.draw do
   apipie
-  # get 'user/index', to: "users#index"
-
-  # post 'user/new', to: "users#new"
-  # #post 'user/create', to "users#create"
-  # resources :users, only: [:create]
-  # resources :users, only: [:destroy]
-
-  # GET /users
-  # GET /users/:id
-  # PATCH /users/:id
-  # POST /users
-  # DELETE /users/:id
 
   get 'users' => 'users#index'
   post 'users' => 'users#create'
-  delete 'users/:id' => 'users#destroy'
+  delete 'users' => 'users#destroy'
   put 'users' => 'users#update'
-  patch 'users/:id' => 'users#update'
+  patch 'users' => 'users#update'
   post 'users/signin' => 'users#validate_sign_in'
 
   get 'devices' => 'devices#index'
   post 'devices' => 'devices#create'
-  delete 'devices/:id' => 'devices#destroy'
+  delete 'devices' => 'devices#destroy'
   put 'devices' => 'devices#update'
-  patch 'devices/:id' => 'devices#update'
+  patch 'devices' => 'devices#update'
 
   get 'tags' => 'tags#index'
   post 'tags' => 'tags#create'
-  delete 'tags/:id' => 'tags#destroy'
+  delete 'tags' => 'tags#destroy'
   put 'tags' => 'tags#update'
-  patch 'tags/:id' => 'tags#update'
+  patch 'tags' => 'tags#update'
 
   get 'photos' => 'photos#index'
   post 'photos' => 'photos#create'
-  delete 'photos/:id' => 'photos#destroy'
+  delete 'photos' => 'photos#destroy'
   put 'photos' => 'photos#update'
-  patch 'photos/:id' => 'photos#update'
+  patch 'photos' => 'photos#update'
 
   get 'videos' => 'videos#index'
   post 'videos' => 'videos#create'
-  delete 'videos/:id' => 'videos#destroy'
+  delete 'videos' => 'videos#destroy'
   put 'videos' => 'videos#update'
-  patch 'videos/:id' => 'videos#update'
-  # delete 'user/remove', to: "users#remove"
-  # #put 'user/update', to: "users#update"
-  # resources :users, only: [:index]
+  patch 'videos' => 'videos#update'
+
+  get 'photo_tags' => 'photo_tags#index'
+  post 'photo_tags' => 'photo_tags#create'
+  delete 'photo_tags' => 'photo_tags#destroy'
+  put 'photo_tags' => 'photo_tags#update'
+  patch 'photo_tags' => 'photo_tags#update'
+
+  get 'video_tags' => 'video_tags#index'
+  post 'video_tags' => 'video_tags#create'
+  delete 'video_tags' => 'video_tags#destroy'
+  put 'video_tags' => 'video_tags#update'
+  patch 'video_tags' => 'video_tags#update'
+
   resources :photos, only: [:index]
   resources :videos, only: [:index]
   resources :devices, only: [:index]
