@@ -1,7 +1,9 @@
-+ AUTO FORMAT
-- fix views in user management
-- guard-rubocop exclude files
-+ users page (done 80%)
-+ make rest routes restful
-- device managemenet and rest management
+- guard-rubocop cleanup bs
+- users page (done 80%) + edit
+- MANAGEMENT PAGES eDIT FUNCTIONALITY
 - TEST(protractor)
+- tags backend
+- split controllers
+- authentification admin/user
+- url device pentru casting
+- api for images/videos
