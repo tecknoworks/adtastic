@@ -155,42 +155,8 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     $http.post('/photos.json', { photo: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
       $scope.photos.push(response.data);
     }, function (error) { console.log("Not requested") });
-    
-    $http.get('/tags.json').then(function (response) {
-      $scope.databaseTags = response.data.tags;
-      console.log($scope.databaseTags);
-    }, function (error) {
-      console.log(error);
-    });
-
-    function tagInDatabase(tagName)
-    {
-      for (count = 0; count < $scope.databaseTags.length; i++)
-      {
-        if (tagName == $scope.databaseTags[count].name)
-        {
-          return true
-        }
-        return false
-      }
-    }
-
-    function removeUnwantedTags()
-    {
-      count = 0;
-      while ( count < $scope.myTags.length )
-      {
-        if (tagInDatabase($scope.myTags[count]) == true)
-        {
-          $scope.myTags.splice(count,1);
-          console.log($scope.myTags);
-        }
-        count++;
-      }
-    }
-
-    // removeUnwantedTags();
-
+  
+    console.log($scope.myTags);
   }
 
   $scope.addvideo = function() {
