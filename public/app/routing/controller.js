@@ -283,18 +283,10 @@ app.controller('CastMenuController', function ($scope, $location, $http) {
   $scope.photos = [];
   $scope.videos= [];
 
-  $scope.moveUp = function(xname)
+  $scope.moveUp = function(index)
   {
-    var i = 0;
-    idk = 0;
-    for (i=0; i< $scope.media.length; i++)
-    {
-      if ($scope.media[i].name == xname)
-      {
-        idk = i;
-      }
-    }
-    if ($scope.media[0].name != xname)
+    idk = index;
+    if (idk > 0)
     {
       aux = $scope.media[idk - 1];
       $scope.media[idk - 1] = $scope.media[idk];
@@ -302,18 +294,10 @@ app.controller('CastMenuController', function ($scope, $location, $http) {
     }
   }
 
-  $scope.moveDown = function(xname)
+  $scope.moveDown = function(index)
   {
-    var i = 0;
-    idk = 0;
-    for (i=0; i< $scope.media.length; i++)
-    {
-      if ($scope.media[i].name == xname)
-      {
-        idk = i;
-      }
-    }
-    if ($scope.media[$scope.media.length - 1].name != xname)
+    idk = index;
+    if (idk < $scope.media.length - 1)
     {
       aux = $scope.media[idk];
       $scope.media[idk] = $scope.media[idk + 1];

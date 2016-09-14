@@ -1,14 +1,13 @@
 # model for backend
 class PhotoTag < ApplicationRecord
-	belongs_to :photo
-	belongs_to :tag
+  belongs_to :photo
+  belongs_to :tag
 
+  before_destroy :destroy_tags
 
-	before_destroy :destroy_tags
+  private
 
-	private
-
-	def destroy_tags
-		self.tag.destroy   
-	end
+  def destroy_tags
+    tag.destroy
+  end
 end

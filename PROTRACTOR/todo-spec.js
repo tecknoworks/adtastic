@@ -2,7 +2,7 @@ describe('ADTASTIC content page and sign in ', function() {
 
   it('should take user back to sign in page', function() {
     browser.get('http://localhost:3000/app/index.html#content');
-    element(by.id('signOutButton')).click();
+    element(by.id('test_redirectSignOut')).click();
     expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/app/index.html#/");
   });
   it('should have title', function() {
@@ -21,19 +21,19 @@ describe('ADTASTIC content page and sign in ', function() {
 
   it('should redirect to users manager', function(){
   	browser.get('http://localhost:3000/app/index.html#/content');
-  	element(by.id('1')).click();
+  	element(by.id('test_redirectUsers')).click();
   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/app/index.html#/users");
   });
 
   it('should redirect to cast menu', function(){
   	browser.get('http://localhost:3000/app/index.html#/content');
-  	element(by.id('2')).click();
+  	element(by.id('test_redirectCast')).click();
   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/app/index.html#/cast");
   });
 
-  it('should redirect to users manager', function(){
+  it('should redirect to content manager', function(){
   	browser.get('http://localhost:3000/app/index.html#/content');
-  	element(by.id('3')).click();
+  	element(by.id('test_redirectDevices')).click();
   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/app/index.html#/device");
   });
 

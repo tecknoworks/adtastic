@@ -37,10 +37,10 @@
 						<div class="md-list-item-text" layout="row">
 							<h2>{{ $index }}.  {{ med.name }}</h2>
 							<span flex></span>
-							<md-button aria-label="Order up" class="md-primary md-icon-button" ng-click="moveUp(med.name)">
+							<md-button aria-label="Order up" class="md-primary md-icon-button" ng-click="moveUp($index)">
 								<md-icon md-svg-icon="icons/arrow_up.svg"></md-icon>
 							</md-button>
-							<md-button aria-label="Order down" class="md-primary md-icon-button" ng-click="moveDown(med.name)">
+							<md-button aria-label="Order down" class="md-primary md-icon-button" ng-click="moveDown($index)">
 								<md-icon md-svg-icon="icons/arrow_down.svg"></md-icon>
 							</md-button>
 						</div>

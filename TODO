@@ -1,10 +1,10 @@
-- guard-rubocop cleanup bs
-- fix ordering animation cast menu
+? **ASK SPLIT RUBY LINES** guard-rubocop cleanup bs
++ fix ordering animation cast menu
 - users page (done 80%) + edit
-- MANAGEMENT PAGES eDIT FUNCTIONALITY
-- TEST(protractor)
-- tags backend
-- split controllers
++ MANAGEMENT PAGES eDIT FUNCTIONALITY
++ TEST(protractor)
++ tags backend(add/delete + tie to frone end and photo/video delete)
++ split controllers
 - authentification admin/user
 - url device pentru casting
 - api for images/videos

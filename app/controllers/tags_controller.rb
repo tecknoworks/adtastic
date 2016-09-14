@@ -1,7 +1,7 @@
 # controller for backend
 class TagsController < ApplicationController
   protect_from_forgery with: :null_session, if: proc { |c| c.request.format == 'application/json' }
-  skip_before_filter  :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token
 
   api :GET, 'tags'
   description 'method description'
