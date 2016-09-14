@@ -1,27 +1,15 @@
-var app = angular.module('signIn', ['ngMaterial']);
+angular.module('mainApp')
+.controller('SignInController', function ($scope, $http, $location) {
 
-app.config(function($mdThemingProvider) {
-       $mdThemingProvider.theme('docs-dark')
-         .primaryPalette('deep-purple')
-         .accentPalette('blue-grey')
-         .warnPalette('orange');
-      });
-
-app.controller('SignInController', function ($scope, $http, $location) {
- 	$scope.option = {
-    title: 'Sign In'
-  }
-
- 	$scope.test = function() {
- 		// $http.get('/users.json').then(function (response) {
-   //    // $scope.users = response.data.users;
-   //  }, function (error) {
-   //    console.log(error);
-   //  });
+  $scope.test = function() {
+   var uname = $scope.inputEmail;
+   var password = $scope.inputPassword;
    $http.post('/users/signin', { inputEmail: $scope.inputEmail, inputPassword: $scope.inputPassword }).then(
-    function (response) 
-      { console.log("Request done") }, 
-        function (error) { 
-          console.log("Not requested") })
-  }
+     function (response) {
+
+      $location.path('/content');
+    },
+    function (error) { 
+     alert("Incorrect login") })
+ }
 });
