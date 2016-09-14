@@ -152,7 +152,7 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
 
   $scope.addphoto = function() {
 
-    
+
     $http.post('/photos.json', { photo: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
       $scope.photos.push(response.data);
     }, function (error) { console.log("Not requested") });
@@ -173,6 +173,14 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     $http.post('/videos.json', { video: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
 
       $scope.videos.push(response.data);
+
+    }, function (error) { console.log("Not requested") });
+
+    $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
+      console.log("hooray1");
+      $http.post('/video_tags/multiple', { nr_of_tags: $scope.myTags.length } ).then(function (response) {
+        console.log("Hooray");
+      }, function (error) { console.log("Not requested") });
 
     }, function (error) { console.log("Not requested") });
 

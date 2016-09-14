@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   delete 'video_tags' => 'video_tags#destroy'
   put 'video_tags' => 'video_tags#update'
   patch 'video_tags' => 'video_tags#update'
+  post 'video_tags/multiple' => 'video_tags#create_multiple'
 
   resources :photos, only: [:index]
   resources :videos, only: [:index]
