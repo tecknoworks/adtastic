@@ -160,7 +160,6 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
 
       $http.post('/photo_tags/multiple', { nr_of_tags: $scope.myTags.length } ).then(function (response) {
-        console.log("Hooray");
       }, function (error) { console.log("Not requested") });
 
     }, function (error) { console.log("Not requested") });
@@ -176,9 +175,7 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     }, function (error) { console.log("Not requested") });
 
     $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
-      console.log("hooray1");
       $http.post('/video_tags/multiple', { nr_of_tags: $scope.myTags.length } ).then(function (response) {
-        console.log("Hooray");
       }, function (error) { console.log("Not requested") });
 
     }, function (error) { console.log("Not requested") });
