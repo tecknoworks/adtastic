@@ -1,6 +1,7 @@
 # controller for backend
 class TagsController < ApplicationController
   protect_from_forgery with: :null_session, if: proc { |c| c.request.format == 'application/json' }
+  skip_before_filter  :verify_authenticity_token
 
   api :GET, 'tags'
   description 'method description'
@@ -14,6 +15,14 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     @tag.save
+  end
+
+  def create_multiple
+    tag_list = params[:tags]
+    for i in tag_list
+      @t = Tag.new(name: i)
+      @t.save
+    end
   end
 
   def tag_params

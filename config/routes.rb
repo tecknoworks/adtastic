@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   delete 'tags' => 'tags#destroy'
   put 'tags' => 'tags#update'
   patch 'tags' => 'tags#update'
+  post 'tags/multiple' => 'tags#create_multiple'
 
   get 'photos' => 'photos#index'
   post 'photos' => 'photos#create'

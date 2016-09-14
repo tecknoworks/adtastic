@@ -9,7 +9,7 @@ app.config(function($routeProvider) {
   .when('/', {
    templateUrl: '/app/log-in/prima.html',
    controller:"SignInController"
-  })
+ })
   .when('/users',{
     templateUrl: '/app/user-management/user-management.html',
     controller:"UserManagementController"
@@ -48,6 +48,7 @@ app.controller('SignInController', function ($scope, $http, $location) {
      alert("Incorrect login") })
  }
 });
+
 app.controller('ContentManagerController', function ($scope, $http, $location) {
   $scope.options.menuVisible = true;
 
@@ -155,8 +156,12 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     $http.post('/photos.json', { photo: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
       $scope.photos.push(response.data);
     }, function (error) { console.log("Not requested") });
-  
-    console.log($scope.myTags);
+
+
+    $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
+      console.log("Hooray");
+    }, function (error) { console.log("Not requested") });
+
   }
 
   $scope.addvideo = function() {
@@ -168,7 +173,6 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     }, function (error) { console.log("Not requested") });
 
   }
-
 });
 
 app.controller('UserManagementController', function ($scope, $http, $location) {
@@ -356,14 +360,14 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
   $scope.variable = null ;
   $scope.editd = function(did){
 
-      for (var count = 0; count < $scope.devices.length; count++) 
+    for (var count = 0; count < $scope.devices.length; count++) 
 
-      {
+    {
 
-        if ($scope.devices[count].id == did) $scope.editName = $scope.devices[count].name,$scope.variable = did;
+      if ($scope.devices[count].id == did) $scope.editName = $scope.devices[count].name,$scope.variable = did;
 
-      }
-      console.log($scope.variable);
+    }
+    console.log($scope.variable);
   }
   $scope.editDevice = function(){
     $http.put('/devices/' + $scope.variable + '.json', {}).then(function (response) {
@@ -374,7 +378,7 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
         if ($scope.devices[count].id == did) $scope.devices[count].name = $scope.editName;
 
       }
-      
+
     }, function (error) { console.log("Not requested") })
 
 
