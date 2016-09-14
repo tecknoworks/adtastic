@@ -442,6 +442,7 @@ app.controller('MainController', function ($scope, $rootScope, $http, $location)
     $location.path('/device');
   }
   $scope.signOut = function(){
+    $scope.options.menuVisible = false;
     $location.path('/')
   }
 });
