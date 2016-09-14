@@ -2,45 +2,59 @@
 <div  layout='column'>
 
 
-  <form>
-   <div class="control-group" layout='row' layout-align='left'>
+  
+      <div class="control-group" layout='row' layout-align='left' flex>
 
-    <md-input-container>
-     <input type="text" placeholder=Email floating-label ng-model="inputEmail" />
-   </md-input-container>
+          <md-input-container>
+           <input type="text" placeholder="Email" floating-label ng-model="inputEmail" />
+         </md-input-container>
 
-   <md-input-container>
-     <input type="password" placeholder="Password" floating-label ng-model="inputPassword" />
-   </md-input-container>
+         <md-input-container>
+           <input type="password" placeholder="Password" floating-label ng-model="inputPassword" />
+         </md-input-container>
+        <div>
+          <md-button id='userAdd' ng-click="add()" class="md-raised md-primary">Quick Add</md-button>
+        </div>
+      </div>
+      <span class="flex" flex=""></span>
+      <div  flex>
+        <form>
+          <div class="control-group" layout='row' layout-align='right'>
 
-   <div>
-    <md-button id='userAdd' ng-click="add()" class="md-raised md-primary">Quick Add</md-button>
+            <md-input-container>
+              <input type="text" placeholder="Name" floating-label ng-model="editEmail" />
+            </md-input-container>
+            <div>
+              <md-button id='userEdit' ng-click="editUser()" class="md-raised md-primary">Edit email</md-button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+  </div> 
+
+  <div>
+    <md-toolbar layout="row" class="md-hue-3">
+      <div class="md-toolbar-tools">
+        <span>User List</span>
+      </div>
+    </md-toolbar>
   </div>
 
-</div> 
-</form> 
-
-<div>
-  <md-toolbar layout="row" class="md-hue-3">
-    <div class="md-toolbar-tools">
-      <span>User List</span>
-    </div>
-  </md-toolbar>
-</div>
-
-<div layout='column' layout-align='center'>
-  <md-content>
-    <md-list id=2 layout="column" layout-align="center">
-      <md-list-item class="md-3-line" ng-repeat="user in users">
-        <div class="md-list-item-text" layout="column">
-          <h2>ID: {{ user.id }}</h2>
-          <h3>Email: {{ user.email }}</h3>
-          <h3>Password: {{ user.password }}</h3>
-          <md-button class="md-secondary md-raised" ng-click="delete(user.id)">Delete</md-button>
-        </div>
-      </md-list-item>
-    </md-list>
-  </md-content>
-</div>
+  <div layout='column' layout-align='center'>
+    <md-content>
+      <md-list id=2 layout="column" layout-align="center">
+        <md-list-item class="md-3-line" ng-repeat="user in users">
+          <div class="md-list-item-text" layout="column">
+            <h2>ID: {{ user.id }}</h2>
+            <h3>Email: {{ user.email }}</h3>
+            <h3>Password: {{ user.password }}</h3>
+            <md-button class="md-secondary md-raised" ng-click="delete(user.id)">Delete</md-button>
+            <md-button class="md-secondary md-raised" ng-click="edit(user.id)">Edit</md-button>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </div>
 
 </div>

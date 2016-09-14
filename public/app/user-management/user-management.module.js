@@ -32,4 +32,30 @@ angular.module('mainApp')
 
   }
 
+  $scope.edit = function(uid){
+
+    for (var count = 0; count < $scope.users.length; count++) 
+
+    {
+
+      if ($scope.users[count].id == uid) $scope.editEmail = $scope.users[count].email,$scope.variable = uid;
+
+    }
+    $scope.editUser = function(){
+       $http.put('/users.json/?id=' + $scope.variable, {user: {email: $scope.editEmail } } ).then(function (response) {
+         for (var count = 0; count < $scope.users.length; count++) 
+
+         {
+
+           if ($scope.users[count].id == $scope.variable) $scope.users[count].email = $scope.editEmail;
+
+         }
+
+       }, function (error) { console.log("Not requested") })
+
+
+     }
+
+  }
+
 });
