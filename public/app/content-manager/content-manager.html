@@ -1,5 +1,5 @@
 <div >
-  <div layout='row'>
+  <div >
     <form>
       <div class="control-group" layout='row' layout-align='left'>
 
@@ -16,6 +16,9 @@
           </div>
           <div>
             <md-button id='videoAdd' ng-click="addvideo()" class="md-raised md-primary">Add video</md-button>
+          </div>
+          <div>
+            <md-button id='edit' ng-click="edit()" class="md-raised md-primary">Edit Video/Photo</md-button>
           </div>
 
           <md-chips ng-model="myTags" placeholder="Add a tag"></md-chips>
@@ -51,6 +54,7 @@
             <h3>Name: {{ photo.name }}</h3>
             <h3>Url: {{ photo.url }}</h3>
             <md-button class="md-secondary md-raised" ng-click="deletep(photo.id)">Delete</md-button>
+            <md-button class="md-secondary md-raised" ng-click="editp(photo.id)">Edit</md-button>
           </div>
         </md-list-item>
       </md-list>
@@ -70,6 +74,7 @@
             <h3>Name: {{ video.name }}</h3>
             <h3>Url: {{ video.url }}</h3>
             <md-button class="md-secondary md-raised" ng-click="deletev(video.id)">Delete</md-button>
+            <md-button class="md-secondary md-raised" ng-click="editv(video.id)">Edit</md-button>
           </div>
         </md-list-item>
       </md-list>

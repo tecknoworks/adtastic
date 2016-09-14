@@ -151,7 +151,7 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
   }
 
   $scope.addphoto = function() {
-    $scope.databaseTags = [];
+
     
     $http.post('/photos.json', { photo: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
       $scope.photos.push(response.data);
@@ -177,6 +177,59 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     }, function (error) { console.log("Not requested") });
 
   }
+
+  $scope.editp = function(pid){
+
+    for (var count = 0; count < $scope.photos.length; count++) 
+
+    {
+
+      if ($scope.photos[count].id == pid) $scope.inputName = $scope.photos[count].name,$scope.inputUrl = $scope.photos[count].url,$scope.variable = pid;
+
+    }
+    $scope.edit = function(){
+       $http.put('/photos.json/?id=' + $scope.variable, {photo: {name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
+         for (var count = 0; count < $scope.photos.length; count++) 
+
+         {
+
+           if ($scope.photos[count].id == $scope.variable) $scope.photos[count].name = $scope.inputName,$scope.photos[count].url = $scope.inputUrl;
+
+         }
+
+       }, function (error) { console.log("Not requested") })
+
+
+     }
+
+  }
+
+  $scope.editv = function(pid){
+
+    for (var count = 0; count < $scope.videos.length; count++) 
+
+    {
+
+      if ($scope.videos[count].id == pid) $scope.inputName = $scope.videos[count].name,$scope.inputUrl = $scope.videos[count].url,$scope.variable = pid;
+
+    }
+    $scope.edit = function(){
+       $http.put('/videos.json/?id=' + $scope.variable, {video: {name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
+         for (var count = 0; count < $scope.videos.length; count++) 
+
+         {
+
+           if ($scope.videos[count].id == $scope.variable) $scope.videos[count].name = $scope.inputName,$scope.videos[count].url = $scope.inputUrl;
+
+         }
+
+       }, function (error) { console.log("Not requested") })
+
+
+     }
+
+  }
+
 });
 
 app.controller('UserManagementController', function ($scope, $http, $location) {
@@ -326,7 +379,7 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
 
   $scope.options.menuVisible = true;
 
-  $scope.devices = [];
+  
 
   $http.get('/devices.json').then(function (response) {
     $scope.devices = response.data.devices;
