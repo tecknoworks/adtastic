@@ -5,6 +5,7 @@
 + TEST(protractor)
 + tags backend(add/delete + tie to frone end and photo/video delete)
 + split controllers
+- Encrypt password
 - authentification admin/user
 - url device pentru casting
 - api for images/videos

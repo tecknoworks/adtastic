@@ -36,6 +36,7 @@ angular.module('mainApp')
     $http.post('/devices.json', { device: { name: $scope.inputName } } ).then(function (response) {
 
       $scope.devices.push(response.data);
+      $scope.inputName = "";
 
     }, function (error) { console.log("Not requested") });
 
@@ -49,23 +50,21 @@ angular.module('mainApp')
 
     {
 
-      if ($scope.devices[count].id == did) $scope.editName = $scope.devices[count].name,$scope.variable = did;
+      if ($scope.devices[count].id == did) $scope.inputName = $scope.devices[count].name,$scope.variable = did;
 
     }
     $scope.editDevice = function(){
-      $http.put('/devices.json/?id=' + $scope.variable, {device: {name: $scope.editName}}).then(function (response) {
+      $http.put('/devices.json/?id=' + $scope.variable, {device: {name: $scope.inputName}}).then(function (response) {
         for (var count = 0; count < $scope.devices.length; count++) 
 
         {
 
-          if ($scope.devices[count].id == $scope.variable) $scope.devices[count].name = $scope.editName;
+          if ($scope.devices[count].id == $scope.variable) $scope.devices[count].name = $scope.inputName;
 
         }
+        $scope.inputName = "";
 
       }, function (error) { console.log("Not requested") })
-
-
     }
-
   }
 });
