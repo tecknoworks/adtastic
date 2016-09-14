@@ -1,5 +1,5 @@
 - guard-rubocop cleanup bs
-- fix ordering cast menu
+- fix ordering animation cast menu
 - users page (done 80%) + edit
 - MANAGEMENT PAGES eDIT FUNCTIONALITY
 - TEST(protractor)

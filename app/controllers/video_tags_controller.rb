@@ -15,6 +15,15 @@ class VideoTagsController < ApplicationController
 		@video_tag = VideoTag.new(tag_params)
 		@video_tag.save
 	end
+	
+	def create_multiple
+		nr = params[:nr_of_tags]
+		@last_tags = Tag.last(nr)
+		@last_video = Video.last
+		for @tag in @last_tags
+			VideoTag.new(video_id: @last_video.id, tag_id: @tag.id).save
+		end
+	end
 
 	def tag_params
 		params.require(:video_tag).permit(:id, :video_id, :tag_id)
