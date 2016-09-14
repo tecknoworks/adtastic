@@ -9,7 +9,7 @@ app.config(function($routeProvider) {
   .when('/', {
    templateUrl: '/app/log-in/prima.html',
    controller:"SignInController"
-  })
+ })
   .when('/users',{
     templateUrl: '/app/user-management/user-management.html',
     controller:"UserManagementController"
@@ -48,6 +48,7 @@ app.controller('SignInController', function ($scope, $http, $location) {
      alert("Incorrect login") })
  }
 });
+
 app.controller('ContentManagerController', function ($scope, $http, $location) {
   $scope.options.menuVisible = true;
 
@@ -155,41 +156,15 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     $http.post('/photos.json', { photo: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
       $scope.photos.push(response.data);
     }, function (error) { console.log("Not requested") });
-    
-    $http.get('/tags.json').then(function (response) {
-      $scope.databaseTags = response.data.tags;
-      console.log($scope.databaseTags);
-    }, function (error) {
-      console.log(error);
-    });
 
-    function tagInDatabase(tagName)
-    {
-      for (count = 0; count < $scope.databaseTags.length; i++)
-      {
-        if (tagName == $scope.databaseTags[count].name)
-        {
-          return true
-        }
-        return false
-      }
-    }
 
-    function removeUnwantedTags()
-    {
-      count = 0;
-      while ( count < $scope.myTags.length )
-      {
-        if (tagInDatabase($scope.myTags[count]) == true)
-        {
-          $scope.myTags.splice(count,1);
-          console.log($scope.myTags);
-        }
-        count++;
-      }
-    }
+    $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
 
-    // removeUnwantedTags();
+      $http.post('/photo_tags/multiple', { nr_of_tags: $scope.myTags.length } ).then(function (response) {
+        console.log("Hooray");
+      }, function (error) { console.log("Not requested") });
+
+    }, function (error) { console.log("Not requested") });
 
   }
 
@@ -202,7 +177,6 @@ app.controller('ContentManagerController', function ($scope, $http, $location) {
     }, function (error) { console.log("Not requested") });
 
   }
-
 });
 
 app.controller('UserManagementController', function ($scope, $http, $location) {
@@ -389,35 +363,34 @@ app.controller('DeviceManagerController', function ($scope, $location, $http) {
     }, function (error) { console.log("Not requested") });
 
   }
+
   $scope.variable = null ;
+
   $scope.editd = function(did){
 
-      for (var count = 0; count < $scope.devices.length; count++) 
+    for (var count = 0; count < $scope.devices.length; count++) 
 
-      {
+    {
 
-        if ($scope.devices[count].id == did) $scope.editName = $scope.devices[count].name,$scope.variable = did;
+      if ($scope.devices[count].id == did) $scope.editName = $scope.devices[count].name,$scope.variable = did;
 
-      }
-  }
-  $scope.editDevice = function(){
-    $http.put('/devices.json/?id=' + $scope.variable, {device: {name: $scope.editName}}).then(function (response) {
+    }
+    $scope.editDevice = function(){
+      $http.put('/devices.json/?id=' + $scope.variable, {device: {name: $scope.editName}}).then(function (response) {
         for (var count = 0; count < $scope.devices.length; count++) 
 
-      {
+        {
 
-        if ($scope.devices[count].id == $scope.variable) $scope.devices[count].name = $scope.editName;
+          if ($scope.devices[count].id == $scope.variable) $scope.devices[count].name = $scope.editName;
 
-      }
-      
-    }, function (error) { console.log("Not requested") })
+        }
 
+      }, function (error) { console.log("Not requested") })
+
+
+    }
 
   }
-
-
-
-
 });
 
 app.controller('MainController', function ($scope, $rootScope, $http, $location) {
