@@ -16,6 +16,15 @@ class PhotoTagsController < ApplicationController
 		@photo_tag.save
 	end
 
+	def create_multiple
+		nr = params[:nr_of_tags]
+		@last_tags = Tag.last(nr)
+		@last_photo = Photo.last
+		for @tag in @last_tags
+			PhotoTag.new(photo_id: @last_photo.id, tag_id: @tag.id).save
+		end
+	end
+
 	def tag_params
 		params.require(:photo_tag).permit(:id, :photo_id, :tag_id)
 	end

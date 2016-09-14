@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   delete 'photo_tags' => 'photo_tags#destroy'
   put 'photo_tags' => 'photo_tags#update'
   patch 'photo_tags' => 'photo_tags#update'
+  post 'photo_tags/multiple' => 'photo_tags#create_multiple'
 
   get 'video_tags' => 'video_tags#index'
   post 'video_tags' => 'video_tags#create'
