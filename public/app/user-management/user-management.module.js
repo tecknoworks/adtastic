@@ -1,13 +1,7 @@
-var app = angular.module('user-management', ['ngMaterial']);
+angular.module('mainApp')
+.controller('UserManagementController', function ($scope, $http, $location) {
 
-app.config(function($mdThemingProvider) {
- $mdThemingProvider.theme('docs-darkt')
- .primaryPalette('blue')
- .accentPalette('blue-grey')
- .warnPalette('orange');
-});
-
-app.controller('user-management-controller', function ($scope, $http, $location) {
+  $scope.options.menuVisible = true;
 
   $http.get('/users.json').then(function (response) {
     $scope.users = response.data.users;
@@ -15,25 +9,27 @@ app.controller('user-management-controller', function ($scope, $http, $location)
     console.log(error);
   })
 
-  $scope.loadData = function () 
-  {
-    $http.get('/users.json').then(function (response) {
-      $scope.users = response.data.users;
-      var vm = this;  
-      vm.reload = function()        
-      {           
-        vm.users = $scope.users;           
-      };
 
 
+  $scope.delete = function(uid) {
+
+    $http.delete('/users.json/?id=' + uid, {}).then(function (response) 
+    { 
+      for (var count = 0; count < $scope.users.length; count++) 
+      {
+        if ($scope.users[count].id == uid) $scope.users.splice(count,1);
       }
     }, function (error) { console.log("Not requested") })
   }
 
   $scope.add = function() {
+
     $http.post('/users.json', { user: { email: $scope.inputEmail, password: $scope.inputPassword } } ).then(function (response) {
+
       $scope.users.push(response.data);
+
     }, function (error) { console.log("Not requested") });
+
   }
 
 });
