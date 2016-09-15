@@ -48,7 +48,8 @@ class UsersController < ApplicationController
   end
 
   def validate_sign_in
-    if User.verify_password(params[:inputEmail], params[:inputPassword]) == true && User.verify_email(params[:inputEmail]) == true
+    user = User.find_by_email(params[:inputEmail])
+    if user && user.authenticate(params[:inputPassword])
       render inline: "</p><% 'man' %>", status: 200
     else
       render :nothing, status: 404
