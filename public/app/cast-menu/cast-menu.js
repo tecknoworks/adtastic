@@ -1,7 +1,15 @@
 angular.module('mainApp')
-.controller('CastMenuController', function ($scope, $location, $http) {
+.controller('CastMenuController', function ($rootScope, $scope, $location, $http, logOptions) {
 
   $scope.options.menuVisible = true;
+  if (logOptions.getLogState() == false)
+  {
+    $rootScope.options = {
+      menuVisible: false
+    }
+    $location.path('/');
+  }
+
 
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';

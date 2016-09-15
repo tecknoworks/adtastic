@@ -1,7 +1,15 @@
 angular.module('mainApp')
-.controller('DeviceManagerController', function ($scope, $location, $http) {
+.controller('DeviceManagerController', function ($rootScope, $scope, $location, $http, logOptions) {
 
   $scope.options.menuVisible = true;
+  if (logOptions.getLogState() == false)
+  {
+    $rootScope.options = {
+      menuVisible: false
+    }
+    $location.path('/');
+  }
+
 
   
 

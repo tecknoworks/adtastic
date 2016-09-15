@@ -1,5 +1,5 @@
 angular.module('mainApp')
-.config(function($routeProvider) {
+.config(function($routeProvider, logOptions) {
   $routeProvider
   .when('/content', {
     templateUrl: '/app/content-manager/content-manager.html',

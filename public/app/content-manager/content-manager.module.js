@@ -1,6 +1,15 @@
 angular.module('mainApp')
-.controller('ContentManagerController', function ($scope, $http, $location) {
+.controller('ContentManagerController', function ($rootScope, $scope, $http, $location, logOptions) {
+
   $scope.options.menuVisible = true;
+  if (logOptions.getLogState() == false)
+  {
+    $rootScope.options = {
+      menuVisible: false
+    }
+    $location.path('/');
+  }
+
 
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';
