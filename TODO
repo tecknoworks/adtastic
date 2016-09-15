@@ -1,11 +1,11 @@
 ? **ASK SPLIT RUBY LINES** guard-rubocop cleanup bs
 + fix ordering animation cast menu
-- users page (done 80%) + edit
++ users page (done 80%) + edit
 + MANAGEMENT PAGES eDIT FUNCTIONALITY
 + TEST(protractor)
 + tags backend(add/delete + tie to frone end and photo/video delete)
 + split controllers
-- Encrypt password
-- authentification admin/user
++ Encrypt password
++ authentification admin/user
 - url device pentru casting
 - api for images/videos
