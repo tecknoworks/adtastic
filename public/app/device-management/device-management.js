@@ -10,9 +10,6 @@ angular.module('mainApp')
     $location.path('/');
   }
 
-
-  
-
   $http.get('/devices.json').then(function (response) {
     $scope.devices = response.data.devices;
   }, function (error) {
