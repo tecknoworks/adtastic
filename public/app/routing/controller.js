@@ -9,6 +9,11 @@ angular.module('mainApp', ['ngRoute', 'ngMaterial'])
   $rootScope.button = {
     visible: false
   }
+
+  $rootScope.curent = {
+    url: "ceva"
+  }
+
   $scope.content = function(){
     $location.path('/content');
   }

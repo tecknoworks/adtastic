@@ -2,6 +2,7 @@ angular.module('mainApp')
 .controller('DeviceManagerController', function ($rootScope, $scope, $location, $http, logOptions) {
 
   $scope.options.menuVisible = true;
+  $scope.curent.url = $location.url();
   if (logOptions.getLogState() == false)
   {
     $rootScope.options = {
