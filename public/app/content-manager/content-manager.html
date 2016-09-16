@@ -3,82 +3,85 @@
     <form>
       <div class="control-group" layout='row' layout-align='left'>
 
-          <md-input-container>
-            <input type="text" placeholder="Name" floating-label ng-model="inputName" />
-          </md-input-container>
+        <md-input-container>
+          <input type="text" placeholder="Name" floating-label ng-model="inputName" />
+        </md-input-container>
 
-          <md-input-container>
-            <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
-          </md-input-container>
+        <md-input-container>
+          <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
+        </md-input-container>
 
-          <div>
-            <md-button id='photoAdd' ng-click="addphoto()" class="md-raised md-primary">Add photo</md-button>
+        <div>
+          <md-button id='photoAdd' ng-click="addphoto()" class="md-raised md-primary">Add photo</md-button>
+        </div>
+        <div>
+          <md-button id='videoAdd' ng-click="addvideo()" class="md-raised md-primary">Add video</md-button>
+        </div>
+        <div>
+          <md-button id='edit' ng-click="edit()" class="md-raised md-primary">Edit Video/Photo</md-button>
+        </div>
+
+        <md-chips ng-model="myTags" placeholder="Add a tag"></md-chips>
+
+        <span flex></span>
+
+        <md-card-content>
+          <div layout="row">
+            <md-select ng-change="sortMedia()" ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
+              <md-option ng-value='sort_option' ng-repeat="sort_option in sortOption">  {{     sort_option }} 
+              </md-option>
+            </md-select>
           </div>
-          <div>
-            <md-button id='videoAdd' ng-click="addvideo()" class="md-raised md-primary">Add video</md-button>
-          </div>
-          <div>
-            <md-button id='edit' ng-click="edit()" class="md-raised md-primary">Edit Video/Photo</md-button>
-          </div>
-
-          <md-chips ng-model="myTags" placeholder="Add a tag"></md-chips>
-          
-          <span flex></span>
-
-          <md-card-content>
-            <div layout="row">
-              <md-select ng-change="sortMedia()" ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
-                <md-option ng-value='sort_option' ng-repeat="sort_option in sortOption">  {{     sort_option }} 
-                </md-option>
-              </md-select>
-            </div>
-          </md-card-content>
+        </md-card-content>
 
       </div>
     </form>
   </div>
 
 
-<div layout='row' flex>
-  <div flex>
-    <md-content>
-      <md-toolbar layout="row" class="md-hue-3">
-        <div class="md-toolbar-tools">
-          <span>Photo List</span>
-        </div>
-      </md-toolbar>
-      <md-list layout="column" layout-align="center">
-        <md-list-item class="md-3-line" ng-repeat="photo in photos">
-          <div class="md-list-item-text" layout="column">
-            <h2>ID: {{ photo.id }}</h2>
-            <h3>Name: {{ photo.name }}</h3>
-            <h3>Url: {{ photo.url }}</h3>
-            <md-button class="md-secondary md-raised" ng-click="deletep(photo.id)">Delete</md-button>
-            <md-button class="md-secondary md-raised" ng-click="editp(photo.id)">Edit</md-button>
+  <div layout='row' flex layout-sm="column">
+    <div flex>
+      <md-content>
+        <md-toolbar layout="row" class="md-hue-3">
+          <div class="md-toolbar-tools">
+            <span>Photo List</span>
           </div>
-        </md-list-item>
-      </md-list>
-    </md-content>
-  </div>
-  <div flex>
-    <md-content>
-      <md-toolbar layout="row" class="md-hue-3">
-        <div class="md-toolbar-tools">
-          <span>Video List</span>
-        </div>
-      </md-toolbar>
-      <md-list layout="column" layout-align="center">
-        <md-list-item class="md-3-line" ng-repeat="video in videos">
-          <div class="md-list-item-text" layout="column">
-            <h2>ID: {{ video.id }}</h2>
-            <h3>Name: {{ video.name }}</h3>
-            <h3>Url: {{ video.url }}</h3>
-            <md-button class="md-secondary md-raised" ng-click="deletev(video.id)">Delete</md-button>
-            <md-button class="md-secondary md-raised" ng-click="editv(video.id)">Edit</md-button>
+        </md-toolbar>
+        <md-list layout="column" layout-align="center">
+          <md-list-item class="md-3-line" ng-repeat="photo in photos">
+            <div class="md-list-item-text" layout="column">
+              <h2>ID: {{ photo.id }}</h2>
+              <h3>Name: {{ photo.name }}</h3>
+              <h3>Url: {{ photo.url }}</h3>
+              <md-button class="md-secondary md-raised" ng-click="deletep(photo.id)">Delete</md-button>
+              <md-button class="md-secondary md-raised" ng-click="editp(photo.id)">Edit</md-button>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </div>
+    <div flex>
+      <md-content>
+        <md-toolbar layout="row" class="md-hue-3">
+          <div class="md-toolbar-tools">
+            <span>Video List</span>
           </div>
-        </md-list-item>
-      </md-list>
-    </md-content>
+        </md-toolbar>
+        <md-list layout="column" layout-align="center">
+          <md-list-item class="md-3-line" ng-repeat="video in videos">
+            <div layout-padding>
+              <img ng-src="{{ 'http://img.youtube.com/vi/' + video.url.slice(video.url.indexOf('?v=') + 3, video.url.length) + '/default.jpg' }}" alt="{{item.who}}" />
+            </div>
+            <div class="md-list-item-text" layout="column">
+              <h2>ID: {{ video.id }}</h2>
+              <h3>Name: {{ video.name }}</h3>
+              <h3>Url: {{ video.url }}</h3>
+              <md-button class="md-secondary md-raised" ng-click="deletev(video.id)">Delete</md-button>
+              <md-button class="md-secondary md-raised" ng-click="editv(video.id)">Edit</md-button>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </div>
   </div>
-</div>
 </div>
