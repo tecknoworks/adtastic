@@ -39,7 +39,7 @@ angular.module('mainApp')
 
   $scope.add = function() {
 
-    $http.post('/users.json', { user: { email: $scope.inputEmail, password: $scope.inputPassword } } ).then(function (response) {
+    $http.post('/users.json', { user: { email: $scope.inputEmail, password: $scope.inputPassword, user_type: false } } ).then(function (response) {
 
       $scope.users.push(response.data);
 
