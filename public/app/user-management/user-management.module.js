@@ -3,7 +3,7 @@ angular.module('mainApp')
 
   $scope.options.menuVisible = true;
 
-  if (logOptions.getLogState() == false)
+  if (logOptions.getLogState() == false )
   {
     $rootScope.options = {
       menuVisible: false
