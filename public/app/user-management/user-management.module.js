@@ -3,7 +3,14 @@ angular.module('mainApp')
 
   $scope.options.menuVisible = true;
 
-  if (logOptions.getLogState() == false)
+  if ($scope.button.visible == false) 
+  {
+    $scope.options.menuVisible = false;
+    $location.path('/content');
+
+  }
+
+  if (logOptions.getLogState() == false )
   {
     $rootScope.options = {
       menuVisible: false

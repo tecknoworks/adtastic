@@ -9,7 +9,6 @@ angular.module('mainApp', ['ngRoute', 'ngMaterial'])
   $rootScope.button = {
     visible: false
   }
-
   $scope.content = function(){
     $location.path('/content');
   }
@@ -25,6 +24,7 @@ angular.module('mainApp', ['ngRoute', 'ngMaterial'])
   $scope.signOut = function(){
     $scope.options.menuVisible = false;
     logOptions.setLogState(false);
+    $scope.button.visible = false;
     $location.path('/')
   }
 })
@@ -50,4 +50,3 @@ angular.module('mainApp', ['ngRoute', 'ngMaterial'])
     }
   };
 });
-
