@@ -6,7 +6,7 @@ angular.module('mainApp')
   if ($scope.button.visible == false) 
   {
     $scope.options.menuVisible = false;
-    $location.path('/content');
+    $location.path($scope.curent.url);
 
   }
 

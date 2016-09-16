@@ -2,6 +2,7 @@ angular.module('mainApp')
 .controller('ContentManagerController', function ($rootScope, $scope, $http, $location, logOptions) {
 
   $scope.options.menuVisible = true;
+  $scope.curent.url = $location.url();
   if (logOptions.getLogState() == false)
   {
     $rootScope.options = {
