@@ -1,5 +1,5 @@
 angular.module('mainApp')
-.controller('CastMenuController', function ($rootScope, $scope, $location, $http, logOptions) {
+.controller('CastMenuController', function ($rootScope, $scope, $location, $http, logOptions, $cookies) {
 
   $scope.options.menuVisible = true;
   $scope.curent.url = $location.url();
@@ -23,7 +23,6 @@ angular.module('mainApp')
   $scope.urls = [];
 
   $scope.cast = function() {
-
     for (i = 0; i < $scope.media.length; i++)
     {
       $scope.urls.push($scope.media[i].url);
@@ -34,8 +33,7 @@ angular.module('mainApp')
       var dict = {device_name: $scope.selectedDevices[i], content_url: $scope.urls};
       $scope.playlist.item.push(dict);
     }
-    console.log($scope.playlist);
-    $scope.$broadcast("myEvent", {play: $scope.playlist });
+    $cookies.putObject('objSocket', $scope.playlist);
   }
 
   $scope.selectDevice = function(name)

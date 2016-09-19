@@ -1,6 +1,6 @@
 
-angular.module('mainApp', ['ngRoute', 'ngMaterial'])
-.controller('MainController', function ($scope, $rootScope, $http, $location, logOptions) {
+angular.module('mainApp', ['ngRoute', 'ngMaterial', 'ngCookies'])
+.controller('MainController', function ($scope, $rootScope, $http, $location, logOptions, $cookies) {
 
   $rootScope.options = {
     menuVisible: false
