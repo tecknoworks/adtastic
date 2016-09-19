@@ -14,6 +14,10 @@ angular.module('mainApp', ['ngRoute', 'ngMaterial'])
     url: "ceva"
   }
 
+  $rootScope.playlist = {
+    item: []
+  }
+
   $scope.content = function(){
     $location.path('/content');
   }

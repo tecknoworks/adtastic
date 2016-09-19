@@ -1,14 +1,14 @@
 <div>
 
 	<div layout='row'>
-		<div flex>Users
+		<div flex>Devices
 			<md-content>
 				<md-list layout="column" layout-align="center">
-					<md-list-item class="md-3-line" ng-repeat="user in usersList">
+					<md-list-item class="md-3-line" ng-repeat="device in devicesList">
 						<div class="md-list-item-text" layout="column">
-							<h2>ID: {{ user.id }}</h2>
-							<h3>Email: {{ user.email }}</h3>
-							<md-checkbox aria-label="Checkbox" class="md-secondary" ng-model="user.checked"></md-checkbox>
+							<h2>ID: {{ device.id }}</h2>
+							<h3>Name: {{ device.name }}</h3>
+							<md-checkbox ng-change='selectDevice(device.name)' aria-label="Checkbox" class="md-secondary" ng-model="device.checked"></md-checkbox>
 						</div>
 					</md-list-item>
 				</md-list>
@@ -25,8 +25,12 @@
 					<md-select ng-change="sortMedia()" ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
 						<md-option ng-value='sort_option' ng-repeat="sort_option in sortOption"> {{ sort_option }} </md-option>
 					</md-select>
+					
 				</div>
+				<md-button aria-label="cast" class="md-primary" ng-click="cast()">Cast
+					</md-button>
 			</md-card-content>
+
 
 		</div>
 

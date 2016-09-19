@@ -21,6 +21,10 @@ angular.module('mainApp')
     templateUrl: '/app/device-management/device-management.html',
     controller:'DeviceManagerController'
   })
+  .when('/receive/:device_name',{
+    templateUrl: '/app/cast-receive/cast-receive.html',
+    controller: 'CastReceiveController'
+  })
   .otherwise({
     redirectTo: '/'
   });

@@ -47,10 +47,5 @@ Rails.application.routes.draw do
   patch 'video_tags' => 'video_tags#update'
   post 'video_tags/multiple' => 'video_tags#create_multiple'
 
-  resources :photos, only: [:index]
-  resources :videos, only: [:index]
-  resources :devices, only: [:index]
-  resources :tags, only: [:index]
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

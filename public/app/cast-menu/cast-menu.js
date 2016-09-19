@@ -19,6 +19,38 @@ angular.module('mainApp')
   $scope.photos = [];
   $scope.videos= [];
 
+  $scope.selectedDevices = [];
+  $scope.urls = [];
+
+  $scope.cast = function() {
+
+    for (i = 0; i < $scope.media.length; i++)
+    {
+      $scope.urls.push($scope.media[i].url);
+    }
+
+    for (i = 0; i < $scope.selectedDevices.length; i++)
+    {
+      var dict = {device_name: $scope.selectedDevices[i], content_url: $scope.urls};
+      $scope.playlist.item.push(dict);
+    }
+    console.log($scope.playlist);
+    $scope.$broadcast("myEvent", {play: $scope.playlist });
+  }
+
+  $scope.selectDevice = function(name)
+  {
+    if ($scope.selectedDevices.indexOf(name) != -1)
+    {
+      $scope.selectedDevices.splice($scope.selectedDevices.indexOf(name),1);
+    }
+    else
+    {
+      $scope.selectedDevices.push(name);
+    }
+    console.log($scope.selectedDevices);
+  }
+
   $scope.moveUp = function(index)
   {
     idk = index;
@@ -69,8 +101,8 @@ angular.module('mainApp')
 
   }
 
-  $http.get('/users.json').then(function (response) {
-    $scope.usersList = response.data.users;
+  $http.get('/devices.json').then(function (response) {
+    $scope.devicesList = response.data.devices;
   }, function (error) {
     console.log(error);
   })
