@@ -19,7 +19,6 @@ angular.module('mainApp')
 
   $http.get('/contents.json').then(function (response) {
     $scope.media = response.data.contents;
-    console.log($scope.media);
   }, function (error) {
     console.log(error);
   })
@@ -71,8 +70,7 @@ angular.module('mainApp')
   }
 
   $scope.add = function() {
-
-    $http.post('/contents.json', { content: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
+    $http.post('/contents.json', { content: { name: $scope.inputName, url: $scope.inputUrl, content_type: "photo" } } ).then(function (response) {
       $scope.media.push(response.data);
       $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
 
@@ -86,13 +84,12 @@ angular.module('mainApp')
   }
 
   $scope.edit = function(pid){
-    console.log(pid);
     for (var count = 0; count < $scope.media.length; count++) 
     {
       if ($scope.media[count].id == pid) $scope.inputName = $scope.media[count].name, $scope.inputUrl = $scope.media[count].url, $scope.variable = pid;
     }
 
-    $scope.edit2 = function(){
+    edit2 = function(){
      $http.put('/contents.json/?id=' + $scope.variable, {content: {name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
        for (var count = 0; count < $scope.media.length; count++) 
        {

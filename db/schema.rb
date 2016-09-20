@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920113007) do
+ActiveRecord::Schema.define(version: 20160920124813) do
 
   create_table "content_tags", force: :cascade do |t|
     t.integer "content_id"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20160920113007) do
   create_table "contents", force: :cascade do |t|
     t.string "name"
     t.string "url"
-    t.string "type"
+    t.string "content_type"
   end
 
   create_table "devices", force: :cascade do |t|
