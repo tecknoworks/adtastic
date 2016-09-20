@@ -41,4 +41,17 @@ class PlaylistsController < ApplicationController
 		@playlist = Playlist.find(params[:id])
 		@playlist.update_attributes(playlist_params)
 	end
+
+	def playlistForDevice
+		@play = Playlist.find_by_device_id(params[:device_id])
+		@urls = @play.playlist_items
+		for (url in @urls)
+			cid = url.content_id
+			@content = Content.find(cid)
+		end
+	end
+
+	# def setPlayList
+		
+	# end
 end

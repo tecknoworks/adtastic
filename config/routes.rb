@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   delete 'playlists' => 'playlists#destroy'
   put 'playlists' => 'playlists#update'
   patch 'playlists' => 'playlists#update'
+  get 'playlist/play' => 'playlist#playlistForDevice'
 
   get 'playlist_items' => 'playlist_items#index'
   post 'playlist_items' => 'playlist_items#create'
