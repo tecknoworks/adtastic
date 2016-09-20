@@ -15,6 +15,7 @@ angular.module('mainApp', ['ngRoute', 'ngMaterial', 'ngCookies'])
   }
 
   $rootScope.playlist = {
+    //array od hashes for the playlist
     item: []
   }
 

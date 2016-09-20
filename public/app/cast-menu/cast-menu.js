@@ -22,7 +22,29 @@ angular.module('mainApp')
   $scope.selectedDevices = [];
   $scope.urls = [];
 
+  removeDuplicates = function(dict) {
+    //removes duplicate entries in the playlist
+    var count = 0;
+    var idk = -1;
+    for (j = 0; j < $scope.playlist.item.length; j++)
+    {
+      if ($scope.playlist.item[j].device_name == dict.device_name)
+      {
+        count++;
+        if (count == 1)
+        {
+          idk = j;
+        }
+      }
+    }
+    if (count > 1)
+    {
+      $scope.playlist.item.splice(idk,1);
+    }
+  }
+
   $scope.cast = function() {
+    $scope.urls = [];
     for (i = 0; i < $scope.media.length; i++)
     {
       $scope.urls.push($scope.media[i].url);
@@ -32,6 +54,7 @@ angular.module('mainApp')
     {
       var dict = {device_name: $scope.selectedDevices[i], content_url: $scope.urls};
       $scope.playlist.item.push(dict);
+      removeDuplicates(dict);
     }
     $cookies.putObject('objSocket', $scope.playlist);
   }
@@ -46,7 +69,6 @@ angular.module('mainApp')
     {
       $scope.selectedDevices.push(name);
     }
-    console.log($scope.selectedDevices);
   }
 
   $scope.moveUp = function(index)
