@@ -126,8 +126,8 @@ angular.module('mainApp')
 
   function getMedia()
   {
-    $http.get('/content.json').then(function (response) {
-      $scope.media = response.data.content;
+    $http.get('/contents.json').then(function (response) {
+      $scope.media = response.data.contents;
     }, function (error) {
       console.log(error);
     })
