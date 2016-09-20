@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915110132) do
+ActiveRecord::Schema.define(version: 20160920113007) do
+
+  create_table "content_tags", force: :cascade do |t|
+    t.integer "content_id"
+    t.integer "tag_id"
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.string "type"
+  end
 
   create_table "devices", force: :cascade do |t|
     t.string   "name"
@@ -26,20 +37,14 @@ ActiveRecord::Schema.define(version: 20160915110132) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "photo_tags", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "photo_id"
-    t.integer  "tag_id"
+  create_table "playlist_items", force: :cascade do |t|
+    t.integer "content_id"
+    t.integer "playlist_id"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "res_x"
-    t.integer  "res_y"
-    t.text     "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "playlists", force: :cascade do |t|
+    t.integer "device_id"
+    t.integer "timer"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -54,21 +59,6 @@ ActiveRecord::Schema.define(version: 20160915110132) do
     t.boolean  "user_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "video_tags", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "video_id"
-    t.integer  "tag_id"
-  end
-
-  create_table "videos", force: :cascade do |t|
-    t.string   "name"
-    t.text     "url"
-    t.time     "length"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

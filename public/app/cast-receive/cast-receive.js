@@ -33,7 +33,8 @@ angular.module('mainApp')
 			count = 0;
 		}
 	}
+	var t = $scope.playlist.item[$scope.idx].interval*1000;
 	callTimeOut(len);
-	$interval(function() {callTimeOut(len)}, 3000);
+	$interval(function() {callTimeOut(len)}, t);
 
 });

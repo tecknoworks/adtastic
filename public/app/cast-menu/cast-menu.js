@@ -33,8 +33,8 @@ angular.module('mainApp')
         count++;
         if (count == 1)
         {
-          idk = j;
-        }
+          idk = j
+;        }
       }
     }
     if (count > 1)
@@ -52,7 +52,7 @@ angular.module('mainApp')
 
     for (i = 0; i < $scope.selectedDevices.length; i++)
     {
-      var dict = {device_name: $scope.selectedDevices[i], content_url: $scope.urls};
+      var dict = {device_name: $scope.selectedDevices[i], content_url: $scope.urls, interval: $scope.inputTime};
       $scope.playlist.item.push(dict);
       removeDuplicates(dict);
     }
