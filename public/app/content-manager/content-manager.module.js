@@ -14,11 +14,12 @@ angular.module('mainApp')
 
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';
-
+  $scope.media = [];
   $scope.myTags = [];
 
-  $http.get('/content.json').then(function (response) {
-    $scope.media = response.data.content;
+  $http.get('/contents.json').then(function (response) {
+    $scope.media = response.data.contents;
+    console.log($scope.media);
   }, function (error) {
     console.log(error);
   })
@@ -53,7 +54,7 @@ angular.module('mainApp')
 
   $scope.delete = function(pid) {
 
-    $http.delete('/media.json/?id=' + pid, {}).then(function (response) 
+    $http.delete('/contents.json/?id=' + pid, {}).then(function (response) 
 
     { 
 
@@ -71,7 +72,7 @@ angular.module('mainApp')
 
   $scope.add = function() {
 
-    $http.post('/content.json', { content: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
+    $http.post('/contents.json', { content: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
       $scope.media.push(response.data);
       $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
 
@@ -85,19 +86,21 @@ angular.module('mainApp')
   }
 
   $scope.edit = function(pid){
-
+    console.log(pid);
     for (var count = 0; count < $scope.media.length; count++) 
     {
-      if ($scope.media[count].id == pid) $scope.inputName = $scope.content[count].name, $scope.inputUrl = $scope.content[count].url, $scope.variable = pid;
+      if ($scope.media[count].id == pid) $scope.inputName = $scope.media[count].name, $scope.inputUrl = $scope.media[count].url, $scope.variable = pid;
     }
-    $scope.edit = function(){
-     $http.put('/content.json/?id=' + $scope.variable, {content: {name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
-       for (var count = 0; count < $scope.content.length; count++) 
+
+    $scope.edit2 = function(){
+     $http.put('/contents.json/?id=' + $scope.variable, {content: {name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
+       for (var count = 0; count < $scope.media.length; count++) 
        {
-         if ($scope.content[count].id == $scope.variable) $scope.content[count].name = $scope.inputName,$scope.content[count].url = $scope.inputUrl;
+         if ($scope.media[count].id == $scope.variable) $scope.media[count].name = $scope.inputName,$scope.media[count].url = $scope.inputUrl;
        }
      }, function (error) { console.log("Not requested") })
    }
+   edit2();
  }
 
 });

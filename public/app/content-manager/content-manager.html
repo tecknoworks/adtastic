@@ -45,21 +45,21 @@
           </div>
         </md-toolbar>
         <md-list layout="column" layout-align="center">
-          <md-list-item class="md-3-line" ng-repeat="content in contents">
+          <md-list-item class="md-3-line" ng-repeat="med in media">
 
             <md-card>
               <md-card-title>
                 <md-card-title-text>
-                <span class="md-headline">{{ content.name }}</span>
-                  <span class="md-subhead">{{ content.url }}</span>
+                <span class="md-headline">{{ med.name }}</span>
+                  <span class="md-subhead">{{ med.url }}</span>
                 </md-card-title-text>
                 <div class="md-media-lg card-media" layout-padding>
-                  <img ng-src="{{ content.url.substring(0, content.url.length-5) + 't.jpg' }}" alt="{{item.who}}" />
+                  <img ng-src="{{ med.url.substring(0, med.url.length-5) + 't.jpg' }}" alt="{{item.who}}" />
                 </div>
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
-                <md-button ng-click="delete(content.id)">Delete</md-button>
-                <md-button ng-click="edit(content.id)">Edit</md-button>
+                <md-button ng-click="delete(med.id)">Delete</md-button>
+                <md-button ng-click="edit(med.id)">Edit</md-button>
               </md-card-actions>
             </md-card>
 
