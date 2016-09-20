@@ -21,31 +21,18 @@ Rails.application.routes.draw do
   patch 'tags' => 'tags#update'
   post 'tags/multiple' => 'tags#create_multiple'
 
-  get 'photos' => 'photos#index'
-  post 'photos' => 'photos#create'
-  delete 'photos' => 'photos#destroy'
-  put 'photos' => 'photos#update'
-  patch 'photos' => 'photos#update'
+  get 'contents' => 'contents#index'
+  post 'contents' => 'contents#create'
+  delete 'contents' => 'contents#destroy'
+  put 'contents' => 'contents#update'
+  patch 'contents' => 'contents#update'
 
-  get 'videos' => 'videos#index'
-  post 'videos' => 'videos#create'
-  delete 'videos' => 'videos#destroy'
-  put 'videos' => 'videos#update'
-  patch 'videos' => 'videos#update'
-
-  get 'photo_tags' => 'photo_tags#index'
-  post 'photo_tags' => 'photo_tags#create'
-  delete 'photo_tags' => 'photo_tags#destroy'
-  put 'photo_tags' => 'photo_tags#update'
-  patch 'photo_tags' => 'photo_tags#update'
-  post 'photo_tags/multiple' => 'photo_tags#create_multiple'
-
-  get 'video_tags' => 'video_tags#index'
-  post 'video_tags' => 'video_tags#create'
-  delete 'video_tags' => 'video_tags#destroy'
-  put 'video_tags' => 'video_tags#update'
-  patch 'video_tags' => 'video_tags#update'
-  post 'video_tags/multiple' => 'video_tags#create_multiple'
+  get 'content_tags' => 'content_tags#index'
+  post 'content_tags' => 'content_tags#create'
+  delete 'content_tags' => 'content_tags#destroy'
+  put 'content_tags' => 'content_tags#update'
+  patch 'content_tags' => 'content_tags#update'
+  post 'content_tags/multiple' => 'content_tags#create_multiple'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
