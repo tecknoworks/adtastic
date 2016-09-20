@@ -16,9 +16,6 @@ angular.module('mainApp')
   $scope.sortOptions = 'Name Ascending';
   $scope.media = [];
 
-  $scope.photos = [];
-  $scope.videos= [];
-
   $scope.selectedDevices = [];
   $scope.urls = [];
 
@@ -129,19 +126,8 @@ angular.module('mainApp')
 
   function getMedia()
   {
-    $http.get('/photos.json').then(function (response) {
-      $scope.photos = response.data.photos;
-      getVideos();
-    }, function (error) {
-      console.log(error);
-    })
-  }
-
-  function getVideos()
-  {
-    $http.get('/videos.json').then(function (response) {
-      $scope.videos = response.data.videos;
-      $scope.media = $scope.photos.concat($scope.videos);
+    $http.get('/content.json').then(function (response) {
+      $scope.media = response.data.content;
     }, function (error) {
       console.log(error);
     })

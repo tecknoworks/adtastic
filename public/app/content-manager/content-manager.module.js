@@ -17,14 +17,8 @@ angular.module('mainApp')
 
   $scope.myTags = [];
 
-  $http.get('/photos.json').then(function (response) {
-    $scope.photos = response.data.photos;
-  }, function (error) {
-    console.log(error);
-  })
-
-  $http.get('/videos.json').then(function (response) {
-    $scope.videos = response.data.videos;
+  $http.get('/content.json').then(function (response) {
+    $scope.media = response.data.content;
   }, function (error) {
     console.log(error);
   })
@@ -33,35 +27,18 @@ angular.module('mainApp')
   {
     if ($scope.sortOptions == "Name Ascending")
     {
-      $scope.photos.sort(function(a, b){
+      $scope.media.sort(function(a, b){
         var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
       if (nameA < nameB) //sort string ascending
         return -1 
       if (nameA > nameB)
         return 1
       return 0
-    })
-      $scope.videos.sort(function(a, b){
-        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
-      if (nameA < nameB) //sort string ascending
-        return -1 
-      if (nameA > nameB)
-        return 1
-      return 0
-
     })
     }
     else
     {
-      $scope.photos.sort(function(a, b){
-        var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
-      if (nameA < nameB) //sort string ascending
-        return 1 
-      if (nameA > nameB)
-        return -1
-      return 0
-    })
-      $scope.videos.sort(function(a, b){
+      $scope.media.sort(function(a, b){
         var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
       if (nameA < nameB) //sort string ascending
         return 1 
@@ -74,17 +51,17 @@ angular.module('mainApp')
 
 
 
-  $scope.deletep = function(pid) {
+  $scope.delete = function(pid) {
 
-    $http.delete('/photos.json/?id=' + pid, {}).then(function (response) 
+    $http.delete('/media.json/?id=' + pid, {}).then(function (response) 
 
     { 
 
-      for (var count = 0; count < $scope.photos.length; count++) 
+      for (var count = 0; count < $scope.media.length; count++) 
 
       {
 
-        if ($scope.photos[count].id == pid) $scope.photos.splice(count,1);
+        if ($scope.media[count].id == pid) $scope.media.splice(count,1);
 
       }
 
@@ -92,111 +69,35 @@ angular.module('mainApp')
 
   }
 
-  $scope.deletev = function(vid) {
+  $scope.add = function() {
 
-    $http.delete('/videos.json/?id=' + vid, {}).then(function (response) 
-
-    { 
-
-      for (var count = 0; count < $scope.videos.length; count++) 
-
-      {
-
-        if ($scope.videos[count].id == vid) $scope.videos.splice(count,1);
-
-      }
-
-    }, function (error) { console.log("Not requested") })
-
-  }
-
-  $scope.addphoto = function() {
-
-
-    $http.post('/photos.json', { photo: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
-      $scope.photos.push(response.data);$http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
-
-        $http.post('/photo_tags/multiple', { nr_of_tags: $scope.myTags.length } ).then(function (response) {
-          console.log("Hooray");
-        }, function (error) { console.log("Not requested") });
-
-      }, function (error) { console.log("Not requested") });
-    }, function (error) { console.log("Not requested") });
-
-
-    
-
-  }
-
-  $scope.addvideo = function() {
-
-    $http.post('/videos.json', { video: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
-
-      $scope.videos.push(response.data);
+    $http.post('/content.json', { content: { name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
+      $scope.media.push(response.data);
       $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
-        console.log("hooray1");
-        $http.post('/video_tags/multiple', { nr_of_tags: $scope.myTags.length } ).then(function (response) {
+
+        $http.post('/content_tags/multiple', { nr_of_tags: $scope.myTags.length } ).then(function (response) {
           console.log("Hooray");
         }, function (error) { console.log("Not requested") });
 
       }, function (error) { console.log("Not requested") });
-
     }, function (error) { console.log("Not requested") });
-
-
 
   }
 
-  $scope.editp = function(pid){
+  $scope.edit = function(pid){
 
-    for (var count = 0; count < $scope.photos.length; count++) 
-
+    for (var count = 0; count < $scope.media.length; count++) 
     {
-
-      if ($scope.photos[count].id == pid) $scope.inputName = $scope.photos[count].name,$scope.inputUrl = $scope.photos[count].url,$scope.variable = pid;
-
+      if ($scope.media[count].id == pid) $scope.inputName = $scope.content[count].name, $scope.inputUrl = $scope.content[count].url, $scope.variable = pid;
     }
     $scope.edit = function(){
-     $http.put('/photos.json/?id=' + $scope.variable, {photo: {name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
-       for (var count = 0; count < $scope.photos.length; count++) 
-
+     $http.put('/content.json/?id=' + $scope.variable, {content: {name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
+       for (var count = 0; count < $scope.content.length; count++) 
        {
-
-         if ($scope.photos[count].id == $scope.variable) $scope.photos[count].name = $scope.inputName,$scope.photos[count].url = $scope.inputUrl;
-
+         if ($scope.content[count].id == $scope.variable) $scope.content[count].name = $scope.inputName,$scope.content[count].url = $scope.inputUrl;
        }
-
      }, function (error) { console.log("Not requested") })
-
-
    }
-
  }
-
- $scope.editv = function(pid){
-
-  for (var count = 0; count < $scope.videos.length; count++) 
-
-  {
-
-    if ($scope.videos[count].id == pid) $scope.inputName = $scope.videos[count].name,$scope.inputUrl = $scope.videos[count].url,$scope.variable = pid;
-
-  }
-  $scope.edit = function(){
-   $http.put('/videos.json/?id=' + $scope.variable, {video: {name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
-     for (var count = 0; count < $scope.videos.length; count++) 
-
-     {
-
-       if ($scope.videos[count].id == $scope.variable) $scope.videos[count].name = $scope.inputName,$scope.videos[count].url = $scope.inputUrl;
-
-     }
-
-   }, function (error) { console.log("Not requested") })
-
-
- }
-
-}
 
 });

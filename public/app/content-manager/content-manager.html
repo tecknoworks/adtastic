@@ -12,13 +12,10 @@
         </md-input-container>
 
         <div>
-          <md-button id='photoAdd' ng-click="addphoto()" class="md-raised md-primary">Add photo</md-button>
+          <md-button id='Add' ng-click="add()" class="md-raised md-primary">Add</md-button>
         </div>
         <div>
-          <md-button id='videoAdd' ng-click="addvideo()" class="md-raised md-primary">Add video</md-button>
-        </div>
-        <div>
-          <md-button id='edit' ng-click="edit()" class="md-raised md-primary">Edit Video/Photo</md-button>
+          <md-button id='edit' ng-click="edit()" class="md-raised md-primary">Edit Content</md-button>
         </div>
 
         <md-chips ng-model="myTags" placeholder="Add a tag"></md-chips>
@@ -44,56 +41,25 @@
       <md-content>
         <md-toolbar layout="row" class="md-hue-3">
           <div class="md-toolbar-tools">
-            <span>Photos</span>
+            <span>Content</span>
           </div>
         </md-toolbar>
         <md-list layout="column" layout-align="center">
-        <md-list-item class="md-3-line" ng-repeat="photo in photos">
+          <md-list-item class="md-3-line" ng-repeat="content in contents">
 
             <md-card>
               <md-card-title>
                 <md-card-title-text>
-                  <span class="md-headline">{{ photo.name }}</span>
-                  <span class="md-subhead">{{ photo.url }}</span>
+                <span class="md-headline">{{ content.name }}</span>
+                  <span class="md-subhead">{{ content.url }}</span>
                 </md-card-title-text>
                 <div class="md-media-lg card-media" layout-padding>
-                  <img ng-src="{{ photo.url.substring(0, photo.url.length-5) + 't.jpg' }}" alt="{{item.who}}" />
+                  <img ng-src="{{ content.url.substring(0, content.url.length-5) + 't.jpg' }}" alt="{{item.who}}" />
                 </div>
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
-                <md-button ng-click="deletep(photo.id)">Delete</md-button>
-                <md-button ng-click="editp(photo.id)">Edit</md-button>
-              </md-card-actions>
-            </md-card>
-
-          </md-list-item>
-        </md-list>
-      </md-content>
-    </div>
-    <div md-whiteframe='2' class="demo-md-panel md-padding" flex>
-      <md-content>
-        <md-toolbar layout="row" class="md-hue-3">
-          <div class="md-toolbar-tools">
-            <span>Video List</span>
-          </div>
-        </md-toolbar>
-
-        <md-list layout="column" layout-align="center">
-          <md-list-item class="md-3-line" ng-repeat="video in videos">
-
-            <md-card>
-              <md-card-title>
-                <md-card-title-text>
-                  <span class="md-headline">{{ video.name }}</span>
-                  <span class="md-subhead">{{ video.url }}</span>
-                </md-card-title-text>
-                <div class="md-media-lg card-media" layout-padding>
-                  <img ng-src="{{ 'http://img.youtube.com/vi/' + video.url.slice(video.url.indexOf('?v=') + 3, video.url.length) + '/default.jpg' }}" alt="{{item.who}}" />
-                </div>
-              </md-card-title>
-              <md-card-actions layout="row" layout-align="end center">
-                <md-button ng-click="deletev(video.id)">Delete</md-button>
-                <md-button ng-click="editv(video.id)">Edit</md-button>
+                <md-button ng-click="delete(content.id)">Delete</md-button>
+                <md-button ng-click="edit(content.id)">Edit</md-button>
               </md-card-actions>
             </md-card>
 
