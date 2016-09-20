@@ -34,5 +34,16 @@ Rails.application.routes.draw do
   patch 'content_tags' => 'content_tags#update'
   post 'content_tags/multiple' => 'content_tags#create_multiple'
 
+  get 'playlists' => 'playlists#index'
+  post 'playlists' => 'playlists#create'
+  delete 'playlists' => 'playlists#destroy'
+  put 'playlists' => 'playlists#update'
+  patch 'playlists' => 'playlists#update'
+
+  get 'playlist_items' => 'playlist_items#index'
+  post 'playlist_items' => 'playlist_items#create'
+  delete 'playlist_items' => 'playlist_items#destroy'
+  put 'playlist_items' => 'playlist_items#update'
+  patch 'playlist_items/multiple' => 'playlist_items#create_multiple'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
