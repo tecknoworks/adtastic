@@ -17,6 +17,15 @@ class PlaylistItemsController < ApplicationController
 		@playlist_item.save
 	end
 
+	def create_multiple
+		@last_playlist = Playlist.last
+		items = params[:contents]
+		for i in items
+			@item = PlaylistItem.new(playlist_id: @last_playlist.id, content_id: i )
+			@item.save
+		end
+	end
+
 	def playlist_item_params
 		params.require(:playlist).permit(:id, :content_id, :playlist_id)
 	end

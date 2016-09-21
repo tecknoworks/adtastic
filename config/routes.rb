@@ -39,12 +39,13 @@ Rails.application.routes.draw do
   delete 'playlists' => 'playlists#destroy'
   put 'playlists' => 'playlists#update'
   patch 'playlists' => 'playlists#update'
-  get 'playlist/play' => 'playlist#playlistForDevice'
+  get 'playlists/play' => 'playlists#playlistForDevice'
+  post 'playlists/play' => 'playlists#setPlayList'
 
   get 'playlist_items' => 'playlist_items#index'
   post 'playlist_items' => 'playlist_items#create'
   delete 'playlist_items' => 'playlist_items#destroy'
   put 'playlist_items' => 'playlist_items#update'
-  patch 'playlist_items/multiple' => 'playlist_items#create_multiple'
+  post 'playlist_items/multiple' => 'playlist_items#create_multiple'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -19,41 +19,31 @@ angular.module('mainApp')
   $scope.selectedDevices = [];
   $scope.urls = [];
 
-  removeDuplicates = function(dict) {
-    //removes duplicate entries in the playlist
-    var count = 0;
-    var idk = -1;
-    for (j = 0; j < $scope.playlist.item.length; j++)
-    {
-      if ($scope.playlist.item[j].device_name == dict.device_name)
-      {
-        count++;
-        if (count == 1)
-        {
-          idk = j
-;        }
-      }
-    }
-    if (count > 1)
-    {
-      $scope.playlist.item.splice(idk,1);
-    }
-  }
-
   $scope.cast = function() {
-    $scope.urls = [];
+
+    findIndexOfDevice = function(dev_name)
+    {
+      for (count = 0; count < $scope.devicesList.length; count++)
+      {
+        if (dev_name == $scope.devicesList[count].name)
+        {
+          return count;
+        }
+      }
+      return -1;
+    }
+
+    $scope.ids = [];
     for (i = 0; i < $scope.media.length; i++)
     {
-      $scope.urls.push($scope.media[i].url);
+      $scope.ids.push($scope.media[i].id);
     }
+    $http.post('/playlists.json', { device_id: findIndexOfDevice($scope.selectedDevices[0]) } ).then(function (response) {
+      $http.post('/playlist_items/multiple' , { contents: $scope.ids } ).then(function (response) {
+        console.log("double bloody working")
+      }, function (error) { console.log("Not bloody requested") });
+    }, function (error) { console.log("Not requested") });
 
-    for (i = 0; i < $scope.selectedDevices.length; i++)
-    {
-      var dict = {device_name: $scope.selectedDevices[i], content_url: $scope.urls, interval: $scope.inputTime};
-      $scope.playlist.item.push(dict);
-      removeDuplicates(dict);
-    }
-    $cookies.putObject('objSocket', $scope.playlist);
   }
 
   $scope.selectDevice = function(name)

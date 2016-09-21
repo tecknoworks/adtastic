@@ -45,13 +45,11 @@ class PlaylistsController < ApplicationController
 	def playlistForDevice
 		@play = Playlist.find_by_device_id(params[:device_id])
 		@urls = @play.playlist_items
-		for (url in @urls)
+		@contents = []
+		for url in @urls
 			cid = url.content_id
 			@content = Content.find(cid)
+			@contents.push(@content)
 		end
 	end
-
-	# def setPlayList
-		
-	# end
 end
