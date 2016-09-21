@@ -28,7 +28,7 @@ class PlaylistsController < ApplicationController
 			if  play != nil
 				Playlist.destroy(play.id)
 			end
-			@playlist = Playlist.new(device_id: dev_id)
+			@playlist = Playlist.new(device_id: dev_id, timer: params[:timer])
 			@playlist.save
 		end
 	end

@@ -53,7 +53,7 @@ angular.module('mainApp')
       $scope.ids.push($scope.media[i].id);
     }
     console.log(findIndexesOfDevices());
-    $http.post('/playlists/multiple', { device_ids: findIndexesOfDevices() } ).then(function (response) {
+    $http.post('/playlists/multiple', { device_ids: findIndexesOfDevices() , timer: $scope.inputTime } ).then(function (response) {
       $http.post('/playlist_items/multiple' , { nr: findIndexesOfDevices().length, contents: $scope.ids } ).then(function (response) {
         console.log("double bloody working")
       }, function (error) { console.log("Not bloody requested") });

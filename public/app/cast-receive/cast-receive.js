@@ -35,10 +35,19 @@ angular.module('mainApp')
 
 			var len = $scope.contentList.length;
 
-			count = 0;
-			$scope.t = 0;
-			$http.get('/playlists.json').then(function (response) {
-				$scope.playlists = response.data.playlists;
+			playMedia = function()
+			{
+
+				callTimeOut = function(len)
+				{
+					$scope.a = $scope.contentList[count].url;
+					count++;
+					if (count == len)
+					{
+						count = 0;
+					}
+				}
+
 				for( k = 0; k < $scope.playlists.length; k++)
 				{
 					if($scope.playlists[k].device_id == $scope.device_id)
@@ -49,21 +58,21 @@ angular.module('mainApp')
 				}
 				var tr = $scope.t * 1000;
 				console.log(tr);
-				callTimeOut(len);
+				$scope.a = $scope.contentList[0].url;
+				count++;
 				$interval(function() {callTimeOut(len)},tr);
+			}
+
+			count = 0;
+			$scope.t = 0;
+			$http.get('/playlists.json').then(function (response) {
+				$scope.playlists = response.data.playlists;
+				playMedia();
 			},function (error) {
 				console.log(error);
 			})
-			callTimeOut = function(len)
-			{
-				$scope.a = $scope.contentList[count].url;
-				count++;
-				if (count == len)
-				{
-					count = 0;
-				}
-			}
-			
+
+
 
 			
 		}, function (error) {
@@ -72,8 +81,8 @@ angular.module('mainApp')
 
 
 
-}, function (error) {
-	console.log(error);
-})
+	}, function (error) {
+		console.log(error);
+	})
 
 });
