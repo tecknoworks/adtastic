@@ -10,8 +10,6 @@ angular.module('mainApp')
     }
     $location.path('/');
   }
-
-
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';
   $scope.media = [];
@@ -38,9 +36,9 @@ angular.module('mainApp')
     {
       $scope.ids.push($scope.media[i].id);
     }
-    $http.post('/playlists.json', { device_id: findIndexOfDevice($scope.selectedDevices[0]) } ).then(function (response) {
+    $http.post('/playlists.json', { device_id: findIndexOfDevice($scope.selectedDevices[0]), timer: $scope.inputTime } ).then(function (response) {
       $http.post('/playlist_items/multiple' , { contents: $scope.ids } ).then(function (response) {
-        console.log("double bloody working")
+        
       }, function (error) { console.log("Not bloody requested") });
     }, function (error) { console.log("Not requested") });
 
