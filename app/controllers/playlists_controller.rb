@@ -13,6 +13,10 @@ class PlaylistsController < ApplicationController
 	param :Timer, Integer, desc: 'Timer for the slideshow', require: true
 
 	def create
+		play = Playlist.find_by_device_id(params[:playlist][:device_id])
+		if  play != nil
+			Playlist.destroy(play.id)
+		end
 		@playlist = Playlist.new(playlist_params)
 		@playlist.save
 	end

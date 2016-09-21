@@ -27,7 +27,7 @@ angular.module('mainApp')
       {
         if (dev_name == $scope.devicesList[count].name)
         {
-          return count;
+          return $scope.devicesList[count].id;
         }
       }
       return -1;
