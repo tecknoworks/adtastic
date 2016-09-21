@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   get 'playlists' => 'playlists#index'
   post 'playlists' => 'playlists#create'
+  post 'playlists/multiple' => 'playlists#multiple'
   delete 'playlists' => 'playlists#destroy'
   put 'playlists' => 'playlists#update'
   patch 'playlists' => 'playlists#update'

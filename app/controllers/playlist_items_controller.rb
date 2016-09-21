@@ -18,11 +18,14 @@ class PlaylistItemsController < ApplicationController
 	end
 
 	def create_multiple
-		@last_playlist = Playlist.last
+		nr = params[:nr]
+		@last_playlists = Playlist.last(nr)
 		items = params[:contents]
-		for i in items
-			@item = PlaylistItem.new(playlist_id: @last_playlist.id, content_id: i )
-			@item.save
+		for playlist in @last_playlists
+			for i in items
+				@item = PlaylistItem.new(playlist_id: playlist.id, content_id: i )
+				@item.save
+			end
 		end
 	end
 

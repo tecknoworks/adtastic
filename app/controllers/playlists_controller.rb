@@ -21,6 +21,18 @@ class PlaylistsController < ApplicationController
 		@playlist.save
 	end
 
+	def multiple
+		dev_ids = params[:device_ids]
+		for dev_id in dev_ids
+			play = Playlist.find_by_device_id(dev_id)
+			if  play != nil
+				Playlist.destroy(play.id)
+			end
+			@playlist = Playlist.new(device_id: dev_id)
+			@playlist.save
+		end
+	end
+
 	def playlist_params
 		params.require(:playlist).permit(:id, :device_id, :timer)
 	end

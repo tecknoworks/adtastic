@@ -21,16 +21,32 @@ angular.module('mainApp')
 
   $scope.cast = function() {
 
-    findIndexOfDevice = function(dev_name)
+    // findIndexOfDevice = function(dev_name)
+    // {
+    //   for (count = 0; count < $scope.devicesList.length; count++)
+    //   {
+    //     if (dev_name == $scope.devicesList[count].name)
+    //     {
+    //       return $scope.devicesList[count].id;
+    //     }
+    //   }
+    //   return -1;
+    // }
+
+    findIndexesOfDevices = function()
     {
-      for (count = 0; count < $scope.devicesList.length; count++)
+      idx = [];
+      for (j = 0; j < $scope.selectedDevices.length; j++)
       {
-        if (dev_name == $scope.devicesList[count].name)
+        for (count = 0; count < $scope.devicesList.length; count++)
         {
-          return $scope.devicesList[count].id;
+          if ($scope.selectedDevices[j] == $scope.devicesList[count].name)
+          {
+            idx.push($scope.devicesList[count].id)
+          }
         }
       }
-      return -1;
+      return idx;
     }
 
     $scope.ids = [];
@@ -38,8 +54,10 @@ angular.module('mainApp')
     {
       $scope.ids.push($scope.media[i].id);
     }
-    $http.post('/playlists.json', { device_id: findIndexOfDevice($scope.selectedDevices[0]) } ).then(function (response) {
-      $http.post('/playlist_items/multiple' , { contents: $scope.ids } ).then(function (response) {
+
+    console.log(findIndexesOfDevices());
+    $http.post('/playlists/multiple', { device_ids: findIndexesOfDevices() } ).then(function (response) {
+      $http.post('/playlist_items/multiple' , { nr: findIndexesOfDevices().length, contents: $scope.ids } ).then(function (response) {
         console.log("double bloody working")
       }, function (error) { console.log("Not bloody requested") });
     }, function (error) { console.log("Not requested") });
