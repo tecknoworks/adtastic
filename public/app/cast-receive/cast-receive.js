@@ -35,7 +35,6 @@ angular.module('mainApp')
 					$scope.contentList[j].url = $scope.contentList[j].url + '?autoplay=1';
 				}
 				$scope.contentList[j].url = $scope.contentList[j].url.replace("watch?v=", "v/"); 
-				$scope.contentList[j].url = $sce.trustAsResourceUrl($scope.contentList[j].url);
 			}
 
 			var len = $scope.contentList.length;
@@ -47,8 +46,7 @@ angular.module('mainApp')
 				{
 
 					$scope.a = $scope.contentList[count].url;
-
-					if($scope.contentList[count].content_type == 'photo')
+					if($scope.a.indexOf("youtube") == -1)
 					{
 						$scope.image.show = true;
 					}
@@ -56,6 +54,8 @@ angular.module('mainApp')
 					{
 						$scope.image.show = false;
 					}
+					$scope.a = $sce.trustAsResourceUrl($scope.a);
+
 					count++;
 					if (count == len)
 					{
@@ -71,7 +71,9 @@ angular.module('mainApp')
 					}
 				}
 				var tr = $scope.t * 1000;
+				$scope.image.show = true;
 				$scope.a = $scope.contentList[0].url;
+				$scope.a = $sce.trustAsResourceUrl($scope.a);
 				count++;
 				$interval(function() {callTimeOut(len)},tr);
 			}
