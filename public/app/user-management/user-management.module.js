@@ -1,5 +1,5 @@
 angular.module('mainApp')
-.controller('UserManagementController', function ($rootScope, $scope, $http, $location, logOptions) {
+.controller('UserManagementController', function ($rootScope, $scope, $http, $location, logOptions, $mdDialog) {
 
   $scope.options.menuVisible = true;
 
@@ -24,7 +24,48 @@ angular.module('mainApp')
     console.log(error);
   })
 
+  $scope.showPrompt = function(ev, uid) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var name = '';
+    for (var count = 0; count < $scope.users.length; count++) 
+    {
+      if ($scope.users[count].id == uid) name = $scope.users[count].email, $scope.variable = uid;
+    }
 
+    var confirm = $mdDialog.prompt()
+    .title('Edit a user')
+    .textContent('User name / Email')
+    .placeholder('User name / Email')
+    .ariaLabel('User name / Email')
+    .initialValue(name)
+    .targetEvent(ev)
+    .ok('Save')
+    .cancel('Cancel')
+    .openFrom({
+      top: -50,
+      width: 30,
+      height: 80
+    })
+    .closeTo({
+      left: 1500
+    });
+
+    $mdDialog.show(confirm).then(function(result) {
+
+      editUser = function(){
+        $http.put('/users.json/?id=' + $scope.variable, {user: {email: result } } ).then(function (response) {
+          for (var count = 0; count < $scope.users.length; count++) 
+          {
+            if ($scope.users[count].id == $scope.variable) $scope.users[count].email = result;
+          }
+        }, function (error) { console.log("Not requested") })
+      }
+
+      editUser()
+    }, function() {
+    });
+
+  };
 
   $scope.delete = function(uid) {
 
@@ -46,31 +87,5 @@ angular.module('mainApp')
     }, function (error) { console.log("Not requested") });
 
   }
-
-  $scope.edit = function(uid){
-
-    for (var count = 0; count < $scope.users.length; count++) 
-
-    {
-
-      if ($scope.users[count].id == uid) $scope.editEmail = $scope.users[count].email,$scope.variable = uid;
-
-    }
-    $scope.editUser = function(){
-     $http.put('/users.json/?id=' + $scope.variable, {user: {email: $scope.editEmail } } ).then(function (response) {
-       for (var count = 0; count < $scope.users.length; count++) 
-
-       {
-
-         if ($scope.users[count].id == $scope.variable) $scope.users[count].email = $scope.editEmail;
-
-       }
-
-     }, function (error) { console.log("Not requested") })
-
-
-   }
-
- }
 
 });

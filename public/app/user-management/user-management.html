@@ -1,38 +1,22 @@
+<div layout-padding layout-margin layout-fill style="min-height: 224px;">
+  <div>
+    <div class="control-group" layout='row' layout-align='left' layout-xs='column' flex>
 
-<div  layout='column'>
+      <md-input-container>
+        <input type="text" placeholder="Email" floating-label ng-model="inputEmail">
+      </md-input-container>
 
+      <md-input-container>
+       <input type="password" placeholder="Password" floating-label ng-model="inputPassword">
+     </md-input-container>
+     <div>
+      <md-button id='userAdd' ng-click="add()" class="md-raised md-primary">Quick Add</md-button>
+    </div>
+  </div>
+  <span class="flex" flex=""></span>
+</div> 
 
-  
-      <div class="control-group" layout='row' layout-align='left' flex>
-
-          <md-input-container>
-           <input type="text" placeholder="Email" floating-label ng-model="inputEmail" />
-         </md-input-container>
-
-         <md-input-container>
-           <input type="password" placeholder="Password" floating-label ng-model="inputPassword" />
-         </md-input-container>
-        <div>
-          <md-button id='userAdd' ng-click="add()" class="md-raised md-primary">Quick Add</md-button>
-        </div>
-      </div>
-      <span class="flex" flex=""></span>
-      <div  flex>
-        <form>
-          <div class="control-group" layout='row' layout-align='right'>
-
-            <md-input-container>
-              <input type="text" placeholder="Name" floating-label ng-model="editEmail" />
-            </md-input-container>
-            <div>
-              <md-button id='userEdit' ng-click="editUser()" class="md-raised md-primary">Edit email</md-button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-  </div> 
-
+<div layout-padding layout-margin layout-fill style="min-height: 224px;" md-whiteframe='8'>
   <div>
     <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
@@ -49,11 +33,11 @@
             <h2>ID: {{ user.id }}</h2>
             <h3>Email: {{ user.email }}</h3>
             <md-button class="md-secondary md-raised" ng-click="delete(user.id)">Delete</md-button>
-            <md-button class="md-secondary md-raised" ng-click="edit(user.id)">Edit</md-button>
+            <md-button class="md-secondary md-raised" ng-click="showPrompt($event, user.id)">Edit</md-button>
           </div>
         </md-list-item>
       </md-list>
     </md-content>
   </div>
-
+</div>
 </div>

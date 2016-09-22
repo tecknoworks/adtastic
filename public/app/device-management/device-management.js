@@ -1,5 +1,5 @@
 angular.module('mainApp')
-.controller('DeviceManagerController', function ($rootScope, $scope, $location, $http, logOptions) {
+.controller('DeviceManagerController', function ($rootScope, $scope, $location, $http, logOptions, $mdDialog) {
 
   $scope.options.menuVisible = true;
   $scope.curent.url = $location.url();
@@ -17,7 +17,48 @@ angular.module('mainApp')
     console.log(error);
   })
 
+  $scope.showPrompt = function(ev, did) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var name = '';
+    for (var count = 0; count < $scope.devices.length; count++) 
+    {
+      if ($scope.devices[count].id == did) name = $scope.devices[count].name,$scope.variable = did;
+    }
 
+    var confirm = $mdDialog.prompt()
+    .title('Edit your device')
+    .textContent('Device name')
+    .placeholder('Device name')
+    .ariaLabel('Device Name')
+    .initialValue(name)
+    .targetEvent(ev)
+    .ok('Save')
+    .cancel('Cancel')
+    .openFrom({
+      top: -50,
+      width: 30,
+      height: 80
+    })
+    .closeTo({
+      left: 1500
+    });
+
+    $mdDialog.show(confirm).then(function(result) {
+
+      editDevice = function(){
+        $http.put('/devices.json/?id=' + $scope.variable, {device: {name: result}}).then(function (response) {
+          for (var count = 0; count < $scope.devices.length; count++) 
+          {
+            if ($scope.devices[count].id == $scope.variable) $scope.devices[count].name = result;
+          }
+        }, function (error) { console.log("Not requested") })
+      }
+
+      editDevice()
+    }, function() {
+    });
+
+  };
 
   $scope.deleted = function(did) {
 
