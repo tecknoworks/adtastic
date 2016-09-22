@@ -78,8 +78,40 @@ angular.module('mainApp')
 
   }
 
+  convertTimeToNumber = function(init)
+  {
+    sec = init.slice(-2);
+    init = init.slice(0,init.length - 3);
+
+    min = init.slice(-2);
+    if (init.length == 2)
+    {
+      init = init.slice(0,init.length - 2);
+    }
+    else
+    {
+      init = init.slice(0,init.length - 3);
+    }
+    hours = init
+    if (hours == '')
+    {
+      hours = 0;
+    }
+    if (min == '')
+    {
+      min = 0;
+    }
+    if (sec == '')
+    {
+      sec = 0;
+    }
+    total = parseInt(sec) + parseInt(min) * 60 + parseInt(hours) * 3600;
+    return total
+  }
+
   $scope.add = function() {
-    $http.post('/contents.json', { content: { name: $scope.inputName, url: $scope.inputUrl, content_type: "photo", len: $scope.inputLen } } ).then(function (response) {
+    var duration = convertTimeToNumber($scope.inputLen);
+    $http.post('/contents.json', { content: { name: $scope.inputName, url: $scope.inputUrl, len: duration } } ).then(function (response) {
       $scope.media.push(response.data);
       $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
 
@@ -92,49 +124,49 @@ angular.module('mainApp')
 
   }
 
- $scope.showAdvanced = function(ev2, pid) {
-  $rootScope.med = $scope.media;
-  $rootScope.pid = pid;
-  $mdDialog.show({
-    controller: DialogController,
-    templateUrl: 'dialog.tmpl.html',
-    parent: angular.element(document.body),
-    targetEvent: ev2,
-    clickOutsideToClose:true
-  })
-  .then(function(answer) {
-  }, function() {
-  })};
+  $scope.showAdvanced = function(ev2, pid) {
+    $rootScope.med = $scope.media;
+    $rootScope.pid = pid;
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'dialog.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev2,
+      clickOutsideToClose:true
+    })
+    .then(function(answer) {
+    }, function() {
+    })};
 
-  function DialogController($scope, $rootScope, $mdDialog) {
-    $scope.variable = -1;
-    for (var count = 0; count < $rootScope.med.length; count++) 
-    {
-      if ($rootScope.med[count].id == $rootScope.pid) $scope.name = $rootScope.med[count].name, $scope.url = $rootScope.med[count].url, $scope.variable = $rootScope.pid;
-    }
+    function DialogController($scope, $rootScope, $mdDialog) {
+      $scope.variable = -1;
+      for (var count = 0; count < $rootScope.med.length; count++) 
+      {
+        if ($rootScope.med[count].id == $rootScope.pid) $scope.name = $rootScope.med[count].name, $scope.url = $rootScope.med[count].url, $scope.variable = $rootScope.pid;
+      }
 
-    edit2 = function(){
-     $http.put('/contents.json/?id=' + $scope.variable, {content: {name: $scope.name, url: $scope.url } } ).then(function (response) {
-      for (var count2 = 0; count2 < $rootScope.med.length; count2++) 
-       {
+      edit2 = function(){
+       $http.put('/contents.json/?id=' + $scope.variable, {content: {name: $scope.name, url: $scope.url } } ).then(function (response) {
+        for (var count2 = 0; count2 < $rootScope.med.length; count2++) 
+        {
          if ($rootScope.med[count2].id == $scope.variable) $rootScope.med[count2].name = $scope.name,$rootScope.med[count2].url = $scope.url;
        }
      }, function (error) { console.log("Not requested") })}
 
 
 
-     $scope.hide = function() {
-      $mdDialog.hide();
-    };
+       $scope.hide = function() {
+        $mdDialog.hide();
+      };
 
-    $scope.cancel = function() {
-      $mdDialog.cancel();
-    };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
 
-    $scope.answer = function(answer) {
-      $mdDialog.hide();
-      edit2();
-    };
-  }
+      $scope.answer = function(answer) {
+        $mdDialog.hide();
+        edit2();
+      };
+    }
 
-});
+  });

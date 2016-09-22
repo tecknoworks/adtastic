@@ -20,7 +20,7 @@ class ContentsController < ApplicationController
 	end
 
 	def content_params
-		params.require(:content).permit(:id, :name, :url, :content_type)
+		params.require(:content).permit(:id, :name, :url, :content_type, :len)
 	end
 
 	def new
