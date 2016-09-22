@@ -1,5 +1,5 @@
 angular.module('mainApp')
-.controller('ContentManagerController', function ($rootScope, $scope, $http, $location, logOptions) {
+.controller('ContentManagerController', function ($rootScope, $scope, $http, $location, logOptions, $mdDialog) {
 
   $scope.options.menuVisible = true;
   $scope.curent.url = $location.url();
@@ -10,7 +10,6 @@ angular.module('mainApp')
     }
     $location.path('/');
   }
-
 
   $scope.sortOption = ['Name Ascending','Name Descending'];
   $scope.sortOptions = 'Name Ascending';
@@ -83,21 +82,49 @@ angular.module('mainApp')
 
   }
 
-  $scope.edit = function(pid){
-    for (var count = 0; count < $scope.media.length; count++) 
+ $scope.showAdvanced = function(ev2, pid) {
+  $rootScope.med = $scope.media;
+  $rootScope.pid = pid;
+  $mdDialog.show({
+    controller: DialogController,
+    templateUrl: 'dialog.tmpl.html',
+    parent: angular.element(document.body),
+    targetEvent: ev2,
+    clickOutsideToClose:true
+  })
+  .then(function(answer) {
+  }, function() {
+  })};
+
+  function DialogController($scope, $rootScope, $mdDialog) {
+    $scope.variable = -1;
+    for (var count = 0; count < $rootScope.med.length; count++) 
     {
-      if ($scope.media[count].id == pid) $scope.inputName = $scope.media[count].name, $scope.inputUrl = $scope.media[count].url, $scope.variable = pid;
+      if ($rootScope.med[count].id == $rootScope.pid) $scope.name = $rootScope.med[count].name, $scope.url = $rootScope.med[count].url, $scope.variable = $rootScope.pid;
     }
 
     edit2 = function(){
-     $http.put('/contents.json/?id=' + $scope.variable, {content: {name: $scope.inputName, url: $scope.inputUrl } } ).then(function (response) {
-       for (var count = 0; count < $scope.media.length; count++) 
+     $http.put('/contents.json/?id=' + $scope.variable, {content: {name: $scope.name, url: $scope.url } } ).then(function (response) {
+      for (var count2 = 0; count2 < $rootScope.med.length; count2++) 
        {
-         if ($scope.media[count].id == $scope.variable) $scope.media[count].name = $scope.inputName,$scope.media[count].url = $scope.inputUrl;
+         if ($rootScope.med[count2].id == $scope.variable) $rootScope.med[count2].name = $scope.name,$rootScope.med[count2].url = $scope.url;
        }
-     }, function (error) { console.log("Not requested") })
-   }
-   edit2();
- }
+     }, function (error) { console.log("Not requested") })}
+
+
+
+     $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide();
+      edit2();
+    };
+  }
 
 });

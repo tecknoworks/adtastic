@@ -1,7 +1,7 @@
 <div>
 
-	<div layout='row'>
-		<div flex>Devices
+	<div layout='row' layout-xs='column' layout-sm='column' layout-padding layout-margin layout-fill style="min-height: 224px;">
+		<div layout-padding layout-margin layout-fill style="min-height: 224px;" flex md-whiteframe='5'>Devices
 			<md-content>
 				<md-list layout="column" layout-align="center">
 					<md-list-item class="md-3-line" ng-repeat="device in devicesList">
@@ -18,7 +18,7 @@
 
 
 
-		<div flex>Options
+		<div layout-padding layout-margin layout-fill style="min-height: 224px;" flex md-whiteframe='5'>Options
 
 			<md-card-content>
 				<div layout="row" layout-align="space-between center">
@@ -30,15 +30,15 @@
 				<md-button aria-label="cast" class="md-primary" ng-click="cast()">Cast
 				</md-button>
 				<md-input-container>
-						<input type="number" placeholder="Time" floating-label ng-model="inputTime" />
-					</md-input-container>
+					<input type="number" placeholder="Time" floating-label ng-model="inputTime" />
+				</md-input-container>
 
 			</md-card-content>
 
 
 		</div>
 
-		<div flex>Content
+		<div layout-padding layout-margin layout-fill style="min-height: 224px;" flex md-whiteframe='5'>Content
 			<md-content>	
 				<md-list layout="column" layout-align="center">
 					<md-list-item class="md-3-line" ng-repeat="med in media">

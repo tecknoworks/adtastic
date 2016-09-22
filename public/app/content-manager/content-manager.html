@@ -1,43 +1,32 @@
 <div>
   <div >
-    <form>
-      <div class="control-group" layout='row' layout-align='left'>
+    <div layout='row' layout-align='left' layout-xs='column' layout-padding layout-margin layout-fill style="min-height: 5px;">
+      <md-input-container>
+        <input type="text" placeholder="Name" floating-label ng-model="inputName" />
+      </md-input-container>
 
-        <md-input-container>
-          <input type="text" placeholder="Name" floating-label ng-model="inputName" />
-        </md-input-container>
-
-        <md-input-container>
-          <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
-        </md-input-container>
-
-        <div>
-          <md-button id='Add' ng-click="add()" class="md-raised md-primary">Add</md-button>
-        </div>
-        <div>
-          <md-button id='edit' ng-click="edit()" class="md-raised md-primary">Edit Content</md-button>
-        </div>
-
-        <md-chips ng-model="myTags" placeholder="Add a tag"></md-chips>
-
-        <span flex></span>
-
-        <md-card-content>
-          <div layout="row">
-            <md-select ng-change="sortMedia()" ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
-              <md-option ng-value='sort_option' ng-repeat="sort_option in sortOption">  {{     sort_option }} 
-              </md-option>
-            </md-select>
-          </div>
-        </md-card-content>
-
+      <md-input-container>
+        <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
+      </md-input-container>
+      <div>
+        <md-button id='Add' ng-click="add()" class="md-raised md-primary">Add</md-button>
       </div>
-    </form>
+      <md-chips ng-model="myTags" placeholder="Add a tag"></md-chips>
+
+      <span flex></span>
+
+      <div>
+        <md-select ng-change="sortMedia()" ng-model="sortOptions" placeholder="Name Ascending" class="md-no-underline">
+          <md-option ng-value='sort_option' ng-repeat="sort_option in sortOption">  {{     sort_option }} 
+          </md-option>
+        </md-select>
+      </div>
+    </div>
   </div>
 
 
-  <div layout='row' flex layout-sm="column">
-    <div md-whiteframe='2' class="demo-md-panel md-padding" flex>
+  <div layout='row' flex layout-sm="column" class='md-padding'>
+    <div md-whiteframe='5' layout-padding layout-margin layout-fill style="min-height: 224px;" flex>
       <md-content>
         <md-toolbar layout="row" class="md-hue-3">
           <div class="md-toolbar-tools">
@@ -50,7 +39,7 @@
             <md-card>
               <md-card-title>
                 <md-card-title-text>
-                <span class="md-headline">{{ med.name }}</span>
+                  <span class="md-headline">{{ med.name }}</span>
                   <span class="md-subhead">{{ med.url }}</span>
                 </md-card-title-text>
                 <div class="md-media-lg card-media" layout-padding>
@@ -59,7 +48,7 @@
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
                 <md-button ng-click="delete(med.id)">Delete</md-button>
-                <md-button ng-click="edit(med.id)">Edit</md-button>
+                <md-button ng-click="showAdvanced($event, med.id)">Edit</md-button>
               </md-card-actions>
             </md-card>
 

@@ -1,0 +1,31 @@
+<md-dialog aria-label="Edit Content">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit Content</h2>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-input-container>
+        <label>Name</label>
+          <input ng-model="name" >
+        </md-input-container>
+        <md-input-container>
+          <label>Url</label>
+          <input ng-model="url">
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()">
+       Cancel
+     </md-button>
+     <md-button ng-click="answer('not useful')">
+       Save
+     </md-button>
+   </md-dialog-actions>
+ </form>
+</md-dialog>
