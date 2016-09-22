@@ -44,7 +44,7 @@
 
                 </md-card-title-text>
                 <div class="md-media-lg card-media" layout-padding>
-                  <img ng-src="{{ med.url.substring(0, med.url.length-5) + 't.jpg' }}" alt="{{item.who}}" />
+                  <img ng-src="{{ med.url.substring(0, med.url.length-5) + 't.jpg' }}" alt="{{item.who}}" ng-hide='isvideo(med.url)' />
                   <img ng-src="{{ 'http://img.youtube.com/vi/' + med.url.slice(med.url.indexOf('?v=') + 3, med.url.length) + '/default.jpg' }}" alt="{{item.who}}" ng-show="isvideo(med.url)" />
                 </div>
                 

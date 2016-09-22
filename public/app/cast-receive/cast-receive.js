@@ -27,10 +27,13 @@ angular.module('mainApp')
 
 		$http.get('/playlists/play.json/?device_id=' + $scope.device_id).then(function (response) {
 			$scope.contentList = response.data.contents;
-			console.log($scope.contentList);
 
 			for (j = 0; j < $scope.contentList.length; j++)
 			{
+				if ($scope.contentList[j].url.indexOf('youtube') != -1)
+				{
+					$scope.contentList[j].url = $scope.contentList[j].url + '?autoplay=1';
+				}
 				$scope.contentList[j].url = $scope.contentList[j].url.replace("watch?v=", "v/"); 
 				$scope.contentList[j].url = $sce.trustAsResourceUrl($scope.contentList[j].url);
 			}
@@ -44,7 +47,7 @@ angular.module('mainApp')
 				{
 
 					$scope.a = $scope.contentList[count].url;
-					console.log($scope.a);
+
 					if($scope.contentList[count].content_type == 'photo')
 					{
 						$scope.image.show = true;
@@ -65,11 +68,9 @@ angular.module('mainApp')
 					if($scope.playlists[k].device_id == $scope.device_id)
 					{
 						$scope.t = $scope.playlists[k].timer;
-						console.log($scope.t);
 					}
 				}
 				var tr = $scope.t * 1000;
-				console.log(tr);
 				$scope.a = $scope.contentList[0].url;
 				count++;
 				$interval(function() {callTimeOut(len)},tr);
