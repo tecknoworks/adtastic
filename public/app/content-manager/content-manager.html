@@ -8,6 +8,10 @@
       <md-input-container>
         <input type="text" placeholder="Url" floating-label ng-model="inputUrl" />
       </md-input-container>
+
+      <md-input-container>
+        <input type="text" placeholder="Video Length" floating-label ng-model="inputLen" />
+      </md-input-container>
       <div>
         <md-button id='Add' ng-click="add()" class="md-raised md-primary">Add</md-button>
       </div>
@@ -44,7 +48,7 @@
 
                 </md-card-title-text>
                 <div class="md-media-lg card-media" layout-padding>
-                  <img ng-src="{{ med.url.substring(0, med.url.length-5) + 't.jpg' }}" alt="{{item.who}}" />
+                  <img ng-src="{{ med.url.substring(0, med.url.length-5) + 't.jpg' }}"    alt="{{item.who}}" ng-hide="isvideo(med.url)"/>
                   <img ng-src="{{ 'http://img.youtube.com/vi/' + med.url.slice(med.url.indexOf('?v=') + 3, med.url.length) + '/default.jpg' }}" alt="{{item.who}}" ng-show="isvideo(med.url)" />
                 </div>
                 

@@ -79,7 +79,7 @@ angular.module('mainApp')
   }
 
   $scope.add = function() {
-    $http.post('/contents.json', { content: { name: $scope.inputName, url: $scope.inputUrl, content_type: "photo" } } ).then(function (response) {
+    $http.post('/contents.json', { content: { name: $scope.inputName, url: $scope.inputUrl, content_type: "photo", len: $scope.inputLen } } ).then(function (response) {
       $scope.media.push(response.data);
       $http.post('/tags/multiple', { tags: $scope.myTags } ).then(function (response) {
 
