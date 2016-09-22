@@ -19,18 +19,6 @@ angular.module('mainApp')
 
   $scope.cast = function() {
 
-    // findIndexOfDevice = function(dev_name)
-    // {
-    //   for (count = 0; count < $scope.devicesList.length; count++)
-    //   {
-    //     if (dev_name == $scope.devicesList[count].name)
-    //     {
-    //       return $scope.devicesList[count].id;
-    //     }
-    //   }
-    //   return -1;
-    // }
-
     findIndexesOfDevices = function()
     {
       idx = [];

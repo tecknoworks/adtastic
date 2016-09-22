@@ -1,5 +1,5 @@
 
-angular.module('mainApp', ['ngRoute', 'ngMaterial', 'ngCookies'])
+angular.module('mainApp', ['ngRoute', 'ngMaterial', 'ngCookies','FBAngular'])
 .controller('MainController', function ($scope, $rootScope, $http, $location, logOptions, $cookies) {
 
   $rootScope.options = {
@@ -17,6 +17,9 @@ angular.module('mainApp', ['ngRoute', 'ngMaterial', 'ngCookies'])
   $rootScope.playlist = {
     //array od hashes for the playlist
     item: []
+  }
+  $rootScope.image = {
+    show: false
   }
 
   $scope.content = function(){

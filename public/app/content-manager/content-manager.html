@@ -51,11 +51,13 @@
               <md-card-title>
                 <md-card-title-text>
                 <span class="md-headline">{{ med.name }}</span>
-                  <span class="md-subhead">{{ med.url }}</span>
+                <span class="md-subhead">{{ med.url }}</span>
                 </md-card-title-text>
                 <div class="md-media-lg card-media" layout-padding>
                   <img ng-src="{{ med.url.substring(0, med.url.length-5) + 't.jpg' }}" alt="{{item.who}}" />
+                  <img ng-src="{{ 'http://img.youtube.com/vi/' + med.url.slice(med.url.indexOf('?v=') + 3, med.url.length) + '/default.jpg' }}" alt="{{item.who}}" ng-show="isvideo(med.url)" />
                 </div>
+                
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
                 <md-button ng-click="delete(med.id)">Delete</md-button>

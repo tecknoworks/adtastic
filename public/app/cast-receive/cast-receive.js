@@ -4,6 +4,8 @@ angular.module('mainApp')
 	$scope.devs = [];
 	$scope.device_id = -1;
 
+
+
 	$http.get('/devices.json').then(function (response) {
 		$scope.devs = response.data.devices;
 		$scope.contentList = [];
@@ -40,7 +42,17 @@ angular.module('mainApp')
 
 				callTimeOut = function(len)
 				{
+
 					$scope.a = $scope.contentList[count].url;
+					console.log($scope.a);
+					if($scope.contentList[count].content_type == 'photo')
+					{
+						$scope.image.show = true;
+					}
+					else
+					{
+						$scope.image.show = false;
+					}
 					count++;
 					if (count == len)
 					{

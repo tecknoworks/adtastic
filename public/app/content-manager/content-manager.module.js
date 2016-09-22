@@ -49,7 +49,17 @@ angular.module('mainApp')
     }
   }
 
-
+  $scope.isvideo = function(url)
+  {
+   
+    if (url.indexOf("youtube") != -1)
+    {
+     
+      return true
+    }
+    else
+      return false
+  }
 
   $scope.delete = function(pid) {
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920124813) do
+ActiveRecord::Schema.define(version: 20160921134023) do
 
   create_table "content_tags", force: :cascade do |t|
     t.integer "content_id"
@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 20160920124813) do
   end
 
   create_table "contents", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
-    t.string "content_type"
+    t.string  "name"
+    t.string  "url"
+    t.string  "content_type"
+    t.integer "len"
   end
 
   create_table "devices", force: :cascade do |t|
