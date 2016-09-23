@@ -1,5 +1,5 @@
 angular.module('mainApp')
-.controller('CastReceiveController', function ($rootScope, $scope, $sce, $http, $routeParams, $cookies, $interval) {
+.controller('CastReceiveController', function ($rootScope, $scope, $sce, $http, $routeParams, $cookies, $timeout, $interval) {
 	
 	$scope.devs = [];
 	$scope.device_id = -1;
@@ -44,23 +44,25 @@ angular.module('mainApp')
 
 				callTimeOut = function(len)
 				{
-
-					$scope.a = $scope.contentList[count].url;
-					if($scope.a.indexOf("youtube") == -1)
+					tr = bkp;
+					a = $scope.contentList[count].url;
+					if(a.indexOf("youtube") == -1)
 					{
 						$scope.image.show = true;
 					}
 					else
-					{
+					{	
 						$scope.image.show = false;
+						tr = $scope.contentList[count].len * 1000 + 2000;
 					}
-					$scope.a = $sce.trustAsResourceUrl($scope.a);
-
+					$scope.a = $sce.trustAsResourceUrl(a);
 					count++;
-					if (count == len)
+					if (count >= len)
 					{
 						count = 0;
 					}
+					$interval.cancel(p);
+					p = $interval (function () { callTimeOut(len) }, tr);
 				}
 
 				for( k = 0; k < $scope.playlists.length; k++)
@@ -71,12 +73,13 @@ angular.module('mainApp')
 					}
 				}
 				var tr = $scope.t * 1000;
+				var bkp = tr;
 				$scope.image.show = true;
-				$scope.a = $scope.contentList[0].url;
-				$scope.a = $sce.trustAsResourceUrl($scope.a);
+				var a = $scope.contentList[0].url;
+				$scope.a = $sce.trustAsResourceUrl(a);
 				count++;
-				$interval(function() {callTimeOut(len)},tr);
-			}
+				var p = $interval( function () { callTimeOut(len) }, tr);
+			} 
 
 			count = 0;
 			$scope.t = 0;
